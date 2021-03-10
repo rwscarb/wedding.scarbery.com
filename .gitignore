@@ -1,6 +1,9 @@
+secrets.js
+
 .DS_Store
 node_modules
 /dist
+/src/contracts
 
 /tests/e2e/videos/
 /tests/e2e/screenshots/
