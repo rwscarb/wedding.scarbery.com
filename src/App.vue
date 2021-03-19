@@ -20,6 +20,9 @@
             <b-col>
                 <b-input-group size="sm" prepend="Invitation Token Address">
                     <b-form-input :value="invitationTokenAddress" class="address" readonly></b-form-input>
+                    <b-input-group-append>
+                        <b-button @click="addERCToken(invitationTokenAddress, 'INVITE')" variant="outline-primary">+</b-button>
+                    </b-input-group-append>
                 </b-input-group>
             </b-col>
         </b-row>
@@ -27,6 +30,9 @@
             <b-col>
                 <b-input-group size="sm" prepend="Witness Token Address">
                     <b-form-input :value="witnessTokenAddress" class="address" readonly></b-form-input>
+                    <b-input-group-append>
+                        <b-button @click="addERCToken(witnessTokenAddress, 'WED')" variant="outline-primary">+</b-button>
+                    </b-input-group-append>
                 </b-input-group>
             </b-col>
         </b-row>
@@ -147,6 +153,19 @@ export default {
         ]),
     },
     methods: {
+        async addERCToken(address, symbol) {
+            await this.drizzleInstance.web3.currentProvider.sendAsync({
+                method: 'metamask_watchAsset',
+                params: {
+                    type: 'ERC20',
+                    options: {
+                        address,
+                        symbol,
+                        decimals: 0
+                    }
+                }
+            });
+        },
         logEvent(event) {
             this.events.push(event);
         },
