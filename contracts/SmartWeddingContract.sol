@@ -107,6 +107,11 @@ contract SmartWeddingContract {
 
     spouse1Address = _spouse1Address;
     spouse2Address = _spouse2Address;
+
+    isInvited[spouse1Address] = true;
+    invitationList.push(spouse1Address);
+    isInvited[spouse2Address] = true;
+    invitationList.push(spouse2Address);
   }
 
   /**
