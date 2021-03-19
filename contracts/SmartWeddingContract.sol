@@ -23,14 +23,13 @@ contract SmartWeddingContract {
   event FundsSent(uint timestamp, address wallet, uint amount);
   event FundsReceived(uint timestamp, address wallet, uint amount);
   event GuestInvited(uint timestamp, address wallet, address from);
-  event GuestbookSignatureAdded(uint timestamp, address wallet, string message);
+  event GuestbookSignatureAdded(uint timestamp, address wallet, string name, string message);
   event GuestAttended(uint timestamp, address wallet);
 
   bool public signed = false;
   bool public divorced = false;
 
   address[] invitationList;
-  string[] guestBook;
 
   WeddingInvitationToken invitationToken = new WeddingInvitationToken();
   WeddingWitnessToken witnessToken = new WeddingWitnessToken();
@@ -55,6 +54,13 @@ contract SmartWeddingContract {
   }
 
   Asset[] public assets;
+
+  struct GuestBookEntry {
+    string name;
+    string message;
+  }
+
+  GuestBookEntry[] guestBook;
 
   /**
    * @dev Modifier that only allows invited member execution.
@@ -151,15 +157,19 @@ contract SmartWeddingContract {
   /**
    * @dev Sign the guest book
    */
-  function signGuestBook(string memory entry) public invited {
+  function signGuestBook(string memory name, string memory message) public invited {
+    GuestBookEntry memory entry = GuestBookEntry({
+      name: name,
+      message: message
+    });
     guestBook.push(entry);
-    emit GuestbookSignatureAdded(now, msg.sender, entry);
+    emit GuestbookSignatureAdded(now, msg.sender, name, message);
   }
 
   /**
    * @dev Get guest book entries
    */
-  function getGuestBookEntries() public view returns (string[] memory) {
+  function getGuestBookEntries() public view returns (GuestBookEntry[] memory) {
     return guestBook;
   }
 
