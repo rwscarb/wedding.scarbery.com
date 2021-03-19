@@ -129,7 +129,11 @@ export default {
             return data === "loading" ? false : data;
         },
         displayedEvents() {
-            return _.sortBy(_.uniqBy(this.events, x => x.data.timestamp), x => -_.toNumber(x.data.timestamp));
+            const sortedEvents = _.sortBy(_.uniqBy(this.events, x => x.data.timestamp), x => -_.toNumber(x.data.timestamp));
+            _.forEach(sortedEvents, x => {
+                x.data = _.pickBy(x.data, (v, k) => _.isNaN(_.toNumber(k))); // remove drizzle numeric props
+            })
+            return sortedEvents;
         },
         utils() {
             return this.drizzleInstance.web3.utils;
