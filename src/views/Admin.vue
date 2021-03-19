@@ -18,7 +18,7 @@
                                 required
                             ></b-form-input>
                             <b-input-group-append>
-                                <b-button type="submit" variant="outline-secondary">Invite</b-button>
+                                <b-button type="submit" variant="outline-secondary" class="admin_input_button">Invite</b-button>
                             </b-input-group-append>
                         </b-input-group>
                     </b-form-group>
@@ -45,7 +45,7 @@
                             ></b-form-input>
                             <b-input-group-append>
                                 <b-button type="submit" variant="outline-secondary"
-                                    :disabled="!!writtenContractIpfsHash">Propose</b-button>
+                                    :disabled="!!writtenContractIpfsHash" class="admin_input_button">Propose</b-button>
                             </b-input-group-append>
                         </b-input-group>
                     </b-form-group>
@@ -67,7 +67,7 @@
                                 :disabled="!writtenContractIpfsHash"
                                 required></b-form-input>
                             <b-input-group-append>
-                                <b-button type="submit" variant="outline-secondary"
+                                <b-button type="submit" variant="outline-secondary" class="admin_input_button"
                                     :disabled="!writtenContractIpfsHash">Set</b-button>
                             </b-input-group-append>
                         </b-input-group>
@@ -121,7 +121,7 @@
                                 required
                             ></b-form-input>
                             <b-input-group-append>
-                                <b-button type="submit" variant="outline-secondary"
+                                <b-button type="submit" variant="outline-secondary" class="admin_input_button"
                                     :disabled="!canProposeAsset">Propose</b-button>
                             </b-input-group-append>
                         </b-input-group>
@@ -334,5 +334,8 @@ export default {
 }
 #propose_asset_allocation {
     flex-grow: 2;
+}
+.admin_input_button {
+    width: 6em;
 }
 </style>
