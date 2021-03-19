@@ -51,6 +51,7 @@
                         <b-nav card-header tabs>
                             <b-nav-item to="/guest-book" exact exact-active-class="active">Guest Book</b-nav-item>
                             <b-nav-item to="/admin" exact exact-active-class="active">Admin</b-nav-item>
+                            <b-nav-item to="/about" exact exact-active-class="active">About</b-nav-item>
                         </b-nav>
                     </b-card-header>
                     <b-card-body>
