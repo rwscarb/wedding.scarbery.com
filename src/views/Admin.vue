@@ -18,7 +18,9 @@
                                 required
                             ></b-form-input>
                             <b-input-group-append>
-                                <b-button type="submit" variant="outline-secondary" class="admin_input_button">Invite</b-button>
+                                <b-button type="submit" variant="outline-secondary" class="admin_input_button">
+                                    Invite
+                                </b-button>
                             </b-input-group-append>
                         </b-input-group>
                     </b-form-group>
@@ -48,6 +50,9 @@
                                     :disabled="!!writtenContractIpfsHash" class="admin_input_button">Propose</b-button>
                             </b-input-group-append>
                         </b-input-group>
+                        <b-link :href="'https://ipfs.io/ipfs/' + this.writtenContractIpfsHash" target="_blank">
+                            View Contract
+                        </b-link>
                     </b-form-group>
                 </b-form>
             </b-col>
