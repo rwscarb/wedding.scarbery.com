@@ -3,55 +3,59 @@
         <b-jumbotron header="Crypto Wedding">
         </b-jumbotron>
         <b-row>
-            <b-col>
-                <b-input-group size="sm" prepend="Spouse 1 Address">
-                    <b-form-input :value="spouse1Address" class="address" readonly></b-form-input>
-                </b-input-group>
+            <b-col cols="3" class="contract_status status_card">
+                <b-card title="Status">
+                    <b-input-group size="sm">
+                        <b-form-checkbox :checked="contractSigned" disabled>Signed</b-form-checkbox>
+                        <b-form-checkbox :checked="contractDivorced" disabled>Divorced</b-form-checkbox>
+                    </b-input-group>
+                </b-card>
             </b-col>
-        </b-row>
-        <b-row>
             <b-col>
-                <b-input-group size="sm" prepend="Spouse 2 Address">
-                    <b-form-input :value="spouse2Address" class="address" readonly></b-form-input>
-                </b-input-group>
-            </b-col>
-        </b-row>
-        <b-row>
-            <b-col>
-                <b-input-group size="sm" prepend="Invitation Token Address">
-                    <b-form-input :value="invitationTokenAddress" class="address" readonly></b-form-input>
-                    <b-input-group-append>
-                        <b-button @click="addERCToken(invitationTokenAddress, 'INVITE')"
-                            class="token_meta_mask_button"
-                            variant="outline-secondary"
-                            title="Click to add token to MetaMask">
-                            <img src="@/assets/meta-mask.png">
-                        </b-button>
-                    </b-input-group-append>
-                </b-input-group>
-            </b-col>
-        </b-row>
-        <b-row>
-            <b-col>
-                <b-input-group size="sm" prepend="Witness Token Address">
-                    <b-form-input :value="witnessTokenAddress" class="address" readonly></b-form-input>
-                    <b-input-group-append>
-                        <b-button @click="addERCToken(witnessTokenAddress, 'WED')"
-                            class="token_meta_mask_button"
-                            variant="outline-secondary"
-                            title="Click to add token to MetaMask">
-                            <img src="@/assets/meta-mask.png">
-                        </b-button>
-                    </b-input-group-append>
-                </b-input-group>
-            </b-col>
-        </b-row>
-        <b-row>
-            <b-col>
-                <b-input-group size="sm" class="contract_status">
-                    <b-form-checkbox :checked="contractSigned" disabled>Signed</b-form-checkbox>
-                    <b-form-checkbox :checked="contractDivorced" disabled>Divorced</b-form-checkbox>
-                </b-input-group>
+                <b-row>
+                    <b-col>
+                        <b-input-group size="sm" prepend="Spouse 1 Address">
+                            <b-form-input :value="spouse1Address" class="address" readonly></b-form-input>
+                        </b-input-group>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col>
+                        <b-input-group size="sm" prepend="Spouse 2 Address">
+                            <b-form-input :value="spouse2Address" class="address" readonly></b-form-input>
+                        </b-input-group>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col>
+                        <b-input-group size="sm" prepend="Invitation Token Address">
+                            <b-form-input :value="invitationTokenAddress" class="address" readonly></b-form-input>
+                            <b-input-group-append>
+                                <b-button @click="addERCToken(invitationTokenAddress, 'INVITE')"
+                                    class="token_meta_mask_button"
+                                    variant="outline-secondary"
+                                    title="Click to add token to MetaMask">
+                                    <img src="@/assets/meta-mask.png">
+                                </b-button>
+                            </b-input-group-append>
+                        </b-input-group>
+                    </b-col>
+                </b-row>
+                <b-row>
+                    <b-col>
+                        <b-input-group size="sm" prepend="Witness Token Address">
+                            <b-form-input :value="witnessTokenAddress" class="address" readonly></b-form-input>
+                            <b-input-group-append>
+                                <b-button @click="addERCToken(witnessTokenAddress, 'WED')"
+                                    class="token_meta_mask_button"
+                                    variant="outline-secondary"
+                                    title="Click to add token to MetaMask">
+                                    <img src="@/assets/meta-mask.png">
+                                </b-button>
+                            </b-input-group-append>
+                        </b-input-group>
+                    </b-col>
+                </b-row>
             </b-col>
         </b-row>
         <b-row>
@@ -226,7 +230,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 h3 {
     margin-top: 1em;
 }
@@ -251,11 +255,20 @@ h3 {
     margin-top: 1em;
 }
 
-.contract_status .custom-checkbox {
-    margin-right: 1em;
+.contract_status {
+    align-self: flex-end;
+    margin-bottom: 0.5em;
+    .custom-checkbox {
+        margin-right: 1em;
+    }
 }
 
 .input-group-sm > .input-group-append > .btn.token_meta_mask_button {
     padding: 0;
+}
+
+body {
+    background: url(./assets/background.jpg) no-repeat center center fixed;
+    background-size: cover;
 }
 </style>
