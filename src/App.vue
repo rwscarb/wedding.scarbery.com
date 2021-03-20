@@ -1,5 +1,5 @@
 <template>
-    <b-container v-if="isDrizzleInitialized">
+    <b-container v-if="isDrizzleInitialized" fluid="sm">
         <b-jumbotron header="Crypto Wedding">
         </b-jumbotron>
         <b-row>
