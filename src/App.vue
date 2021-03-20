@@ -21,7 +21,12 @@
                 <b-input-group size="sm" prepend="Invitation Token Address">
                     <b-form-input :value="invitationTokenAddress" class="address" readonly></b-form-input>
                     <b-input-group-append>
-                        <b-button @click="addERCToken(invitationTokenAddress, 'INVITE')" variant="outline-primary">+</b-button>
+                        <b-button @click="addERCToken(invitationTokenAddress, 'INVITE')"
+                            class="token_meta_mask_button"
+                            variant="outline-secondary"
+                            title="Click to add token to MetaMask">
+                            <img src="@/assets/meta-mask.png">
+                        </b-button>
                     </b-input-group-append>
                 </b-input-group>
             </b-col>
@@ -31,7 +36,12 @@
                 <b-input-group size="sm" prepend="Witness Token Address">
                     <b-form-input :value="witnessTokenAddress" class="address" readonly></b-form-input>
                     <b-input-group-append>
-                        <b-button @click="addERCToken(witnessTokenAddress, 'WED')" variant="outline-primary">+</b-button>
+                        <b-button @click="addERCToken(witnessTokenAddress, 'WED')"
+                            class="token_meta_mask_button"
+                            variant="outline-secondary"
+                            title="Click to add token to MetaMask">
+                            <img src="@/assets/meta-mask.png">
+                        </b-button>
                     </b-input-group-append>
                 </b-input-group>
             </b-col>
@@ -243,5 +253,9 @@ h3 {
 
 .contract_status .custom-checkbox {
     margin-right: 1em;
+}
+
+.input-group-sm > .input-group-append > .btn.token_meta_mask_button {
+    padding: 0;
 }
 </style>
