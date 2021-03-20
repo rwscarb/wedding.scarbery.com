@@ -3,7 +3,7 @@
         <b-jumbotron header="Crypto Wedding">
         </b-jumbotron>
         <b-row>
-            <b-col cols="3" class="contract_status status_card">
+            <b-col lg="3" class="contract_status status_card">
                 <b-card title="Status">
                     <b-input-group size="sm">
                         <b-form-checkbox :checked="contractSigned" disabled>Signed</b-form-checkbox>
