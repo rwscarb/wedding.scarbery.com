@@ -425,7 +425,11 @@ export default {
                 return asset;
             }));
             _.forEach(assets, x => {
-                x.decrypted = CryptoJS.AES.decrypt(x.data, this.encryptionKey).toString(CryptoJS.enc.Utf8);
+                try {
+                    x.decrypted = CryptoJS.AES.decrypt(x.data, this.encryptionKey).toString(CryptoJS.enc.Utf8);
+                } catch {
+                    x.decrypted = '**ENCRYPTED**';
+                }
             });
             Vue.set(this, 'assets', assets);
         },
