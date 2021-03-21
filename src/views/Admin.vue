@@ -48,7 +48,7 @@
                                 v-model="forms.ipfs_contract_link.hash"
                                 type="text"
                                 :placeholder="writtenContractIpfsHash"
-                                :disabled="!!writtenContractIpfsHash"
+                                :disabled="!!writtenContractIpfsHash || forms.ipfs_contract_link.loading"
                                 required
                             ></b-form-input>
                             <b-input-group-append>
@@ -95,11 +95,11 @@
             <b-col class="text-center">
                 <b-button type="submit" variant="outline-primary" v-if="contractSigned"
                     @click="divorce"
-                    :disabled="contractDivorced">Divorce!
+                    :disabled="contractDivorced || forms.sign.loading">Divorce!
                 </b-button>
                 <b-button type="submit" variant="outline-primary" v-else
                     @click="signContract"
-                    :disabled="!writtenContractIpfsHash">Sign Contract!
+                    :disabled="!writtenContractIpfsHash || forms.sign.loading">Sign Contract!
                 </b-button>
             </b-col>
         </b-row>
@@ -168,7 +168,7 @@
                                 type="range"
                                 min="0"
                                 max="100"
-                                :disabled="!canProposeAsset"
+                                :disabled="!canProposeAsset || forms.asset.loading"
                                 step="1">
                             </b-form-input>
                             <div class="text-center form-control" style="max-width: 5em">
@@ -259,6 +259,9 @@ export default {
                 encryption_key: {
                     key: '',
                     showModal: false
+                },
+                sign: {
+                    loading: false
                 }
             },
             fields: {
@@ -381,13 +384,6 @@ export default {
                 this.forms.asset.loading = false;
             }
         },
-        async signContract() {
-            try {
-                await this.SmartWeddingContract.methods.signContract().send();
-            } catch (e) {
-                alert(e.message);
-            }
-        },
         async pay(address, amount) {
             this.forms.pay.errorMessage = null;
             this.forms.pay.loading = true;
@@ -401,11 +397,24 @@ export default {
                 this.forms.pay.loading = false;
             }
         },
+        async signContract() {
+            this.forms.sign.loading = true;
+            try {
+                await this.SmartWeddingContract.methods.signContract().send();
+            } catch (e) {
+                alert(e.message);
+            } finally {
+                this.forms.sign.loading = false;
+            }
+        },
         async divorce() {
+            this.forms.sign.loading = true;
             try {
                 await this.SmartWeddingContract.methods.divorce().send();
             } catch (e) {
                 alert(e.message);
+            } finally {
+                this.forms.sign.loading = false;
             }
         },
         async fetchAssets() {
