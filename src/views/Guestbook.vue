@@ -40,8 +40,8 @@
                 <b-list-group>
                     <b-list-group-item v-for="({name, message}, i) in guestBookEntries" :key="i">
                         <div v-if="name">
-                            <div>{{ name }}:</div>
-                            <div class="text-center"><i>{{ message }}</i></div>
+                            <div class="guest_book_name">{{ name }}:</div>
+                            <div class="guest_book_entry"><i>{{ message }}</i></div>
                         </div>
                         <div v-else>
                             {{ message }}
@@ -120,8 +120,24 @@ export default {
 </script>
 
 <style lang="less" scoped>
+@font-face {
+    font-family: 'Cedarville Cursive';
+    src: url(../assets/fonts/CedarvilleCursive-Regular.ttf);
+}
+
 .entries_list {
     margin-top: 1em;
+    .guest_book_entry, .guest_book_name {
+        font-family: 'Cedarville Cursive', cursive;
+    }
+    .guest_book_entry {
+        text-align: center;
+        margin: 1em 0;
+        font-size: 1.5em;
+    }
+    .guest_book_name {
+        font-size: 1.2em;
+    }
 }
 #guest_book_name {
     width: 20em;

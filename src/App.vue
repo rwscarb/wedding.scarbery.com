@@ -35,7 +35,7 @@
                                     class="token_meta_mask_button"
                                     variant="outline-secondary"
                                     title="Click to add token to MetaMask">
-                                    <img src="@/assets/meta-mask.png">
+                                    <img src="@/assets/images/meta-mask.png">
                                 </b-button>
                             </b-input-group-append>
                         </b-input-group>
@@ -50,7 +50,7 @@
                                     class="token_meta_mask_button"
                                     variant="outline-secondary"
                                     title="Click to add token to MetaMask">
-                                    <img src="@/assets/meta-mask.png">
+                                    <img src="@/assets/images/meta-mask.png">
                                 </b-button>
                             </b-input-group-append>
                         </b-input-group>
@@ -268,7 +268,7 @@ h3 {
 }
 
 body {
-    background: url(./assets/background.jpg) no-repeat center center fixed;
+    background: url(./assets/images/background.jpg) no-repeat center center fixed;
     background-size: cover;
 }
 
