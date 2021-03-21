@@ -19,10 +19,10 @@
                                 required
                             ></b-form-input>
                             <b-input-group-append>
-                                <async-button :loading="forms.invitation.loading" :disabled="!inviteAddressIsValid"
+                                <async-button :loading="forms.invitation.loading" :disabled="!isAddress(forms.invitation.address)"
                                     variant="outline-secondary" type="submit">Invite</async-button>
                             </b-input-group-append>
-                            <b-form-invalid-feedback :state="inviteAddressIsValid">
+                            <b-form-invalid-feedback :state="isAddress(forms.invitation.address)">
                                 You must supply a valid Ethereum address
                             </b-form-invalid-feedback>
                             <b-form-invalid-feedback force-show v-if="forms.invitation.errorMessage">
@@ -53,7 +53,7 @@
                             ></b-form-input>
                             <b-input-group-append>
                                 <async-button type="submit" variant="outline-secondary"
-                                    :loading="forms.ipfs_contract_link.errorMessage"
+                                    :loading="forms.ipfs_contract_link.loading"
                                     :disabled="!!writtenContractIpfsHash">Propose</async-button>
                             </b-input-group-append>
                         </b-input-group>
@@ -101,6 +101,48 @@
                     @click="signContract"
                     :disabled="!writtenContractIpfsHash">Sign Contract!
                 </b-button>
+            </b-col>
+        </b-row>
+        <b-row>
+            <b-col>
+                <b-form @submit.prevent="pay(forms.pay.address, forms.pay.amount)"
+                    autocomplete="off"
+                    class="form_pay">
+                    <b-form-group
+                        id="pay_form_group"
+                        label="Pay:"
+                        label-for="pay_address">
+                        <b-input-group>
+                            <b-form-input
+                                id="pay_address"
+                                v-model="forms.pay.address"
+                                type="text"
+                                placeholder="0x"
+                                :disabled="forms.pay.loading"
+                                debounce="600"
+                                required></b-form-input>
+                            <b-form-input
+                                id="pay_amount"
+                                class="text-center"
+                                style="max-width: 7em"
+                                v-model="forms.pay.amount"
+                                type="number"
+                                step="0.0001"
+                                :disabled="forms.pay.loading"></b-form-input>
+                            <b-input-group-append>
+                                <async-button type="submit" variant="outline-secondary"
+                                    :loading="forms.pay.loading"
+                                    :disabled="forms.pay.loading || !isAddress(forms.pay.address)">Pay</async-button>
+                            </b-input-group-append>
+                        </b-input-group>
+                        <b-form-invalid-feedback :state="isAddress(forms.pay.address)">
+                            You must supply a valid Ethereum address
+                        </b-form-invalid-feedback>
+                        <b-form-invalid-feedback force-show v-if="forms.pay.errorMessage">
+                            {{ forms.pay.errorMessage }}
+                        </b-form-invalid-feedback>
+                    </b-form-group>
+                </b-form>
             </b-col>
         </b-row>
         <b-row>
@@ -208,6 +250,12 @@ export default {
                     loading: false,
                     errorMessage: null
                 },
+                pay: {
+                    address: '',
+                    amount: 0,
+                    loading: false,
+                    errorMessage: null
+                },
                 encryption_key: {
                     key: '',
                     showModal: false
@@ -278,10 +326,6 @@ export default {
         canProposeAsset() {
             return !!(this.contractSigned && this.encryptionKey);
         },
-        inviteAddressIsValid() {
-            const address = this.forms.invitation.address;
-            return address ? this.utils.isAddress(address) : null;
-        },
         utils() {
           return this.drizzleInstance.web3.utils;
         },
@@ -344,6 +388,19 @@ export default {
                 alert(e.message);
             }
         },
+        async pay(address, amount) {
+            this.forms.pay.errorMessage = null;
+            this.forms.pay.loading = true;
+            try {
+                await this.SmartWeddingContract.methods.pay(address, this.utils.toWei(amount)).send();
+            } catch (e) {
+                this.forms.pay.errorMessage = e.message;
+            } finally {
+                this.forms.pay.address = '';
+                this.forms.pay.amount = 0;
+                this.forms.pay.loading = false;
+            }
+        },
         async divorce() {
             try {
                 await this.SmartWeddingContract.methods.divorce().send();
@@ -377,6 +434,9 @@ export default {
             this.encryptionKey = value;
             await this.$refs['encryption_key_set_modal'].show();
             await this.fetchAssets();
+        },
+        isAddress(address) {
+            return address ? this.utils.isAddress(address) : null;
         },
     },
     async mounted() {

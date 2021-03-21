@@ -9,9 +9,17 @@
                         <b-form-checkbox :checked="contractSigned" disabled>Signed</b-form-checkbox>
                         <b-form-checkbox :checked="contractDivorced" disabled>Divorced</b-form-checkbox>
                     </b-input-group>
+                    <div class="status_balance">Balance: {{ contractBalance.toFixed(6) }} ETH</div>
                 </b-card>
             </b-col>
             <b-col>
+                <b-row>
+                    <b-col>
+                        <b-input-group size="sm" prepend="Contract Address">
+                            <b-form-input :value="contractAddress" class="address" readonly></b-form-input>
+                        </b-input-group>
+                    </b-col>
+                </b-row>
                 <b-row>
                     <b-col>
                         <b-input-group size="sm" prepend="Spouse 1 Address">
@@ -87,7 +95,7 @@
                         <pre>{{ event.data }}</pre>
                     </b-list-group-item>
                 </b-list-group>
-                <i v-else>No events recorded...</i>
+                <i v-else class="naked_title">No events recorded...</i>
             </b-col>
         </b-row>
     </b-container>
@@ -117,6 +125,9 @@ export default {
                 method: "getWitnessTokenAddress",
 
             });
+        },
+        contractAddress() {
+            return this.drizzleInstance.contracts.SmartWeddingContract.address;
         },
         spouse1Address() {
             return this.getContractData({
@@ -149,6 +160,13 @@ export default {
                 method: "divorced"
             });
             return data === "loading" ? false : data;
+        },
+        contractBalance() {
+            const data = this.getContractData({
+                contract: "SmartWeddingContract",
+                method: "getBalance"
+            });
+            return data === "loading" ? 0 : _.toNumber(this.utils.fromWei(data));
         },
         displayedEvents() {
             const sortedEvents = _.sortBy(_.uniqBy(this.events, x => x.data.timestamp), x => -_.toNumber(x.data.timestamp));
@@ -202,6 +220,10 @@ export default {
         }, {
             contractName: "SmartWeddingContract",
             method: "divorced",
+            methodArgs: []
+        }, {
+            contractName: "SmartWeddingContract",
+            method: "getBalance",
             methodArgs: []
         }, {
             contractName: "SmartWeddingContract",
@@ -272,9 +294,17 @@ body {
     background-size: cover;
 }
 
-h3.naked_title {
+.naked_title {
     color: white;
+}
+
+h3.naked_title {
     margin-top: 1.2em;
+}
+
+.status_balance {
+    margin-top: .25em;
+    font-size: .8em;
 }
 
 @media (max-width: 767.98px) {

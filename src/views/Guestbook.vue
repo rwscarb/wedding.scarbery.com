@@ -40,7 +40,7 @@
                 <b-list-group>
                     <b-list-group-item v-for="({name, message}, i) in guestBookEntries" :key="i">
                         <div v-if="name">
-                            <div class="guest_book_name">{{ name }}:</div>
+                            <div class="guest_book_name">{{ name }}</div>
                             <div class="guest_book_entry"><i>{{ message }}</i></div>
                         </div>
                         <div v-else>

@@ -127,6 +127,10 @@ contract SmartWeddingContract {
     emit FundsReceived(now, msg.sender, msg.value);
   }
 
+  function getBalance() external view returns (uint) {
+    return address(this).balance;
+  }
+
   /**
    * @dev Invite someone to your wedding
    */
