@@ -197,7 +197,7 @@
         <b-row>
             <b-col>
                 <div v-if="assets.length">
-                    <b-table striped hover :items="assets" :fields="fields.assets" :filter="{removed: this.showRemovedAssets}" :filter-function="filterAssets">
+                    <b-table small hover :items="assets" :fields="fields.assets" :filter="{removed: this.showRemovedAssets}" :filter-function="filterAssets">
                         <template #cell(added)="data">
                             <div v-if="!data.item.added">
                                 <b-button @click="approveAsset(data.item.id)" v-if="!data.item.approved">Approve</b-button>
