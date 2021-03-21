@@ -11,8 +11,9 @@
                         <b-form-input
                             id="guest_book_name"
                             v-model="forms.guest_book.name"
+                            :disabled="forms.guest_book.loading"
                             type="text"
-                            placeholder="enter name"
+                            placeholder="name"
                             required
                             autofocus></b-form-input>
                     </b-form-group>
@@ -20,22 +21,27 @@
                         <b-form-textarea
                             id="guest_book_message"
                             v-model="forms.guest_book.message"
-                            placeholder="enter message"
+                            :disabled="forms.guest_book.loading"
+                            placeholder="message"
                             rows="4"
                             required></b-form-textarea>
                     </b-form-group>
-                    <b-button type="submit" variant="outline-secondary">Sign</b-button>
+                    <async-button :loading="forms.guest_book.loading"
+                        type="submit" variant="outline-secondary">Sign</async-button>
+                    <b-form-invalid-feedback force-show v-if="forms.guest_book.errorMessage">
+                        {{ forms.guest_book.errorMessage }}
+                    </b-form-invalid-feedback>
                 </b-form>
             </b-col>
         </b-row>
         <b-row>
             <b-col class="entries_list">
-                <h3>Entries:</h3>
+                <h3>Entries</h3>
                 <b-list-group>
                     <b-list-group-item v-for="({name, message}, i) in guestBookEntries" :key="i">
                         <div v-if="name">
                             <div>{{ name }}:</div>
-                            <div>{{ message }}</div>
+                            <div class="text-center"><i>{{ message }}</i></div>
                         </div>
                         <div v-else>
                             {{ message }}
@@ -56,7 +62,9 @@ export default {
         return {
             forms: {
                 guest_book: {
-                    name: ''
+                    name: '',
+                    loading: false,
+                    errorMessage: ''
                 }
             }
         }
@@ -92,12 +100,20 @@ export default {
     },
     methods: {
         async signGuestBook(name, message) {
-            await this.drizzleInstance.contracts.SmartWeddingContract.methods.signGuestBook(
-                this.utils.utf8ToHex(name),
-                this.utils.utf8ToHex(message)
-            ).send();
-            this.forms.guest_book.name = '';
-            this.forms.guest_book.message = '';
+            this.forms.guest_book.errorMessage = null;
+            this.forms.guest_book.loading = true;
+            try {
+                await this.drizzleInstance.contracts.SmartWeddingContract.methods.signGuestBook(
+                    this.utils.utf8ToHex(name),
+                    this.utils.utf8ToHex(message)
+                ).send();
+            } catch(e) {
+                this.forms.guest_book.errorMessage = e.message;
+            } finally {
+                this.forms.guest_book.loading = false;
+                this.forms.guest_book.name = '';
+                this.forms.guest_book.message = '';
+            }
         },
     }
 }

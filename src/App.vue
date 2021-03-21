@@ -3,8 +3,8 @@
         <b-jumbotron header="Crypto Wedding">
         </b-jumbotron>
         <b-row>
-            <b-col lg="3" class="contract_status status_card">
-                <b-card title="Status">
+            <b-col lg="3" class="contract_status">
+                <b-card title="Status" align="stretch">
                     <b-input-group size="sm">
                         <b-form-checkbox :checked="contractSigned" disabled>Signed</b-form-checkbox>
                         <b-form-checkbox :checked="contractDivorced" disabled>Divorced</b-form-checkbox>
@@ -60,7 +60,8 @@
         </b-row>
         <b-row>
             <b-col>
-                <b-card title="Card Title" no-body>
+                <h3 class="naked_title">Smart Contract</h3>
+                <b-card no-body style="min-height: 20em">
                     <b-card-header header-tag="nav">
                         <b-nav card-header tabs>
                             <b-nav-item to="/guest-book" exact exact-active-class="active">Guest Book</b-nav-item>
@@ -76,7 +77,7 @@
         </b-row>
         <b-row>
             <b-col>
-                <h3>Events:</h3>
+                <h3 class="naked_title">Events</h3>
                 <b-list-group v-if="displayedEvents.length">
                     <b-list-group-item v-for="(event, i) in displayedEvents" :key="i">
                         <div class="d-flex w-100 justify-content-between">
@@ -181,7 +182,7 @@ export default {
                 }
             });
         },
-        logEvent(event) {
+        addEvent(event) {
             this.events.push(event);
         },
     },
@@ -225,7 +226,7 @@ export default {
         }].map(x => this.$store.dispatch("drizzle/REGISTER_CONTRACT", x));
     },
     mounted() {
-        this.$drizzleEvents.$on('drizzle/contractEvent', this.logEvent);
+        this.$drizzleEvents.$on('drizzle/contractEvent', this.addEvent);
     }
 }
 </script>
@@ -256,8 +257,6 @@ h3 {
 }
 
 .contract_status {
-    align-self: flex-end;
-    margin-bottom: 0.5em;
     .custom-checkbox {
         margin-right: 1em;
     }
@@ -265,11 +264,17 @@ h3 {
 
 .input-group-sm > .input-group-append > .btn.token_meta_mask_button {
     padding: 0;
+    background-color: white;
 }
 
 body {
     background: url(./assets/background.jpg) no-repeat center center fixed;
     background-size: cover;
+}
+
+h3.naked_title {
+    color: white;
+    margin-top: 1.2em;
 }
 
 @media (max-width: 767.98px) {

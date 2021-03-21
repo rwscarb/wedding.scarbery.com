@@ -15,13 +15,19 @@
                                 v-model="forms.invitation.address"
                                 type="text"
                                 placeholder="0x"
+                                :disabled="forms.invitation.loading"
                                 required
                             ></b-form-input>
                             <b-input-group-append>
-                                <b-button type="submit" variant="outline-secondary" class="admin_input_button">
-                                    Invite
-                                </b-button>
+                                <async-button :loading="forms.invitation.loading" :disabled="!inviteAddressIsValid"
+                                    variant="outline-secondary" type="submit">Invite</async-button>
                             </b-input-group-append>
+                            <b-form-invalid-feedback :state="inviteAddressIsValid">
+                                You must supply a valid Ethereum address
+                            </b-form-invalid-feedback>
+                            <b-form-invalid-feedback force-show v-if="forms.invitation.errorMessage">
+                                {{ forms.invitation.errorMessage }}
+                            </b-form-invalid-feedback>
                         </b-input-group>
                     </b-form-group>
                 </b-form>
@@ -29,7 +35,7 @@
         </b-row>
         <b-row>
             <b-col>
-                <b-form @submit.prevent="proposeContract(forms.ipfs_contract_link.link)"
+                <b-form @submit.prevent="proposeContract(forms.ipfs_contract_link.hash)"
                     autocomplete="off"
                     class="form_propose_contract">
                     <b-form-group
@@ -39,17 +45,21 @@
                         <b-input-group>
                             <b-form-input
                                 id="propose_contract"
-                                v-model="forms.ipfs_contract_link.link"
+                                v-model="forms.ipfs_contract_link.hash"
                                 type="text"
                                 :placeholder="writtenContractIpfsHash"
                                 :disabled="!!writtenContractIpfsHash"
                                 required
                             ></b-form-input>
                             <b-input-group-append>
-                                <b-button type="submit" variant="outline-secondary"
-                                    :disabled="!!writtenContractIpfsHash" class="admin_input_button">Propose</b-button>
+                                <async-button type="submit" variant="outline-secondary"
+                                    :loading="forms.ipfs_contract_link.errorMessage"
+                                    :disabled="!!writtenContractIpfsHash">Propose</async-button>
                             </b-input-group-append>
                         </b-input-group>
+                        <b-form-invalid-feedback force-show v-if="forms.ipfs_contract_link.errorMessage">
+                            {{ forms.ipfs_contract_link.errorMessage }}
+                        </b-form-invalid-feedback>
                         <b-link :href="'https://ipfs.io/ipfs/' + this.writtenContractIpfsHash" target="_blank">
                             View Contract
                         </b-link>
@@ -72,12 +82,13 @@
                                 :disabled="!writtenContractIpfsHash"
                                 required></b-form-input>
                             <b-input-group-append>
-                                <b-button type="submit" variant="outline-secondary" class="admin_input_button"
-                                    :disabled="!writtenContractIpfsHash">Set</b-button>
+                                <async-button type="submit" variant="outline-secondary"
+                                    :disabled="!writtenContractIpfsHash">Set</async-button>
                             </b-input-group-append>
                         </b-input-group>
                     </b-form-group>
                 </b-form>
+                <b-modal ref="encryption_key_set_modal" ok-only centered>Encryption Key Set!</b-modal>
             </b-col>
         </b-row>
         <b-row>
@@ -106,7 +117,7 @@
                                 id="propose_asset"
                                 v-model="forms.asset.data"
                                 type="text"
-                                :disabled="!canProposeAsset"
+                                :disabled="!canProposeAsset || forms.asset.loading"
                                 required
                             ></b-form-input>
                             <b-form-input
@@ -118,18 +129,17 @@
                                 :disabled="!canProposeAsset"
                                 step="1">
                             </b-form-input>
-                            <b-form-input
-                                class="text-center"
-                                type="text"
-                                :value="forms.asset.allocation + '%'"
-                                :disabled="!canProposeAsset"
-                                required
-                            ></b-form-input>
+                            <div class="text-center form-control" style="max-width: 5em">
+                                {{ forms.asset.allocation + '%' }}
+                            </div>
                             <b-input-group-append>
-                                <b-button type="submit" variant="outline-secondary" class="admin_input_button"
-                                    :disabled="!canProposeAsset">Propose</b-button>
+                                <async-button type="submit" variant="outline-secondary"
+                                    :loading="forms.asset.loading" :disabled="!canProposeAsset">Propose</async-button>
                             </b-input-group-append>
                         </b-input-group>
+                        <b-form-invalid-feedback force-show v-if="forms.asset.errorMessage">
+                            {{ forms.asset.errorMessage }}
+                        </b-form-invalid-feedback>
                     </b-form-group>
                 </b-form>
             </b-col>
@@ -148,14 +158,14 @@
                     <b-table striped hover :items="assets" :fields="fields.assets" :filter="{removed: this.showRemovedAssets}" :filter-function="filterAssets">
                         <template #cell(added)="data">
                             <div v-if="!data.item.added">
-                                <b-button @click="approveAsset(data.item.id)" v-if="!data.item.isApproved">Approve</b-button>
+                                <b-button @click="approveAsset(data.item.id)" v-if="!data.item.approved">Approve</b-button>
                                 <span v-else>Awaiting Approval</span>
                             </div>
                             <b-icon icon="check-all" v-else></b-icon>
                         </template>
                         <template #cell(removed)="data">
                             <div v-if="!data.item.removed">
-                                <b-button @click="removeAsset(data.item.id)" v-if="!data.item.isRemoved" :disabled="!data.item.added">Remove</b-button>
+                                <b-button @click="removeAsset(data.item.id)" v-if="!data.item.removed" :disabled="!data.item.added">Remove</b-button>
                                 <span v-else>Awaiting Removal</span>
                             </div>
                             <b-icon icon="check-all" v-else></b-icon>
@@ -184,16 +194,23 @@ export default {
             forms: {
                 invitation: {
                     address: '',
+                    loading: false,
+                    errorMessage: null
                 },
                 ipfs_contract_link: {
-                    link: ''
+                    hash: '',
+                    loading: false,
+                    errorMessage: null
                 },
                 asset: {
                     data: '',
                     allocation: 100,
+                    loading: false,
+                    errorMessage: null
                 },
                 encryption_key: {
-                    key: ''
+                    key: '',
+                    showModal: false
                 }
             },
             fields: {
@@ -208,10 +225,10 @@ export default {
                     label: 'Spouse 2 %'
                 }, {
                     key: 'added',
-                    label: 'Added'
+                    label: 'Add'
                 }, {
                     key: 'removed',
-                    label: 'Removed'
+                    label: 'Remove'
                 }]
             }
         }
@@ -261,6 +278,10 @@ export default {
         canProposeAsset() {
             return !!(this.contractSigned && this.encryptionKey);
         },
+        inviteAddressIsValid() {
+            const address = this.forms.invitation.address;
+            return address ? this.utils.isAddress(address) : null;
+        },
         utils() {
           return this.drizzleInstance.web3.utils;
         },
@@ -279,32 +300,62 @@ export default {
     },
     methods: {
         async inviteAddress(address) {
-            await this.SmartWeddingContract.methods.sendInvitation(address).send();
-            this.forms.invitation.address = '';
+            this.forms.invitation.errorMessage = null;
+            this.forms.invitation.loading = true;
+            try {
+                await this.SmartWeddingContract.methods.sendInvitation(address).send();
+            } catch (e) {
+                this.forms.invitation.errorMessage = e.message;
+            } finally {
+                this.forms.invitation.address = '';
+                this.forms.invitation.loading = false;
+            }
         },
         async proposeContract(ipfs_hash) {
-            await this.SmartWeddingContract.methods.proposeWrittenContract(ipfs_hash).send();
-            this.forms.ipfs_contract_link.link = '';
+            this.forms.ipfs_contract_link.loading = true;
+            this.forms.ipfs_contract_link.errorMessage = null;
+            try {
+                await this.SmartWeddingContract.methods.proposeWrittenContract(ipfs_hash).send();
+            } catch (e) {
+                this.forms.ipfs_contract_link.errorMessage = e.message;
+            } finally {
+                this.forms.ipfs_contract_link.hash = '';
+                this.forms.ipfs_contract_link.loading = false;
+            }
         },
         async proposeAsset(data, allocation) {
+            this.forms.asset.errorMessage = null;
+            this.forms.asset.loading = true;
             const encryptedData = CryptoJS.AES.encrypt(data, this.encryptionKey).toString();
-            await this.SmartWeddingContract.methods.proposeAsset(encryptedData, allocation, 100 - allocation).send();
-            this.forms.asset.data = '';
-            this.forms.asset.allocation = 100;
+            try {
+                await this.SmartWeddingContract.methods.proposeAsset(encryptedData, allocation, 100 - allocation).send();
+            } catch (e) {
+                this.forms.asset.errorMessage = e.message;
+            } finally {
+                this.forms.asset.data = '';
+                this.forms.asset.allocation = 100;
+                this.forms.asset.loading = false;
+            }
         },
         async signContract() {
-            await this.SmartWeddingContract.methods.signContract().send();
+            try {
+                await this.SmartWeddingContract.methods.signContract().send();
+            } catch (e) {
+                alert(e.message);
+            }
         },
         async divorce() {
-            await this.SmartWeddingContract.methods.divorce().send();
+            try {
+                await this.SmartWeddingContract.methods.divorce().send();
+            } catch (e) {
+                alert(e.message);
+            }
         },
         async fetchAssets() {
             const assetIds = await this.SmartWeddingContract.methods.getAssetIds().call();
             const assets = await Promise.all(_.map(assetIds, async x => {
                 const asset = await this.SmartWeddingContract.methods.assets(x - 1).call();
                 asset.id = this.utils.toBN(x).toNumber();
-                asset.isApproved = await this.SmartWeddingContract.methods.assetIsApproved(asset.id).call();
-                asset.isRemoved = await this.SmartWeddingContract.methods.assetIsRemoved(asset.id).call();
                 return asset;
             }));
             _.forEach(assets, x => {
@@ -321,9 +372,11 @@ export default {
         filterAssets(row, filter) {
             return filter.removed ? true : !row.removed;
         },
-        setEncryptionKey(value) {
+        async setEncryptionKey(value) {
             localStorage.setItem('encryption-key', value);
             this.encryptionKey = value;
+            await this.$refs['encryption_key_set_modal'].show();
+            await this.fetchAssets();
         },
     },
     async mounted() {
@@ -334,13 +387,4 @@ export default {
 </script>
 
 <style lang="less" scoped>
-#propose_asset {
-    flex-grow: 4;
-}
-#propose_asset_allocation {
-    flex-grow: 2;
-}
-.admin_input_button {
-    width: 6em;
-}
 </style>
