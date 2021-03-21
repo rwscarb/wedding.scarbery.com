@@ -225,7 +225,7 @@ export default {
             });
         },
         openInEtherScan(address) {
-            window.open('https://etherscan.io/address/' + address, '_blank');
+            window.open('https://ropsten.etherscan.io/address/' + address, '_blank');
         },
         addEvent(event) {
             this.events.push(event);
