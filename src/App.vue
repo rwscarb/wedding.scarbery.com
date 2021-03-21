@@ -306,6 +306,7 @@ h3 {
 }
 
 .contract_status {
+    margin-bottom: 2em;
     .custom-checkbox {
         margin-right: 1em;
     }
