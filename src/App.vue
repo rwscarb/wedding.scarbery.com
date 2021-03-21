@@ -17,6 +17,14 @@
                     <b-col>
                         <b-input-group size="sm" prepend="Contract Address">
                             <b-form-input :value="contractAddress" class="address" readonly></b-form-input>
+                            <b-input-group-append>
+                                <b-button @click="openInEtherScan(contractAddress)"
+                                    class="address_button"
+                                    variant="outline-secondary"
+                                    title="Click to view in Etherscan">
+                                    <img src="@/assets/images/etherscan.png">
+                                </b-button>
+                            </b-input-group-append>
                         </b-input-group>
                     </b-col>
                 </b-row>
@@ -24,6 +32,14 @@
                     <b-col>
                         <b-input-group size="sm" prepend="Spouse 1 Address">
                             <b-form-input :value="spouse1Address" class="address" readonly></b-form-input>
+                            <b-input-group-append>
+                                <b-button @click="openInEtherScan(spouse1Address)"
+                                    class="address_button"
+                                    variant="outline-secondary"
+                                    title="Click to view in Etherscan">
+                                    <img src="@/assets/images/etherscan.png">
+                                </b-button>
+                            </b-input-group-append>
                         </b-input-group>
                     </b-col>
                 </b-row>
@@ -31,6 +47,14 @@
                     <b-col>
                         <b-input-group size="sm" prepend="Spouse 2 Address">
                             <b-form-input :value="spouse2Address" class="address" readonly></b-form-input>
+                            <b-input-group-append>
+                                <b-button @click="openInEtherScan(spouse2Address)"
+                                    class="address_button"
+                                    variant="outline-secondary"
+                                    title="Click to view in Etherscan">
+                                    <img src="@/assets/images/etherscan.png">
+                                </b-button>
+                            </b-input-group-append>
                         </b-input-group>
                     </b-col>
                 </b-row>
@@ -40,7 +64,7 @@
                             <b-form-input :value="invitationTokenAddress" class="address" readonly></b-form-input>
                             <b-input-group-append>
                                 <b-button @click="addERCToken(invitationTokenAddress, 'INVITE')"
-                                    class="token_meta_mask_button"
+                                    class="address_button"
                                     variant="outline-secondary"
                                     title="Click to add token to MetaMask">
                                     <img src="@/assets/images/meta-mask.png">
@@ -55,7 +79,7 @@
                             <b-form-input :value="witnessTokenAddress" class="address" readonly></b-form-input>
                             <b-input-group-append>
                                 <b-button @click="addERCToken(witnessTokenAddress, 'WED')"
-                                    class="token_meta_mask_button"
+                                    class="address_button"
                                     variant="outline-secondary"
                                     title="Click to add token to MetaMask">
                                     <img src="@/assets/images/meta-mask.png">
@@ -200,6 +224,9 @@ export default {
                 }
             });
         },
+        openInEtherScan(address) {
+            window.open('https://etherscan.io/address/' + address, '_blank');
+        },
         addEvent(event) {
             this.events.push(event);
         },
@@ -284,7 +311,7 @@ h3 {
     }
 }
 
-.input-group-sm > .input-group-append > .btn.token_meta_mask_button {
+.input-group-sm > .input-group-append > .btn.address_button {
     padding: 0;
     background-color: white;
 }
