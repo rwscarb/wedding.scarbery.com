@@ -77,12 +77,12 @@ export default {
             });
             if (data === "loading") return [];
             if (data.length) {
-                return _.map(data, x => {
+                return _.reverse(_.map(data, x => {
                     return {
                         name: this.utils.toUtf8(x[0]),
                         message: this.utils.toUtf8(x[1])
                     };
-                });
+                }));
             } else {
                 return [{message: 'There have been no guest entries.'}];
             }
