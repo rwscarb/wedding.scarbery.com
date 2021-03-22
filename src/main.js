@@ -27,6 +27,11 @@ Sentry.init({
 
 Vue.config.productionTip = false;
 
+// todo: drizzle doesn't have options to disable logging
+window.console.groupCollapsed = () => {};
+window.console.log = () => {};
+window.console.groupEnd = () => {};
+
 Vue.use(drizzleVuePlugin, {store, drizzleOptions});
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
