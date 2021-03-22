@@ -19,7 +19,7 @@
                 <b-row>
                     <b-col>
                         <b-input-group size="sm" prepend="Contract Address">
-                            <b-form-input :value="contractAddress" class="address" readonly></b-form-input>
+                            <b-form-input :value="contractAddress" class="address text-monospace" readonly></b-form-input>
                             <b-input-group-append>
                                 <b-button @click="openInEtherScan(contractAddress)"
                                     class="address_button"
@@ -34,7 +34,7 @@
                 <b-row>
                     <b-col>
                         <b-input-group size="sm" prepend="Spouse 1 Address">
-                            <b-form-input :value="spouse1Address" class="address" readonly></b-form-input>
+                            <b-form-input :value="spouse1Address" class="address text-monospace" readonly></b-form-input>
                             <b-input-group-append>
                                 <b-button @click="openInEtherScan(spouse1Address)"
                                     class="address_button"
@@ -49,7 +49,7 @@
                 <b-row>
                     <b-col>
                         <b-input-group size="sm" prepend="Spouse 2 Address">
-                            <b-form-input :value="spouse2Address" class="address" readonly></b-form-input>
+                            <b-form-input :value="spouse2Address" class="address text-monospace" readonly></b-form-input>
                             <b-input-group-append>
                                 <b-button @click="openInEtherScan(spouse2Address)"
                                     class="address_button"
@@ -64,7 +64,7 @@
                 <b-row>
                     <b-col>
                         <b-input-group size="sm" prepend="Invitation Token Address">
-                            <b-form-input :value="invitationTokenAddress" class="address" readonly></b-form-input>
+                            <b-form-input :value="invitationTokenAddress" class="address text-monospace" readonly></b-form-input>
                             <b-input-group-append>
                                 <b-button @click="addERCToken(invitationTokenAddress, 'INVITE')"
                                     class="address_button"
@@ -79,7 +79,7 @@
                 <b-row>
                     <b-col>
                         <b-input-group size="sm" prepend="Witness Token Address">
-                            <b-form-input :value="witnessTokenAddress" class="address" readonly></b-form-input>
+                            <b-form-input :value="witnessTokenAddress" class="address text-monospace" readonly></b-form-input>
                             <b-input-group-append>
                                 <b-button @click="addERCToken(witnessTokenAddress, 'WED')"
                                     class="address_button"
@@ -336,6 +336,7 @@ h3 {
 }
 
 .input-group-sm > .input-group-append > .btn.address_button {
+    width: 2em;
     padding: 0;
     background-color: white;
 }
