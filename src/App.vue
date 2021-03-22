@@ -1,7 +1,8 @@
 <template>
     <b-container v-if="isDrizzleInitialized" fluid="sm">
         <div v-if="!drizzleInstance.web3.currentProvider.isMetaMask" id="header_danger">
-            <b-link href="https://www.google.com/search?q=MetaMask" target="_blank">MetaMask</b-link> is required to interact with contract
+            <b-link href="https://www.google.com/search?q=MetaMask" target="_blank">MetaMask</b-link>
+            is required to interact with contract. *Ropsten Network Only*
         </div>
         <b-jumbotron header="Crypto Wedding">
         </b-jumbotron>
