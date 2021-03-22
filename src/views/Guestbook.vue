@@ -107,12 +107,12 @@ export default {
                     this.utils.utf8ToHex(name),
                     this.utils.utf8ToHex(message)
                 ).send();
+                this.forms.guest_book.name = '';
+                this.forms.guest_book.message = '';
             } catch(e) {
                 this.forms.guest_book.errorMessage = e.message;
             } finally {
                 this.forms.guest_book.loading = false;
-                this.forms.guest_book.name = '';
-                this.forms.guest_book.message = '';
             }
         },
     }
