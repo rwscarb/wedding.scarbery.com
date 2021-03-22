@@ -1,5 +1,8 @@
 <template>
     <b-container v-if="isDrizzleInitialized" fluid="sm">
+        <div v-if="!drizzleInstance.web3.currentProvider.isMetaMask" id="header_danger">
+            <b-link href="https://www.google.com?q=Meta+Mask" target="_blank">Metamask</b-link> is required to interact with contract
+        </div>
         <b-jumbotron header="Crypto Wedding">
         </b-jumbotron>
         <b-row>
@@ -287,6 +290,26 @@ h3 {
 
 .row {
     margin-bottom: .5em;
+}
+
+#header_danger {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    margin-top: .55em;
+    padding-top: .2em;
+    background-color: red;
+    height: 2em;
+    color: white;
+    font-style: italic;
+    text-align: center;
+    z-index: 42;
+    a {
+        color: white;
+        font-weight: bold;
+        text-decoration: underline;
+    }
 }
 
 .address {
