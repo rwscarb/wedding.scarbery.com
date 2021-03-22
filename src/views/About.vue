@@ -14,18 +14,6 @@
                 Source code for this site and contract can be found
                 <b-link href="https://github.com/rwscarb/wedding.scarbery.com" target="_blank">here</b-link>.
             </li>
-            <li><b-button @click="boom">Boom!</b-button></li>
         </ul>
     </b-container>
 </template>
-
-<script>
-export default {
-    name: 'AboutView',
-    methods: {
-        boom(){
-            throw {exception: 'Boom!'};
-        }
-    }
-}
-</script>

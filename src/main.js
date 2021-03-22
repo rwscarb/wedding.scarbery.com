@@ -22,7 +22,7 @@ Sentry.init({
   dsn: "https://71d62fd28c8546c884b4fa43bd7696a8@o556458.ingest.sentry.io/5687401",
   integrations: [new Integrations.BrowserTracing()],
   tracesSampleRate: 1.0,
-  maxBreadcrumbs: 1,
+  maxBreadcrumbs: 5,
 });
 
 Vue.config.productionTip = false;
