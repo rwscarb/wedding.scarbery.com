@@ -216,7 +216,7 @@ export default {
     },
     methods: {
         async addERCToken(address, symbol) {
-            await this.drizzleInstance.web3.currentProvider.sendAsync({
+            await this.drizzleInstance.web3.currentProvider.request({
                 method: 'metamask_watchAsset',
                 params: {
                     type: 'ERC20',
