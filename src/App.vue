@@ -16,7 +16,7 @@
                     <div class="status_balance">Balance: {{ contractBalance.toFixed(6) }} ETH</div>
                 </b-card>
             </b-col>
-            <b-col>
+            <b-col class="addresses">
                 <b-row>
                     <b-col>
                         <b-input-group size="sm" prepend="Contract Address">
@@ -353,6 +353,7 @@ body {
 
 h3.naked_title {
     margin-top: 1.2em;
+    margin-left: .2em;
 }
 
 .status_balance {
@@ -364,5 +365,9 @@ h3.naked_title {
     .container-sm {
         padding: 0 !important;
     }
+}
+
+.addresses {
+    margin: .5em;
 }
 </style>
