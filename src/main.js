@@ -9,6 +9,7 @@ import store from "./store";
 import drizzleVuePlugin from "@drizzle/vue-plugin";
 import drizzleOptions from "./drizzleOptions";
 import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
+import VueConfetti from "vue-confetti";
 
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-vue/dist/bootstrap-vue.css";
@@ -35,6 +36,7 @@ Vue.use(drizzleVuePlugin, {store, drizzleOptions});
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(VueRouter);
+Vue.use(VueConfetti);
 
 // todo: dir based import of base components
 Vue.component('async-button', AsyncButton);

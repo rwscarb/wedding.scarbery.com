@@ -214,6 +214,16 @@ export default {
             "getContractData"
         ]),
     },
+    watch: {
+        contractSigned(newVal) {
+            if (newVal) {
+                this.$confetti.start();
+                setTimeout(() => {
+                    this.$confetti.stop();
+                }, 5 * 1000);
+            }
+        }
+    },
     methods: {
         async addERCToken(address, symbol) {
             await this.drizzleInstance.web3.currentProvider.sendAsync({
