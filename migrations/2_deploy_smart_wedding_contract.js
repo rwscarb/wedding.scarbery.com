@@ -1,7 +1,7 @@
-const secrets = require('../secrets.js');
+const config = require('../config.js');
 
 const SmartWeddingContract = artifacts.require("SmartWeddingContract");
 
 module.exports = function(deployer) {
-  deployer.deploy(SmartWeddingContract, secrets.spouse1Address, secrets.spouse2Address);
+  deployer.deploy(SmartWeddingContract, config.spouse1Address, config.spouse2Address);
 };

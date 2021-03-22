@@ -17,7 +17,7 @@
  * phrase from a file you've .gitignored so it doesn't accidentally become public.
  *
  */
-const secrets = require('./secrets.js');
+const config = require('./config.js');
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');
 
@@ -58,7 +58,7 @@ module.exports = {
     // Useful for deploying to a public network.
     // NB: It's important to wrap the provider as a function.
     ropsten: {
-      provider: () => new HDWalletProvider(secrets.privateMnemonics.ropsten, `https://ropsten.infura.io/v3/${secrets.infuraProjectId}`),
+      provider: () => new HDWalletProvider(config.privateMnemonics.ropsten, `https://ropsten.infura.io/v3/${config.infuraProjectId}`),
       network_id: 3,       // Ropsten's id
       gas: 7500000,        // Ropsten has a lower block limit than mainnet
       confirmations: 2,    // # of confs to wait between deployments. (default: 0)

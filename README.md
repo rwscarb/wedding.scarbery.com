@@ -18,19 +18,7 @@ npm install
 
 ## Development
 
-First create a new file called `secrets.js` in the root of the project directory. The `privateMnemonics` are used by Truffle to deploy the contract.
-
-```js
-module.exports = {
-  spouse1Address: '0xB7..50',
-  spouse2Address: '0x87..E9',
-  infuraProjectId: '5b0..b6f',
-  privateMnemonics: {
-    ropsten: 'foo bar baz'
-  }
-}
-
-```
+First edit the file called `config.js` in the root of the project directory. The `privateMnemonics` are used by Truffle to deploy the contract.
 
 Make sure there is enough ETH on the wallet to cover deployment costs. Compile and deploy the smart contract to the private testnet using `Truffle`:
 

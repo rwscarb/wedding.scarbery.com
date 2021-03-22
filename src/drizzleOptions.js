@@ -1,14 +1,14 @@
 import _ from 'lodash';
 
 import SmartWeddingContract from "@/contracts/SmartWeddingContract.json";
-import secrets from "../secrets.js";
+import config from "../config.js";
 
 const options = {
   web3: {
     block: false,
     fallback: {
       type: "ws",
-      url: `wss://ropsten.infura.io/ws/v3/${secrets.infuraProjectId}`
+      url: `wss://ropsten.infura.io/ws/v3/${config.infuraProjectId}`
     }
   },
   contracts: [SmartWeddingContract],
