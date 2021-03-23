@@ -371,6 +371,12 @@ h3.naked_title {
 }
 
 @media (max-width: 767.98px) {
+    html, body {
+        overflow-x: hidden;
+    }
+    body {
+        position: relative
+    }
     .container-sm {
         padding: 0 !important;
     }
