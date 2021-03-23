@@ -2,7 +2,7 @@
     <b-container v-if="isDrizzleInitialized" fluid="sm">
         <div v-if="!drizzleInstance.web3.currentProvider.isMetaMask" id="header_danger">
             <b-link href="https://metamask.io/download" target="_blank">MetaMask</b-link>
-            is required to interact with contract. *Ropsten Network Only*
+            is required to interact with contract. <div class="d-inline-block">*Ropsten Network Only*</div>
         </div>
         <b-jumbotron header="Crypto Wedding">
         </b-jumbotron>
@@ -308,10 +308,9 @@ h3 {
     top: 0;
     left: 0;
     width: 100%;
-    margin-top: .55em;
-    padding-top: .2em;
+    margin: .55em 0 0;
+    padding: .2em;
     background-color: red;
-    height: 2em;
     color: white;
     font-style: italic;
     text-align: center;
