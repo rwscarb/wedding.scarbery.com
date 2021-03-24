@@ -1,71 +1,67 @@
 <template>
-    <b-container>
-        <b-row>
-            <b-col>
-                <b-form @submit.prevent="signGuestBook(forms.guest_book.name, forms.guest_book.message)"
-                    autocomplete="off"
-                    class="form_sign_guest_book">
-                    <b-form-group
-                        label="Sign Guest Book:"
-                        label-for="guest_book_name">
-                        <b-form-input
-                            id="guest_book_name"
-                            v-model="forms.guest_book.name"
-                            :disabled="forms.guest_book.loading"
-                            type="text"
-                            placeholder="name"
-                            required
-                            autofocus></b-form-input>
-                    </b-form-group>
-                    <b-form-group>
-                        <b-form-textarea
-                            id="guest_book_message"
-                            v-model="forms.guest_book.message"
-                            :disabled="forms.guest_book.loading"
-                            placeholder="message"
-                            rows="4"
-                            required></b-form-textarea>
-                    </b-form-group>
-                    <async-button :loading="forms.guest_book.loading"
-                        type="submit" variant="outline-secondary">Sign</async-button>
-                    <b-form-invalid-feedback force-show v-if="forms.guest_book.errorMessage">
-                        {{ forms.guest_book.errorMessage }}
-                    </b-form-invalid-feedback>
-                </b-form>
-            </b-col>
-        </b-row>
-        <b-row>
-            <b-col class="entries_list">
-                <h3>Entries</h3>
-                <b-list-group>
-                    <b-list-group-item v-for="({name, message}, i) in guestBookEntries" :key="i">
-                        <div v-if="name">
-                            <div class="guest_book_name">{{ name }}</div>
-                            <div class="guest_book_entry"><i>{{ message }}</i></div>
-                        </div>
-                        <div v-else>
-                            {{ message }}
-                        </div>
-                    </b-list-group-item>
-                </b-list-group>
-            </b-col>
-        </b-row>
-    </b-container>
+    <div class="guestbook_view">
+
+        <h3>Sign the Guest Book</h3>
+        <v-form ref="form"
+            v-model="form.valid"
+            @submit.prevent="signGuestBook(form.name, form.message)">
+            <v-text-field
+                v-model="form.name"
+                label="Name"
+                autocomplete="off"
+                :rules="[v => !!v || 'You forgot your name']"
+                :loading="form.loading"
+                required
+                />
+            <v-textarea
+                v-model="form.message"
+                label="Message"
+                name="guest_book_message"
+                :rules="[v => !!v || 'You forgot the message']"
+                :loading="form.loading"
+                solo
+                />
+            <v-row>
+                <v-col align="end">
+                    <v-btn class="mx-2 align-right" fab dark large type="submit"
+                        :disabled="!form.valid" :loading="form.loading">
+                        <v-icon dense>mdi-email-edit-outline</v-icon>
+                    </v-btn>
+                </v-col>
+            </v-row>
+        </v-form>
+
+        <h3>Entries</h3>
+        <v-list three-line>
+            <v-list-item v-for="({name, address, message}, i) in guestBookEntries" :key="i">
+                <v-list-item-avatar><blocky :seed="address" :size="10"></blocky></v-list-item-avatar>
+                <v-list-item-content>
+                    <v-list-item-title v-if="name">{{ name }}</v-list-item-title>
+                    <v-list-item-subtitle>{{ message }}</v-list-item-subtitle>
+                </v-list-item-content>
+            </v-list-item>
+        </v-list>
+
+        <v-snackbar v-model="form.error" :timeout="3000">{{ form.errorMessage }}</v-snackbar>
+    </div>
 </template>
 
 <script>
 import _ from 'lodash';
 import { mapGetters } from 'vuex';
 
+import Blocky from '@/components/Blocky.vue'
+
 export default {
     data: function () {
         return {
-            forms: {
-                guest_book: {
-                    name: '',
-                    loading: false,
-                    errorMessage: ''
-                }
+            form: {
+                loading: false,
+                valid: false,
+                error: false,
+                name: '',
+                message: '',
+                errorMessage: '',
             }
         }
     },
@@ -79,12 +75,13 @@ export default {
             if (data.length) {
                 return _.reverse(_.map(data, x => {
                     return {
-                        name: this.utils.toUtf8(x[0]),
-                        message: this.utils.toUtf8(x[1])
+                        address: x[0],
+                        name: this.utils.toUtf8(x[1]),
+                        message: this.utils.toUtf8(x[2]),
                     };
                 }));
             } else {
-                return [{message: 'There have been no guest entries.'}];
+                return [{address: '0xFFFFF', name: 'Anonymous', message: 'There have been no guest entries.'}];
             }
         },
         ...mapGetters("drizzle", [
@@ -100,46 +97,27 @@ export default {
     },
     methods: {
         async signGuestBook(name, message) {
-            this.forms.guest_book.errorMessage = null;
-            this.forms.guest_book.loading = true;
+            this.form.loading = true;
+            this.form.errorMessage = null;
             try {
                 await this.drizzleInstance.contracts.SmartWeddingContract.methods.signGuestBook(
                     this.utils.utf8ToHex(name),
                     this.utils.utf8ToHex(message)
                 ).send();
-                this.forms.guest_book.name = '';
-                this.forms.guest_book.message = '';
-            } catch(e) {
-                this.forms.guest_book.errorMessage = e.message;
+                this.$refs.form.reset();
+            } catch (e) {
+                this.form.error = true;
+                this.form.errorMessage = e.message;
             } finally {
-                this.forms.guest_book.loading = false;
+                this.form.loading = false;
             }
         },
+    },
+    components: {
+        Blocky
     }
 }
 </script>
 
 <style lang="less" scoped>
-@font-face {
-    font-family: 'Cedarville Cursive';
-    src: url(../assets/fonts/CedarvilleCursive-Regular.ttf);
-}
-
-.entries_list {
-    margin-top: 1em;
-    .guest_book_entry, .guest_book_name {
-        font-family: 'Cedarville Cursive', cursive;
-    }
-    .guest_book_entry {
-        text-align: center;
-        margin: 1em 0;
-        font-size: 1.5em;
-    }
-    .guest_book_name {
-        font-size: 1.2em;
-    }
-}
-#guest_book_name {
-    width: 20em;
-}
 </style>

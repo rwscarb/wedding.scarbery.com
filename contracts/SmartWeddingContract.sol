@@ -56,6 +56,7 @@ contract SmartWeddingContract {
   Asset[] public assets;
 
   struct GuestBookEntry {
+    address sender;
     string name;
     string message;
   }
@@ -163,6 +164,7 @@ contract SmartWeddingContract {
    */
   function signGuestBook(string memory name, string memory message) public invited {
     GuestBookEntry memory entry = GuestBookEntry({
+      sender: msg.sender,
       name: name,
       message: message
     });

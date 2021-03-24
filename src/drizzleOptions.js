@@ -32,7 +32,7 @@ const options = {
     ], x => {
       return {
         eventName: x,
-        eventOptions: { fromBlock: 9863506 }
+        eventOptions: { fromBlock: 0 }
       }
     })
   },
