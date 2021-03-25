@@ -1,3 +1,5 @@
+import Vue from 'vue';
+
 import VueRouter from "vue-router";
 
 import About from "@/views/About.vue";
@@ -11,14 +13,23 @@ import ProposeContractView from '@/views/admin/ProposeContractView.vue';
 import AssetsView from '@/views/admin/AssetsView.vue';
 import ActionsView from '@/views/admin/ActionsView.vue';
 import SettingsView from '@/views/admin/SettingsView.vue';
+import AboutAppBar from '@/views/app-bars/AboutAppBar.vue';
+import TimelineView from '@/views/about/TimelineView.vue';
+import EventsView from '@/views/about/EventsView.vue';
+import PhotosView from '@/views/admin/PhotosView.vue';
 
 
 const routes = [
   {
     path: '/about', components: {
       default: About,
-      appBar: DefaultAppBar
-    }
+      appBar: AboutAppBar,
+    },
+      children: [
+        {path: 'timeline', component: TimelineView},
+        {path: 'events', component: EventsView},
+        {path: '', redirect: 'timeline'}
+      ]
   },
   {
     path: '/admin', components: {
@@ -46,7 +57,15 @@ const routes = [
       appBar: DefaultAppBar
     }
   },
+  {
+    path: '/photos', components: {
+      default: PhotosView,
+      appBar: DefaultAppBar
+    }
+  },
   {path: '*', redirect: '/guest-book'}
 ]
+
+Vue.use(VueRouter);
 
 export const router = new VueRouter({routes});

@@ -2,6 +2,36 @@
     <div class="dashboard_view">
 
         <div class="dashboard_item">
+            <h3>Contract Info</h3>
+            <v-container>
+                <v-row>
+                    <v-col cols="12">
+                        <v-card>
+                            <v-card-title>
+                                <v-row>
+                                    <v-col>
+                                        Contract Address
+                                    </v-col>
+                                    <v-col>
+                                        <eth-address-link class="text-right ml-2" :address="SmartWeddingContract.address"/>
+                                    </v-col>
+                                </v-row>
+                            </v-card-title>
+                            <v-card-text>
+                                <v-container>
+                                    <v-row justify="space-between">
+                                        <v-col>{{ SmartWeddingContract.address }}</v-col>
+                                        <v-col class="text-right">Balance: {{ contractBalance }} ETH</v-col>
+                                    </v-row>
+                                </v-container>
+                            </v-card-text>
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </div>
+
+        <div class="dashboard_item">
             <h3>Address Book</h3>
             <v-container>
                 <v-row>
@@ -41,7 +71,8 @@
                                             <v-btn
                                                 fab
                                                 x-large
-                                                color="white"
+                                                color="indigo"
+                                                class="lighten-3"
                                                 @click="addERCToken(inviteTokenAddress, 'INVITE')"
                                             ><v-icon>mdi-ethereum</v-icon></v-btn>
                                             <div>Invite</div>
@@ -50,7 +81,8 @@
                                             <v-btn
                                                 fab
                                                 x-large
-                                                color="blue"
+                                                color="light-blue"
+                                                class="lighten-4"
                                                 @click="addERCToken(witnessTokenAddress, 'WED')"
                                             ><v-icon>mdi-ethereum</v-icon></v-btn>
                                             <div>Witness</div>
@@ -97,7 +129,6 @@ export default {
     computed: {
         addressBook() {
             return [
-                {title: 'Contract Address', address: this.SmartWeddingContract.address},
                 {title: 'Spouse 1 Address', address: this.spouse1Address},
                 {title: 'Spouse 2 Address', address: this.spouse2Address},
             ];

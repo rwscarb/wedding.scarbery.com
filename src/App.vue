@@ -4,9 +4,11 @@
             <v-list-item>
                 <v-list-item-content>
                     <v-list-item-title class="title">
-                        Crypto Wedding
+                        <v-icon>mdi-shield-lock</v-icon> Crypto Wedding
                     </v-list-item-title>
-                    <v-list-item-subtitle>Written in the time of COVID19</v-list-item-subtitle>
+                    <v-list-item-subtitle class="mt-1">
+                        Written in the time of COVID19
+                    </v-list-item-subtitle>
                 </v-list-item-content>
             </v-list-item>
 
@@ -30,9 +32,30 @@
             </v-container>
         </v-main>
 
-        <v-snackbar :value="showSnackbar" :timeout="3000">{{ snackbarMessage }}</v-snackbar>
+        <v-snackbar :value="showSnackbar" :timeout="3000">
+            <div class="text-center">{{ snackbarMessage }}</div>
+        </v-snackbar>
 
-        <v-footer app>
+        <v-footer padless app>
+            <v-card class="text-center" width="100%">
+                <v-card-text>
+                    <v-btn class="mx-4" icon href="https://twitter.com/ryan_scarbery">
+                        <v-icon size="24px">mdi-twitter</v-icon>
+                    </v-btn>
+                    <v-btn class="mx-4" icon href="https://www.linkedin.com/in/ryan-scarbery/">
+                        <v-icon size="24px">mdi-linkedin</v-icon>
+                    </v-btn>
+                    <v-btn class="mx-4" icon href="https://www.instagram.com/ryanscarbery/">
+                        <v-icon size="24px">mdi-instagram</v-icon>
+                    </v-btn>
+                </v-card-text>
+
+                <v-divider></v-divider>
+
+                <v-card-text>
+                    {{ new Date().getFullYear() }} — Ryan Scarbery
+                </v-card-text>
+            </v-card>
         </v-footer>
     </v-app>
 </template>
@@ -64,13 +87,6 @@ export default {
                 this.setShowNavigationDrawer({show});
             }
         },
-        contractSigned() {
-            return this.getContractDataWithDefault({
-                contract: "SmartWeddingContract",
-                method: "signed",
-                return_default: false
-            });
-        },
         ...mapGetters('vuetify', [
             'showSnackbar',
             'snackbarMessage',
@@ -81,14 +97,33 @@ export default {
         ]),
     },
     watch: {
-        contractSigned(newVal) {
-            if (newVal) {
+        contractSigned(newVal, oldVal) {
+            if (newVal && newVal !== oldVal) {
                 this.$confetti.start();
                 setTimeout(() => {
                     this.$confetti.stop();
                 }, 5 * 1000);
             }
-        }
+        },
+        contractDivorced(newVal, oldVal) {
+            if (newVal && newVal !== oldVal) {
+                this.$confetti.stop();
+                this.$confetti.start({
+                    particles: [
+                        {type: 'heart'},
+                        {type: 'circle'},
+                    ],
+                    defaultColors: [
+                        'black',
+                        'grey',
+                        '#ba0000'
+                    ],
+                });
+                setTimeout(() => {
+                    this.$confetti.stop();
+                }, 5 * 1000);
+            }
+        },
     },
     methods: {
         ...mapActions('vuetify', [
@@ -159,6 +194,7 @@ export default {
 #app {
     min-width: 432px;
 }
+
 h3 {
     margin-top: 2rem;
 }

@@ -10,7 +10,7 @@
             v-model="forms.ipfs_contract_link.valid"
             @submit.prevent="proposeContract(forms.ipfs_contract_link.hash)"
             ref="ipfs_contract_link_form"
-        >
+            >
             <v-text-field
                 v-model="forms.ipfs_contract_link.hash"
                 :loading="forms.ipfs_contract_link.loading"
@@ -20,9 +20,13 @@
                 :label="writtenContractIpfsHash || 'Propose Contract'"
                 autocomplete="off"
                 required
-            ></v-text-field>
-            <a v-if="!!writtenContractIpfsHash" :href="`https://ipfs.io/ipfs/${writtenContractIpfsHash}`" target="_blank">View Contract</a>
-            <v-btn v-else type="submit" :loading="forms.ipfs_contract_link.loading" :disabled="!forms.ipfs_contract_link.valid">Propose</v-btn>
+                ></v-text-field>
+            <a v-if="!!writtenContractIpfsHash"
+                :href="`https://ipfs.io/ipfs/${writtenContractIpfsHash}`"
+                target="_blank">View Contract</a>
+            <v-btn v-else type="submit"
+                :loading="forms.ipfs_contract_link.loading"
+                :disabled="!forms.ipfs_contract_link.valid">Propose</v-btn>
         </v-form>
     </div>
 </template>

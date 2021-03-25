@@ -7,6 +7,7 @@
         </p>
 
         <h4>Send Ethereum from joint account</h4>
+
         <v-form
             ref="pay_form"
             @submit.prevent="pay(forms.pay.address, forms.pay.amount)"
@@ -36,13 +37,13 @@
                         <v-btn
                             type="submit"
                             :loading="forms.pay.loading"
-                        >
-                            Send<v-icon x-small>mdi-ethereum</v-icon>
+                            >Send<v-icon x-small>mdi-ethereum</v-icon>
                         </v-btn>
                     </v-col>
                 </v-row>
             </v-container>
         </v-form>
+
         <div class="text-center">
             <p v-if="contractDivorced">Your are divorced.</p>
             <p v-else>This is the heart of the Contract. No going back...</p>
@@ -53,7 +54,7 @@
                 :value="userDivorced && !contractDivorced"
                 bordered
                 overlap
-            >
+                >
             <v-btn
                 @click="divorce"
                 :disabled="userDivorced"
@@ -67,12 +68,12 @@
                 :value="userSigned"
                 bordered
                 overlap
-            >
+                >
                 <v-btn
                     @click="signContract"
                     :disabled="userSigned"
                     :loading="forms.sign.loading"
-                >Sign</v-btn>
+                    >Sign</v-btn>
             </v-badge>
         </div>
     </div>
@@ -101,20 +102,6 @@ export default {
         }
     }),
     computed: {
-        contractSigned() {
-            return this.getContractDataWithDefault({
-                contract: "SmartWeddingContract",
-                method: "signed",
-                return_default: false
-            });
-        },
-        contractDivorced() {
-            return this.getContractDataWithDefault({
-                contract: "SmartWeddingContract",
-                method: "divorced",
-                return_default: false
-            });
-        },
         userSigned() {
             return this.getContractDataWithDefault({
                 contract: 'SmartWeddingContract',

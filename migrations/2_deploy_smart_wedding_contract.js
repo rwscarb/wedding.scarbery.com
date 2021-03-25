@@ -5,8 +5,8 @@ const SmartWeddingContract = artifacts.require("SmartWeddingContract");
 
 module.exports = async function (deployer) {
   await deployer.deploy(GuestBook, config.spouse1Address, config.spouse2Address);
-  const guestBookContract = await GuestBook.deployed();
-  await deployer.deploy(SmartWeddingContract, guestBookContract.address, config.spouse1Address, config.spouse2Address);
-  const smartWeddingContract = await SmartWeddingContract.deployed();
-  await guestBookContract.setContractOwner(smartWeddingContract.address);
+  const gb = await GuestBook.deployed();
+  await deployer.deploy(SmartWeddingContract, gb.address, config.spouse1Address, config.spouse2Address);
+  const swc = await SmartWeddingContract.deployed();
+  await gb.setContractOwner(swc.address);
 };

@@ -1,6 +1,5 @@
 pragma solidity ^0.5.0;
 
-import { WeddingWitnessToken } from "./Tokens.sol";
 import { GuestBook } from "./GuestBook.sol";
 
 
@@ -28,12 +27,11 @@ contract SmartWeddingContract {
 
   mapping (address => bool) private hasSigned;
   mapping (address => bool) private hasDivorced;
-  mapping (address => bool) private hasAttended;
 
-  address public guestBookAddress;
   address payable public spouse1Address;
   address payable public spouse2Address;
   string public writtenContractIpfsHash;
+  address public guestBookAddress;
 
   struct Asset {
     string data;

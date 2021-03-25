@@ -36,10 +36,10 @@ contract GuestBook {
         require(_spouse1Address != _spouse2Address, "Spouse1 address must not equal Spouse2 address!");
 
         spouse1Address = _spouse1Address;
-        spouse2Address = _spouse2Address;
-
         isInvited[spouse1Address] = true;
         invitationList.push(spouse1Address);
+
+        spouse2Address = _spouse2Address;
         isInvited[spouse2Address] = true;
         invitationList.push(spouse2Address);
     }
@@ -69,6 +69,14 @@ contract GuestBook {
     }
 
     /**
+     * @dev Set contract owner
+     */
+    function setContractOwner(address _owner) public {
+        require(owner == address(0), "Owner already set");
+        owner = _owner;
+    }
+
+    /**
      * @dev Invite someone to your wedding
      */
     function sendInvitation(address payable _to) public onlySpouse {
@@ -79,32 +87,6 @@ contract GuestBook {
             invitationList.push(_to);
             emit GuestInvited(now, _to, msg.sender);
         }
-    }
-
-    /**
-     * @dev Send witness tokens
-     */
-    function sendWitnessTokens() public onlyOwner {
-        for (uint i = 0; i < invitationList.length; i++) {
-            if (witnessToken.balanceOf(address(this)) > 0) {
-                witnessToken.transfer(invitationList[i], 1);
-            }
-        }
-    }
-
-    /**
-     * @dev Set contract owner
-     */
-    function setContractOwner(address _owner) public {
-        require(owner == address(0), "Owner already set");
-        owner = _owner;
-    }
-
-    /**
-     * @dev Get address to InvitationToken
-     */
-    function getInvitationTokenAddress() public view returns (address) {
-        return address(invitationToken);
     }
 
     /**
@@ -128,9 +110,28 @@ contract GuestBook {
     }
 
     /**
+     * @dev Send witness tokens
+     */
+    function sendWitnessTokens() public onlyOwner {
+        for (uint i = 0; i < invitationList.length; i++) {
+            if (witnessToken.balanceOf(address(this)) > 0) {
+                witnessToken.transfer(invitationList[i], 1);
+            }
+        }
+    }
+
+    /**
      * @dev Get address to WitnessToken
      */
     function getWitnessTokenAddress() public view returns (address) {
         return address(witnessToken);
     }
+
+    /**
+     * @dev Get address to InvitationToken
+     */
+    function getInvitationTokenAddress() public view returns (address) {
+        return address(invitationToken);
+    }
+
 }

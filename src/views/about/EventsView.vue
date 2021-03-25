@@ -1,0 +1,66 @@
+<template>
+    <div class="about_events">
+        <h2>Events</h2>
+
+        <v-data-table
+            :headers="headers"
+            :items="displayedEvents"
+            :items-per-page="10"
+            class="elevation-1"
+            >
+            <template v-slot:item.wallet="{ value }">
+                <a :href="`https://ropsten.etherscan.io/tx/${value}`" target="_blank">
+                    <v-avatar>
+                        <blocky :seed="value" :title="value"></blocky>
+                    </v-avatar>
+                </a>
+            </template>
+            <template v-slot:item.timestamp="{ value }">
+                {{ value | timestamp }}
+            </template>
+        </v-data-table>
+    </div>
+</template>
+
+<script>
+import _ from 'lodash';
+
+import { mapGetters } from 'vuex';
+
+import Blocky from '@/components/Blocky.vue';
+
+export default {
+    name: 'EventsView',
+    data: (() => {
+        return {
+            headers: [
+                {text: 'Wallet', value: 'wallet'},
+                {text: 'Event', value: 'eventName'},
+                {text: 'Date', value: 'timestamp'},
+            ],
+        }
+    }),
+    computed: {
+        displayedEvents() {
+            const sortedEvents = _.sortBy(_.uniqBy(this.events, x => x.data.timestamp), x => -_.toNumber(x.data.timestamp));
+            return _.map(sortedEvents, x => {
+                return {
+                    eventName: x.eventName,
+                    ...x.data
+                };
+            })
+        },
+        ...mapGetters('events', [
+            'events'
+        ])
+    },
+    filters: {
+        timestamp(s) {
+            return new Date(_.parseInt(s) * 1000).toLocaleString();
+        }
+    },
+    components: {
+        Blocky
+    },
+}
+</script>

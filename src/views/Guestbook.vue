@@ -1,7 +1,11 @@
 <template>
     <div class="guestbook_view">
+        <h1>Guest Book</h1>
+
+        <v-divider></v-divider>
 
         <h3>Sign the Guest Book</h3>
+
         <v-form ref="guest_book_form"
             v-model="forms.guest_book.valid"
             @submit.prevent="signGuestBook(forms.guest_book.name, forms.guest_book.message)">

@@ -1,5 +1,5 @@
 <template>
-    <div class="eth_address_btn">
+    <div class="eth_address_link">
         <v-btn :href="href" target="_blank" fab x-small>
             <v-img max-width="15" src="../assets/images/etherscan.png"></v-img>
         </v-btn>

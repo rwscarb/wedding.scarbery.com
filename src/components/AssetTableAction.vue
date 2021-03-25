@@ -6,13 +6,13 @@
             :value="isWaitingOnOtherSpouse"
             bordered
             overlap
-        >
+            >
             <v-btn v-if="asset.removed"
                 class="mx-2"
                 fab
                 dark
                 x-small
-            ><v-icon>mdi-skull-crossbones-outline</v-icon></v-btn>
+                ><v-icon>mdi-skull-crossbones-outline</v-icon></v-btn>
             <v-btn v-else-if="asset.added"
                 @click="!isWaitingOnOtherSpouse && $emit('remove', asset)"
                 class="mx-2"
@@ -20,7 +20,7 @@
                 fab
                 dark
                 x-small
-            ><v-icon>mdi-trash-can-outline</v-icon></v-btn>
+                ><v-icon>mdi-trash-can-outline</v-icon></v-btn>
             <v-btn v-else
                 @click="!isWaitingOnOtherSpouse && $emit('approve', asset)"
                 class="mx-2"
@@ -29,7 +29,7 @@
                 fab
                 dark
                 x-small
-            ><v-icon>mdi-heart</v-icon></v-btn>
+                ><v-icon>mdi-heart</v-icon></v-btn>
         </v-badge>
     </div>
 </template>

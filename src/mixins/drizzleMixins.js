@@ -20,6 +20,20 @@ export const DrizzleViewMixin = {
         return data === "loading" ? return_default : data;
       }
     },
+    contractSigned() {
+      return this.getContractDataWithDefault({
+        contract: "SmartWeddingContract",
+        method: "signed",
+        return_default: false
+      });
+    },
+    contractDivorced() {
+      return this.getContractDataWithDefault({
+        contract: "SmartWeddingContract",
+        method: "divorced",
+        return_default: false
+      });
+    },
     ...mapGetters('contracts', [
       'getContractData',
     ]),
