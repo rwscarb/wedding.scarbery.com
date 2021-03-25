@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <v-navigation-drawer v-model="drawer" app>
+        <v-navigation-drawer v-model="navigationDrawerProxy" app>
             <v-list-item>
                 <v-list-item-content>
                     <v-list-item-title class="title">
@@ -22,15 +22,15 @@
             </v-list>
         </v-navigation-drawer>
 
-        <v-app-bar app>
-            <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-        </v-app-bar>
+        <router-view name="appBar"></router-view>
 
         <v-main>
-            <v-container fluid>
+            <v-container fluid v-if="isDrizzleInitialized">
                 <router-view></router-view>
             </v-container>
         </v-main>
+
+        <v-snackbar v-model="showSnackbar" :timeout="3000">{{ snackbarMessage }}</v-snackbar>
 
         <v-footer app>
         </v-footer>
@@ -38,94 +38,36 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import _ from 'lodash';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
     name: 'App',
     data: () => ({
-        drawer: false,
         events: [],
         items: [
-            {title: 'Dashboard', icon: 'mdi-view-dashboard', route: '/'},
+            {title: 'Dashboard', icon: 'mdi-view-dashboard', route: '/dashboard'},
             {title: 'Guest Book', icon: 'mdi-message-text-lock-outline', route: '/guest-book'},
             {title: 'Photos', icon: 'mdi-image', route: '/photos'},
+            {title: 'Admin', icon: 'mdi-help-box', route: '/admin'},
             {title: 'About', icon: 'mdi-help-box', route: '/about'},
         ]
     }),
     computed: {
-        invitationTokenAddress() {
-            return this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "getInvitationTokenAddress",
-
-            });
+        navigationDrawerProxy: {
+            get() {
+                return this.showNavigationDrawer;
+            },
+            set(show) {
+                this.setShowNavigationDrawer({show});
+            }
         },
-        witnessTokenAddress() {
-            return this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "getWitnessTokenAddress",
-
-            });
-        },
-        contractAddress() {
-            return this.drizzleInstance.contracts.SmartWeddingContract.address;
-        },
-        spouse1Address() {
-            return this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "spouse1Address"
-            });
-        },
-        spouse2Address() {
-            return this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "spouse2Address"
-            });
-        },
-        writtenContractIpfsHash() {
-            return this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "writtenContractIpfsHash"
-            });
-        },
-        contractSigned() {
-            const data = this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "signed"
-            });
-            return data === "loading" ? false : data;
-        },
-        contractDivorced() {
-            const data = this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "divorced"
-            });
-            return data === "loading" ? false : data;
-        },
-        contractBalance() {
-            const data = this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "getBalance"
-            });
-            return data === "loading" ? 0 : _.toNumber(this.utils.fromWei(data));
-        },
-        displayedEvents() {
-            const sortedEvents = _.sortBy(_.uniqBy(this.events, x => x.data.timestamp), x => -_.toNumber(x.data.timestamp));
-            _.forEach(sortedEvents, x => {
-                x.data = _.pickBy(x.data, (v, k) => _.isNaN(_.toNumber(k))); // remove drizzle numeric props
-            })
-            return sortedEvents;
-        },
-        utils() {
-            return this.drizzleInstance.web3.utils;
-        },
-        ...mapGetters("drizzle", [
-            "drizzleInstance",
-            "isDrizzleInitialized"
+        ...mapGetters('vuetify', [
+            'showSnackbar',
+            'snackbarMessage',
+            'showNavigationDrawer',
         ]),
-        ...mapGetters("contracts", [
-            "getContractData"
+        ...mapGetters("drizzle", [
+            "isDrizzleInitialized"
         ]),
     },
     watch: {
@@ -158,6 +100,9 @@ export default {
         addEvent(event) {
             this.events.push(event);
         },
+        ...mapActions('vuetify', [
+            'setShowNavigationDrawer',
+        ]),
     },
     created() {
         [{
@@ -207,3 +152,9 @@ export default {
     }
 }
 </script>
+
+<style lang="less" scoped>
+#app {
+    min-width: 432px;
+}
+</style>

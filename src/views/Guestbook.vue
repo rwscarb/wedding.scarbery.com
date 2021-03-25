@@ -2,29 +2,29 @@
     <div class="guestbook_view">
 
         <h3>Sign the Guest Book</h3>
-        <v-form ref="form"
-            v-model="form.valid"
-            @submit.prevent="signGuestBook(form.name, form.message)">
+        <v-form ref="guest_book_form"
+            v-model="forms.guest_book.valid"
+            @submit.prevent="signGuestBook(forms.guest_book.name, forms.guest_book.message)">
             <v-text-field
-                v-model="form.name"
+                v-model="forms.guest_book.name"
                 label="Name"
                 autocomplete="off"
                 :rules="[v => !!v || 'You forgot your name']"
-                :loading="form.loading"
+                :loading="forms.guest_book.loading"
                 required
                 />
             <v-textarea
-                v-model="form.message"
+                v-model="forms.guest_book.message"
                 label="Message"
                 name="guest_book_message"
                 :rules="[v => !!v || 'You forgot the message']"
-                :loading="form.loading"
+                :loading="forms.guest_book.loading"
                 solo
                 />
             <v-row>
                 <v-col align="end">
                     <v-btn class="mx-2 align-right" fab dark large type="submit"
-                        :disabled="!form.valid" :loading="form.loading">
+                        :disabled="!forms.guest_book.valid" :loading="forms.guest_book.loading">
                         <v-icon dense>mdi-email-edit-outline</v-icon>
                     </v-btn>
                 </v-col>
@@ -42,36 +42,39 @@
             </v-list-item>
         </v-list>
 
-        <v-snackbar v-model="form.error" :timeout="3000">{{ form.errorMessage }}</v-snackbar>
     </div>
 </template>
 
 <script>
 import _ from 'lodash';
-import { mapGetters } from 'vuex';
 
 import Blocky from '@/components/Blocky.vue'
+import { DrizzleViewMixin } from '@/mixins/drizzleMixins.js';
 
 export default {
-    data: function () {
+    name: 'Guestbook',
+    mixins: [DrizzleViewMixin],
+    data: (() => {
         return {
-            form: {
-                loading: false,
-                valid: false,
-                error: false,
-                name: '',
-                message: '',
-                errorMessage: '',
+            forms: {
+                guest_book: {
+                    loading: false,
+                    valid: false,
+                    error: false,
+                    name: '',
+                    message: '',
+                    errorMessage: '',
+                }
             }
         }
-    },
+    }),
     computed: {
         guestBookEntries() {
-            let data = this.getContractData({
+            let data = this.getContractDataWithDefault({
                 contract: "SmartWeddingContract",
-                method: "getGuestBookEntries"
+                method: "getGuestBookEntries",
+                return_default: [],
             });
-            if (data === "loading") return [];
             if (data.length) {
                 return _.reverse(_.map(data, x => {
                     return {
@@ -84,32 +87,20 @@ export default {
                 return [{address: '0xFFFFF', name: 'Anonymous', message: 'There have been no guest entries.'}];
             }
         },
-        ...mapGetters("drizzle", [
-            "drizzleInstance",
-            "isDrizzleInitialized"
-        ]),
-        ...mapGetters("contracts", [
-            "getContractData"
-        ]),
-        utils() {
-            return this.drizzleInstance.web3.utils;
-        },
     },
     methods: {
         async signGuestBook(name, message) {
-            this.form.loading = true;
-            this.form.errorMessage = null;
+            this.forms.guest_book.loading = true;
             try {
-                await this.drizzleInstance.contracts.SmartWeddingContract.methods.signGuestBook(
+                await this.SmartWeddingContract.methods.signGuestBook(
                     this.utils.utf8ToHex(name),
                     this.utils.utf8ToHex(message)
                 ).send();
-                this.$refs.form.reset();
+                this.$refs.guest_book_form.reset();
             } catch (e) {
-                this.form.error = true;
-                this.form.errorMessage = e.message;
+                this.sendSnackbarMessage({message: e.message});
             } finally {
-                this.form.loading = false;
+                this.forms.guest_book.loading = false;
             }
         },
     },

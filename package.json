@@ -1,6 +1,6 @@
 {
   "name": "wedding-smart-contract",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
@@ -16,8 +16,6 @@
     "@sentry/tracing": "^6.2.3",
     "@sentry/vue": "^6.2.3",
     "@truffle/hdwallet-provider": "^1.2.3",
-    "bootstrap": "^4.6.0",
-    "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "crypto-js": "^4.0.0",
     "ethereum-blockies": "^0.1.1",

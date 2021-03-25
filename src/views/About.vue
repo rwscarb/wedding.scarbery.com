@@ -1,5 +1,8 @@
 <template>
     <b-container>
+        Add Timeline Here!
+        Add help with stepper
+        todo: transitions
         <ul>
             <li>
                 Inspiration and majority of contract from
