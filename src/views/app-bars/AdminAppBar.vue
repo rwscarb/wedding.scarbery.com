@@ -85,11 +85,9 @@ export default {
             try {
                 localStorage.setItem('encryption-key', value);
                 this.encryptionKey = value;
-                this.snackbarMessage = 'Encryption key has been set';
+                this.sendSnackbarMessage({message: 'Encryption key has been set'});
             } catch {
-                this.snackbarMessage = 'Error while attempting to use local storage';
-            } finally {
-                this.showSnackbar = true;
+                this.sendSnackbarMessage({message: 'Error while attempting to use local storage'});
             }
             await this.fetchAssets();
         },

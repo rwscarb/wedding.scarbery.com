@@ -3,8 +3,10 @@
         <h3>Invite Ethereum Address</h3>
 
         <p>
-            Invited guests will receive an Invitation Token and a Wedding Token at time of Marriage signature.
-            They will also be able to sign the Guest Book
+            Invited guests will receive an Invitation Token and a Wedding Token at time of contract signature.
+        </p>
+        <p>
+            They will also be able to sign the <router-link to="/guest-book">Guest Book</router-link>.
         </p>
 
         <v-form
@@ -28,10 +30,11 @@
 
 <script>
 import { DrizzleViewMixin } from '@/mixins/drizzleMixins.js';
+import { SnackbarViewMixin } from '@/mixins/vuetifyMixins.js';
 
 export default {
     name: 'InviteView',
-    mixins: [DrizzleViewMixin],
+    mixins: [DrizzleViewMixin, SnackbarViewMixin],
     data: (() => {
         return {
             forms: {
@@ -41,16 +44,16 @@ export default {
                     address: ''
                 }
             }
-        }
+        };
     }),
     methods: {
         async inviteAddress(address) {
             this.forms.invitation.loading = true;
             try {
-                await this.SmartWeddingContract.methods.sendInvitation(address).send();
+                await this.GuestBook.methods.sendInvitation(address).send();
+                await this.sendSnackbarMessage({message: `Address: ${address} added!`});
             } catch (e) {
-                this.snackbarMessage = e.message;
-                this.showSnackbar = true;
+                this.sendSnackbarMessage({message: e.message});
             } finally {
                 this.$refs.invite_form.reset();
                 this.forms.invitation.loading = false;

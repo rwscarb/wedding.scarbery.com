@@ -14,6 +14,7 @@
                 required
                 />
             <v-textarea
+                @keyup.ctrl.enter="signGuestBook(forms.guest_book.name, forms.guest_book.message)"
                 v-model="forms.guest_book.message"
                 label="Message"
                 name="guest_book_message"
@@ -23,7 +24,7 @@
                 />
             <v-row>
                 <v-col align="end">
-                    <v-btn class="mx-2 align-right" fab dark large type="submit"
+                    <v-btn ref="guest_book_form_submit" class="mx-2 align-right" fab dark large type="submit"
                         :disabled="!forms.guest_book.valid" :loading="forms.guest_book.loading">
                         <v-icon dense>mdi-email-edit-outline</v-icon>
                     </v-btn>
@@ -50,10 +51,11 @@ import _ from 'lodash';
 
 import Blocky from '@/components/Blocky.vue'
 import { DrizzleViewMixin } from '@/mixins/drizzleMixins.js';
+import { SnackbarViewMixin } from '@/mixins/vuetifyMixins.js';
 
 export default {
     name: 'Guestbook',
-    mixins: [DrizzleViewMixin],
+    mixins: [DrizzleViewMixin, SnackbarViewMixin],
     data: (() => {
         return {
             forms: {
@@ -71,7 +73,7 @@ export default {
     computed: {
         guestBookEntries() {
             let data = this.getContractDataWithDefault({
-                contract: "SmartWeddingContract",
+                contract: "GuestBook",
                 method: "getGuestBookEntries",
                 return_default: [],
             });
@@ -92,7 +94,7 @@ export default {
         async signGuestBook(name, message) {
             this.forms.guest_book.loading = true;
             try {
-                await this.SmartWeddingContract.methods.signGuestBook(
+                await this.GuestBook.methods.signGuestBook(
                     this.utils.utf8ToHex(name),
                     this.utils.utf8ToHex(message)
                 ).send();

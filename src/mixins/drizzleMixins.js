@@ -8,6 +8,9 @@ export const DrizzleViewMixin = {
     SmartWeddingContract() {
       return this.drizzleInstance.contracts.SmartWeddingContract;
     },
+    GuestBook() {
+      return this.drizzleInstance.contracts.GuestBook;
+    },
     getContractDataWithDefault() {
       return function ({contract, method, return_default}) {
         const data = this.getContractData({

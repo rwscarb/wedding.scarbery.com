@@ -49,6 +49,9 @@
                         <router-link v-if="!encryptionKey" class="ml-3" to="/admin/settings">
                             You need to set an encryption key.
                         </router-link>
+                        <router-link v-if="!contractSigned" to="/admin/actions">
+                            Awaiting Signature...
+                        </router-link>
                     </v-col>
                 </v-row>
             </v-container>
@@ -90,11 +93,12 @@ import _ from 'lodash';
 import Vue from 'vue';
 
 import { DrizzleViewMixin } from '@/mixins/drizzleMixins.js';
+import { SnackbarViewMixin } from '@/mixins/vuetifyMixins.js';
 import AssetTableAction from '@/components/AssetTableAction.vue';
 
 export default {
     name: 'ProposeContractView',
-    mixins: [DrizzleViewMixin],
+    mixins: [DrizzleViewMixin, SnackbarViewMixin],
     data: (() => {
         return {
             encryptionKey: '',
@@ -151,13 +155,15 @@ export default {
                 asset.id = this.utils.toBN(x).toNumber();
                 return asset;
             }));
-            _.forEach(assets, x => {
+            await Promise.all(_.map(assets, async x => {
                 try {
                     x.decrypted = CryptoJS.AES.decrypt(x.data, this.encryptionKey).toString(CryptoJS.enc.Utf8);
                 } catch {
                     x.decrypted = '**ENCRYPTED**';
                 }
-            });
+                x.approvedByUser = await this.SmartWeddingContract.methods.assetIsApproved(x.id).call();
+                x.removedByUser = await this.SmartWeddingContract.methods.assetIsRemoved(x.id).call();
+            }));
             Vue.set(this, 'assets', assets);
         },
         async proposeAsset(data, allocation) {

@@ -116,13 +116,13 @@ export default {
         },
         inviteTokenAddress() {
             return this.getContractData({
-                contract: "SmartWeddingContract",
+                contract: "GuestBook",
                 method: "getInvitationTokenAddress"
             });
         },
         witnessTokenAddress() {
             return this.getContractData({
-                contract: "SmartWeddingContract",
+                contract: "GuestBook",
                 method: "getWitnessTokenAddress"
             });
         },
@@ -131,20 +131,6 @@ export default {
                 contract: "SmartWeddingContract",
                 method: "writtenContractIpfsHash"
             });
-        },
-        contractSigned() {
-            const data = this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "signed"
-            });
-            return data === "loading" ? false : data;
-        },
-        contractDivorced() {
-            const data = this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "divorced"
-            });
-            return data === "loading" ? false : data;
         },
         contractBalance() {
             const data = this.getContractData({

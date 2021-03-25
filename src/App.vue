@@ -30,7 +30,7 @@
             </v-container>
         </v-main>
 
-        <v-snackbar v-model="showSnackbar" :timeout="3000">{{ snackbarMessage }}</v-snackbar>
+        <v-snackbar :value="showSnackbar" :timeout="3000">{{ snackbarMessage }}</v-snackbar>
 
         <v-footer app>
         </v-footer>
@@ -40,8 +40,11 @@
 <script>
 import { mapGetters, mapActions } from 'vuex';
 
+import { DrizzleViewMixin } from '@/mixins/drizzleMixins.js';
+
 export default {
     name: 'App',
+    mixins: [DrizzleViewMixin],
     data: () => ({
         events: [],
         items: [
@@ -60,6 +63,13 @@ export default {
             set(show) {
                 this.setShowNavigationDrawer({show});
             }
+        },
+        contractSigned() {
+            return this.getContractDataWithDefault({
+                contract: "SmartWeddingContract",
+                method: "signed",
+                return_default: false
+            });
         },
         ...mapGetters('vuetify', [
             'showSnackbar',
@@ -110,11 +120,11 @@ export default {
             method: "getBalance",
             methodArgs: []
         }, {
-            contractName: "SmartWeddingContract",
+            contractName: "GuestBook",
             method: "getInvitationTokenAddress",
             methodArgs: []
         }, {
-            contractName: "SmartWeddingContract",
+            contractName: "GuestBook",
             method: "getWitnessTokenAddress",
             methodArgs: []
         }, {
@@ -123,6 +133,14 @@ export default {
             methodArgs: []
         }, {
             contractName: "SmartWeddingContract",
+            method: "senderSigned",
+            methodArgs: []
+        }, {
+            contractName: "SmartWeddingContract",
+            method: "senderDivorced",
+            methodArgs: []
+        }, {
+            contractName: "GuestBook",
             method: "getGuestBookEntries",
             methodArgs: []
         }, {

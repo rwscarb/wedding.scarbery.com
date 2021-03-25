@@ -6,6 +6,7 @@
             Various actions a spouse can execute.
         </p>
 
+        <h4>Send Ethereum from joint account</h4>
         <v-form
             ref="pay_form"
             @submit.prevent="pay(forms.pay.address, forms.pay.amount)"
@@ -42,15 +43,38 @@
                 </v-row>
             </v-container>
         </v-form>
-        <v-form
-            ref="sign_contract_form"
-            @submit.prevent="signContract"
-        >
-            <div class="text-center">
-                <p>This is the heart of the Contract. No going back...</p>
-                <v-btn type="submit" :loading="forms.sign.loading">Sign</v-btn>
-            </div>
-        </v-form>
+        <div class="text-center">
+            <p v-if="contractDivorced">Your are divorced.</p>
+            <p v-else>This is the heart of the Contract. No going back...</p>
+
+            <v-badge  v-if="contractSigned"
+                icon="mdi-clock-alert"
+                title="Waiting for other spouse to divorce"
+                :value="userDivorced && !contractDivorced"
+                bordered
+                overlap
+            >
+            <v-btn
+                @click="divorce"
+                :disabled="userDivorced"
+                :loading="forms.sign.loading"
+                >Divorce</v-btn>
+            </v-badge>
+
+            <v-badge v-else
+                icon="mdi-clock-alert"
+                title="Waiting for other spouse to sign"
+                :value="userSigned"
+                bordered
+                overlap
+            >
+                <v-btn
+                    @click="signContract"
+                    :disabled="userSigned"
+                    :loading="forms.sign.loading"
+                >Sign</v-btn>
+            </v-badge>
+        </div>
     </div>
 </template>
 
@@ -76,6 +100,36 @@ export default {
             }
         }
     }),
+    computed: {
+        contractSigned() {
+            return this.getContractDataWithDefault({
+                contract: "SmartWeddingContract",
+                method: "signed",
+                return_default: false
+            });
+        },
+        contractDivorced() {
+            return this.getContractDataWithDefault({
+                contract: "SmartWeddingContract",
+                method: "divorced",
+                return_default: false
+            });
+        },
+        userSigned() {
+            return this.getContractDataWithDefault({
+                contract: 'SmartWeddingContract',
+                method: 'senderSigned',
+                return_default: false
+            });
+        },
+        userDivorced() {
+            return this.getContractDataWithDefault({
+                contract: 'SmartWeddingContract',
+                method: 'senderDivorced',
+                return_default: false
+            });
+        },
+    },
     methods: {
         async pay(address, amount) {
             this.forms.pay.loading = true;

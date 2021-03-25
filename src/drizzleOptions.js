@@ -1,6 +1,7 @@
 import _ from 'lodash';
 
 import SmartWeddingContract from "@/contracts/SmartWeddingContract.json";
+import GuestBook from "@/contracts/GuestBook.json";
 import config from "../config.js";
 
 const options = {
@@ -11,7 +12,7 @@ const options = {
       url: `wss://ropsten.infura.io/ws/v3/${config.infuraProjectId}`
     }
   },
-  contracts: [SmartWeddingContract],
+  contracts: [SmartWeddingContract, GuestBook],
   events: {
     SmartWeddingContract: _.map([
       'AssetAddApproved',
@@ -24,9 +25,9 @@ const options = {
       'Divorced',
       'FundsReceived',
       'FundsSent',
-      'GuestAttended',
-      'GuestbookSignatureAdded',
-      'GuestInvited',
+      // 'GuestAttended',
+      // 'GuestbookSignatureAdded',
+      // 'GuestInvited',
       'Signed',
       'WrittenContractProposed'
     ], x => {
