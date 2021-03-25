@@ -2,30 +2,15 @@
     <div class="assets_view">
         <h3>Manage Assets</h3>
 
-        <p>
-            Assets are managed on the block chain and must be approved by both parties.
-        </p>
-
-        <v-form
-            ref="set_encryption_key_form"
-            v-model="forms.encryption_key.valid"
-            @submit.prevent="setEncryptionKey(forms.encryption_key.key)"
-        >
-            <v-text-field type="password" label="Set Encryption Key"
-                v-model="forms.encryption_key.key"
-                :rules="[v => v.length > 10 || 'Encryption key too weak']"
-            >
-                <template slot="append">
-                    <v-btn type="submit" class="mb-2"
-                        small
-                        :loading="forms.encryption_key.loading"
-                        :disabled="!forms.encryption_key.valid"
-                    >Set</v-btn>
-                </template>
-            </v-text-field>
-        </v-form>
+        <p>Assets are managed on the block chain and must be approved by both parties.</p>
 
         <h4>Propose an Asset</h4>
+
+        <p>
+            Proposed assets will need to be approved by the other party. When items are ready for approval or removal
+            they will show up in the Asset List.
+        </p>
+
         <v-form
             ref="propose_asset_form"
             v-model="forms.asset.valid"
@@ -55,8 +40,21 @@
                     ></v-text-field>%
                 </template>
             </v-slider>
-            <v-btn type="submit" :loading="forms.asset.loading" :disabled="!forms.asset.valid">Propose</v-btn>
+            <v-container>
+                <v-row>
+                    <v-col cols="3">
+                        <v-btn type="submit" :loading="forms.asset.loading" :disabled="!forms.asset.valid">Propose</v-btn>
+                    </v-col>
+                    <v-col cols="9" align-self="end">
+                        <router-link v-if="!encryptionKey" class="ml-3" to="/admin/settings">
+                            You need to set an encryption key.
+                        </router-link>
+                    </v-col>
+                </v-row>
+            </v-container>
         </v-form>
+
+        <h3>Asset List</h3>
         <v-simple-table>
             <template v-slot:default>
                 <thead>
@@ -109,17 +107,13 @@ export default {
                     data: '',
                     allocation: 100,
                 },
-                encryption_key: {
-                    loading: false,
-                    valid: false,
-                    key: '',
-                },
             }
         }
     }),
     watch: {
-        assetIds() {
-            this.fetchAssets();
+        assetIds: {
+            handler: 'fetchAssets',
+            immediate: true
         }
     },
     computed: {
@@ -198,21 +192,9 @@ export default {
                 this.forms.asset.loading_table_action = false;
             }
         },
-        async setEncryptionKey(value) {
-            try {
-                localStorage.setItem('encryption-key', value);
-                this.encryptionKey = value;
-                this.snackbarMessage = 'Encryption key has been set';
-            } catch {
-                this.snackbarMessage = 'Error while attempting to use local storage';
-            } finally {
-                this.showSnackbar = true;
-            }
-            await this.fetchAssets();
-        },
     },
     mounted() {
-        this.forms.encryption_key.key = this.encryptionKey = localStorage.getItem('encryption-key');
+        this.encryptionKey = localStorage.getItem('encryption-key');
     },
     components: {
         AssetTableAction

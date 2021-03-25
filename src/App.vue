@@ -48,8 +48,8 @@ export default {
             {title: 'Dashboard', icon: 'mdi-view-dashboard', route: '/dashboard'},
             {title: 'Guest Book', icon: 'mdi-message-text-lock-outline', route: '/guest-book'},
             {title: 'Photos', icon: 'mdi-image', route: '/photos'},
-            {title: 'Admin', icon: 'mdi-help-box', route: '/admin'},
-            {title: 'About', icon: 'mdi-help-box', route: '/about'},
+            {title: 'Admin', icon: 'mdi-badge-account-horizontal-outline', route: '/admin'},
+            {title: 'About', icon: 'mdi-cupcake', route: '/about'},
         ]
     }),
     computed: {
@@ -81,27 +81,11 @@ export default {
         }
     },
     methods: {
-        async addERCToken(address, symbol) {
-            await this.drizzleInstance.web3.currentProvider.sendAsync({
-                method: 'wallet_watchAsset',
-                params: {
-                    type: 'ERC20',
-                    options: {
-                        address,
-                        symbol,
-                        decimals: 0
-                    }
-                }
-            });
-        },
-        openInEtherScan(address) {
-            window.open('https://ropsten.etherscan.io/address/' + address, '_blank');
-        },
-        addEvent(event) {
-            this.events.push(event);
-        },
         ...mapActions('vuetify', [
             'setShowNavigationDrawer',
+        ]),
+        ...mapActions('events', [
+            'addEvent',
         ]),
     },
     created() {
@@ -153,8 +137,11 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="less">
 #app {
     min-width: 432px;
+}
+h3 {
+    margin-top: 2rem;
 }
 </style>

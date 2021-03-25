@@ -29,14 +29,13 @@
 
 <script>
 import { DrizzleViewMixin } from '@/mixins/drizzleMixins.js';
+import { SnackbarViewMixin } from '@/mixins/vuetifyMixins.js';
 
 export default {
     name: 'ProposeContractView',
-    mixins: [DrizzleViewMixin],
+    mixins: [DrizzleViewMixin, SnackbarViewMixin],
     data: (() => {
         return {
-            showSnackbar: false,
-            snackbarMessage: '',
             forms: {
                 ipfs_contract_link: {
                     valid: false,
@@ -61,8 +60,7 @@ export default {
             try {
                 await this.SmartWeddingContract.methods.proposeWrittenContract(ipfs_hash).send();
             } catch (e) {
-                this.snackbarMessage = e.message;
-                this.showSnackbar = true;
+                this.sendSnackbarMessage({message: e.message});
             } finally {
                 this.forms.ipfs_contract_link.loading = false;
                 this.$refs.ipfs_contract_link_form.reset();

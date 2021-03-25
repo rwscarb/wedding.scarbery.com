@@ -18,10 +18,10 @@ export const DrizzleViewMixin = {
       }
     },
     ...mapGetters('contracts', [
-      'getContractData'
+      'getContractData',
     ]),
     ...mapGetters('drizzle', [
-      'drizzleInstance'
+      'drizzleInstance',
     ]),
-  }
+  },
 }

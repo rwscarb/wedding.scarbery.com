@@ -9,6 +9,23 @@
                 <v-tab to="/admin/actions">Actions</v-tab>
             </v-tabs>
         </template>
+        <v-spacer></v-spacer>
+        <v-menu bottom left>
+            <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                    icon
+                    v-bind="attrs"
+                    v-on="on"
+                >
+                    <v-icon>mdi-dots-vertical</v-icon>
+                </v-btn>
+            </template>
+            <v-list>
+                <v-list-item to="/admin/settings">
+                    <v-list-item-title>Set Encryption Key</v-list-item-title>
+                </v-list-item>
+            </v-list>
+        </v-menu>
     </v-app-bar>
 </template>
 
@@ -18,7 +35,10 @@ import Vue from 'vue';
 import _ from 'lodash';
 import CryptoJS from 'crypto-js';
 
+import { SnackbarViewMixin } from '@/mixins/vuetifyMixins.js';
+
 export default {
+    mixins: [SnackbarViewMixin],
     methods: {
         async fetchAssets() {
             const assetIds = await this.SmartWeddingContract.methods.getAssetIds().call();

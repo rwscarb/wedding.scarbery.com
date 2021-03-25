@@ -1,7 +1,7 @@
 <template>
     <div class="eth_address_btn">
         <v-btn :href="href" target="_blank" fab x-small>
-            <v-img class="ml-1" max-width="15" src="../assets/images/etherscan.png"></v-img>
+            <v-img max-width="15" src="../assets/images/etherscan.png"></v-img>
         </v-btn>
     </div>
 </template>

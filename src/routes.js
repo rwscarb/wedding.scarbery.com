@@ -10,6 +10,7 @@ import InviteView from '@/views/admin/InviteView.vue';
 import ProposeContractView from '@/views/admin/ProposeContractView.vue';
 import AssetsView from '@/views/admin/AssetsView.vue';
 import ActionsView from '@/views/admin/ActionsView.vue';
+import SettingsView from '@/views/admin/SettingsView.vue';
 
 
 const routes = [
@@ -29,6 +30,7 @@ const routes = [
       {path: 'contract', component: ProposeContractView},
       {path: 'assets', component: AssetsView},
       {path: 'actions', component: ActionsView},
+      {path: 'settings', component: SettingsView},
       {path: '', redirect: 'invite'}
     ]
   },

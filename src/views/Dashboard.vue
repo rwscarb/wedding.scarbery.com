@@ -1,63 +1,85 @@
 <template>
     <div class="dashboard_view">
 
-        <h3>Address Book</h3>
-        <v-container>
-            <v-row>
-                <v-col cols="12" md="6" v-for="(item, i) in addressBook" :key="i">
-                    <v-card>
-                        <v-card-title>
-                            <v-row>
-                                <v-col>
-                                    {{ item.title }}
-                                </v-col>
-                                <v-col>
-                                    <eth-address-link class="text-right ml-2" :address="item.address"/>
-                                </v-col>
-                            </v-row>
-                        </v-card-title>
-                        <v-card-text>
-                            {{ item.address }}
-                        </v-card-text>
-                    </v-card>
-                </v-col>
-            </v-row>
-        </v-container>
-
-        <h3>ERC20 Tokens</h3>
-        <v-container>
-            <v-row>
-                <v-col cols="12">
-                    <v-card>
-                        <v-card-title>Add Tokens to MetaMask</v-card-title>
-                        <v-card-subtitle>Click to add tokens to MetaMask</v-card-subtitle>
-                        <v-card-text>
-                            <v-container>
+        <div class="dashboard_item">
+            <h3>Address Book</h3>
+            <v-container>
+                <v-row>
+                    <v-col cols="12" md="6" v-for="(item, i) in addressBook" :key="i">
+                        <v-card>
+                            <v-card-title>
                                 <v-row>
-                                    <v-col cols="6" class="text-center">
-                                        <v-btn
-                                            fab
-                                            x-large
-                                            color="white"
-                                        ><v-icon>mdi-ethereum</v-icon></v-btn>
-                                        <div>Invite</div>
+                                    <v-col>
+                                        {{ item.title }}
                                     </v-col>
-                                    <v-col cols="6" class="text-center">
-                                        <v-btn
-                                            fab
-                                            x-large
-                                            color="blue"
-                                        ><v-icon>mdi-ethereum</v-icon></v-btn>
-                                        <div>Witness</div>
+                                    <v-col>
+                                        <eth-address-link class="text-right ml-2" :address="item.address"/>
                                     </v-col>
                                 </v-row>
-                            </v-container>
-                        </v-card-text>
-                    </v-card>
-                </v-col>
-            </v-row>
-        </v-container>
+                            </v-card-title>
+                            <v-card-text>
+                                {{ item.address }}
+                            </v-card-text>
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </div>
 
+        <div class="dashboard_item">
+            <h3>ERC20 Tokens</h3>
+            <v-container>
+                <v-row>
+                    <v-col cols="12">
+                        <v-card>
+                            <v-card-title>Add Tokens to MetaMask</v-card-title>
+                            <v-card-subtitle>Click to add tokens to MetaMask</v-card-subtitle>
+                            <v-card-text>
+                                <v-container>
+                                    <v-row>
+                                        <v-col cols="6" class="text-center">
+                                            <v-btn
+                                                fab
+                                                x-large
+                                                color="white"
+                                                @click="addERCToken(inviteTokenAddress, 'INVITE')"
+                                            ><v-icon>mdi-ethereum</v-icon></v-btn>
+                                            <div>Invite</div>
+                                        </v-col>
+                                        <v-col cols="6" class="text-center">
+                                            <v-btn
+                                                fab
+                                                x-large
+                                                color="blue"
+                                                @click="addERCToken(witnessTokenAddress, 'WED')"
+                                            ><v-icon>mdi-ethereum</v-icon></v-btn>
+                                            <div>Witness</div>
+                                        </v-col>
+                                    </v-row>
+                                </v-container>
+                            </v-card-text>
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </div>
+
+        <div class="dashboard_item" v-if="writtenContractIpfsHash">
+            <h3>Written Contract</h3>
+            <v-container>
+                <v-row>
+                    <v-col>
+                        <v-card>
+                            <v-card-text class="text-center">
+                                <a :href="`https://ipfs.io/ipfs/${writtenContractIpfsHash}`" target="_blank">
+                                    View Contract
+                                </a>
+                            </v-card-text>
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </div>
     </div>
 </template>
 
@@ -75,25 +97,10 @@ export default {
     computed: {
         addressBook() {
             return [
-                {title: 'Contract Address', address: this.contractAddress},
+                {title: 'Contract Address', address: this.SmartWeddingContract.address},
                 {title: 'Spouse 1 Address', address: this.spouse1Address},
                 {title: 'Spouse 2 Address', address: this.spouse2Address},
             ];
-        },
-        invitationTokenAddress() {
-            return this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "getInvitationTokenAddress",
-            });
-        },
-        witnessTokenAddress() {
-            return this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "getWitnessTokenAddress",
-            });
-        },
-        contractAddress() {
-            return this.SmartWeddingContract.address;
         },
         spouse1Address() {
             return this.getContractData({
@@ -105,6 +112,18 @@ export default {
             return this.getContractData({
                 contract: "SmartWeddingContract",
                 method: "spouse2Address"
+            });
+        },
+        inviteTokenAddress() {
+            return this.getContractData({
+                contract: "SmartWeddingContract",
+                method: "getInvitationTokenAddress"
+            });
+        },
+        witnessTokenAddress() {
+            return this.getContractData({
+                contract: "SmartWeddingContract",
+                method: "getWitnessTokenAddress"
             });
         },
         writtenContractIpfsHash() {
@@ -134,16 +153,24 @@ export default {
             });
             return data === "loading" ? 0 : _.toNumber(this.utils.fromWei(data));
         },
-        displayedEvents() {
-            const sortedEvents = _.sortBy(_.uniqBy(this.events, x => x.data.timestamp), x => -_.toNumber(x.data.timestamp));
-            _.forEach(sortedEvents, x => {
-                x.data = _.pickBy(x.data, (v, k) => _.isNaN(_.toNumber(k))); // remove drizzle numeric props
-            })
-            return sortedEvents;
-        },
         ...mapGetters("contracts", [
             "getContractData"
         ]),
+    },
+    methods: {
+        async addERCToken(address, symbol) {
+            await this.drizzleInstance.web3.currentProvider.sendAsync({
+                method: 'wallet_watchAsset',
+                params: {
+                    type: 'ERC20',
+                    options: {
+                        address,
+                        symbol,
+                        decimals: 0
+                    }
+                }
+            });
+        },
     },
     components: {
         EthAddressLink
