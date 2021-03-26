@@ -10,5 +10,6 @@ if (process.env.NODE_ENV === 'production') {
     dsn: process.env.SENTRY_DSN,
     integrations: [new Integrations.BrowserTracing()],
     tracesSampleRate: 1.0,
+    logErrors: true,
   });
 }
