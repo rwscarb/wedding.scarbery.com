@@ -1,13 +1,20 @@
 <template>
     <v-app v-if="isDrizzleInitialized">
-        <v-system-bar v-if="!hasWeb3Extension" color="red" class="white--text justify-center" app>
+
+        <v-system-bar v-if="!hasWeb3Extension"
+            class="white--text justify-center"
+            color="red"
+            height="50"
+             app
+            >
             <v-icon color="white">mdi-exclamation-thick</v-icon>
-            <div>
+            <div class="text-center">
                 You must install
                 <a href="https://metamask.io/download.html" target="_blank" style="color:white">MetaMask</a>
                 or a compatible extension to interact with this Smart Contract
             </div>
         </v-system-bar>
+
         <v-navigation-drawer v-model="navigationDrawerProxy" app>
             <v-list-item>
                 <v-list-item-content>
