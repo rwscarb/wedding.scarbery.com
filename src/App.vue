@@ -90,7 +90,7 @@ export default {
             {title: 'Guest Book', icon: 'mdi-message-text-lock-outline', route: '/guest-book'},
             {title: 'Photos', icon: 'mdi-image', route: '/photos'},
             {title: 'Admin', icon: 'mdi-badge-account-horizontal-outline', route: '/admin'},
-            {title: 'About', icon: 'mdi-cupcake', route: '/about'},
+            {title: 'About', icon: 'mdi-help-circle-outline', route: '/about'},
         ]
     }),
     computed: {
@@ -173,14 +173,6 @@ export default {
             method: "getBalance",
             methodArgs: []
         }, {
-            contractName: "GuestBook",
-            method: "getInvitationTokenAddress",
-            methodArgs: []
-        }, {
-            contractName: "GuestBook",
-            method: "getWitnessTokenAddress",
-            methodArgs: []
-        }, {
             contractName: "SmartWeddingContract",
             method: "writtenContractIpfsHash",
             methodArgs: []
@@ -193,12 +185,20 @@ export default {
             method: "senderDivorced",
             methodArgs: []
         }, {
-            contractName: "GuestBook",
-            method: "getGuestBookEntries",
-            methodArgs: []
-        }, {
             contractName: "SmartWeddingContract",
             method: "getAssetIds",
+            methodArgs: []
+        }, {
+            contractName: "GuestBook",
+            method: "getInvitationTokenAddress",
+            methodArgs: []
+        }, {
+            contractName: "GuestBook",
+            method: "getWitnessTokenAddress",
+            methodArgs: []
+        }, {
+            contractName: "GuestBook",
+            method: "getGuestBookEntries",
             methodArgs: []
         }].map(x => this.$store.dispatch("drizzle/REGISTER_CONTRACT", x));
     },
