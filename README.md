@@ -5,7 +5,7 @@
 [![Application](https://img.shields.io/badge/application-live-e91e63.svg)](https://wedding.scarbery.com/)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
-A smart marriage contract on Ethereum using Truffle, Drizzle and Vuetify.
+A smart marriage contract on Ethereum using `Truffle`, `Drizzle` and `Vuetify`.
 
 ## Install
 
@@ -19,7 +19,7 @@ npm i
 ## Development
 
 First edit the file called `config.js` in the root of the project directory.
-The `mnemonic` is used by Truffle to deploy the contract.
+The `mnemonic` is used by `Truffle` to deploy the contract.
 
 Make sure there is enough ETH on the wallet to cover deployment costs.
 Compile and deploy the smart contract to the private testnet using `Truffle`:
