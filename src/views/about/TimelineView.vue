@@ -44,7 +44,7 @@ export default {
                     color: 'green lighten-1',
                     icon: 'mdi-firework',
                     title: 'Protests (2017)',
-                    text: '5th of November, Portland storms the police station.',
+                    text: 'First in-person meet on the 5th of November, Portland protestors storm the police station with flares.',
                 },
                 {
                     color: 'indigo',
@@ -60,7 +60,7 @@ export default {
                 },
                 {
                     color: 'teal',
-                    icon: 'mdi-heart',
+                    icon: 'mdi-github',
                     title: 'Developed Site (2021)',
                     html: `
                         <p>

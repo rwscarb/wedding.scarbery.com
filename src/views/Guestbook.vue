@@ -6,6 +6,8 @@
 
         <h3>Sign the Guest Book</h3>
 
+        <v-subheader>Submission can take up to a minute as miners confirm the next block.</v-subheader>
+
         <v-form ref="guest_book_form"
             v-model="forms.guest_book.valid"
             @submit.prevent="signGuestBook(forms.guest_book.name, forms.guest_book.message)">

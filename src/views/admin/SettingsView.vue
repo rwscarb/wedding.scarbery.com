@@ -5,7 +5,7 @@
 
         <p>The key is used to decrypt asset data. It is stored in persistent browser storage.</p>
 
-        <v-form
+        <v-form class="col-md-6"
             ref="set_encryption_key_form"
             v-model="forms.encryption_key.valid"
             @submit.prevent="setEncryptionKey(forms.encryption_key.key)"
@@ -18,7 +18,7 @@
                     <v-btn type="submit" class="mb-2"
                         small
                         :loading="forms.encryption_key.loading"
-                        :disabled="!forms.encryption_key.valid"
+                        :disabled="!forms.encryption_key.valid || encryptionKey === forms.encryption_key.key"
                         >Set</v-btn>
                 </template>
             </v-text-field>
@@ -57,6 +57,7 @@ export default {
             } catch {
                 this.sendSnackbarMessage({message: 'Error while attempting to remove encryption key'});
             }
+            this.$refs.set_encryption_key_form.reset();
         },
         setEncryptionKey(value) {
             try {

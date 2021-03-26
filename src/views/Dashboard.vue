@@ -2,26 +2,68 @@
     <div class="dashboard_view">
 
         <div class="dashboard_item">
+            <v-container>
+                <v-row justify="center">
+                    <v-col cols="12">
+                        <v-card class="text-center">
+                            <v-card-title class="justify-center">
+                                Status
+                            </v-card-title>
+                            <v-card-subtitle>
+                                <template v-if="contractDivorced">
+                                    Divorced
+                                </template>
+                                <template v-else-if="contractSigned">
+                                    Married
+                                </template>
+                                <template v-else>
+                                    Engaged
+                                </template>
+                            </v-card-subtitle>
+                            <v-card-text>
+                                <template v-if="contractDivorced">
+                                    <v-icon x-large>mdi-heart-broken</v-icon>
+                                </template>
+                                <template v-else-if="contractSigned">
+                                    <v-icon x-large>mdi-heart</v-icon>
+                                </template>
+                                <template v-else>
+                                    <v-icon x-large>mdi-ring</v-icon>
+                                </template>
+                            </v-card-text>
+                        </v-card>
+                    </v-col>
+                </v-row>
+            </v-container>
+        </div>
+
+        <div class="dashboard_item">
             <h3>Contract Info</h3>
             <v-container>
                 <v-row>
                     <v-col cols="12">
                         <v-card>
                             <v-card-title>
-                                <v-row>
-                                    <v-col>
-                                        Contract Address
-                                    </v-col>
-                                    <v-col>
-                                        <eth-address-link class="text-right ml-2" :address="SmartWeddingContract.address"/>
-                                    </v-col>
-                                </v-row>
+                                <v-container>
+                                    <v-row>
+                                        <v-col>
+                                            Contract Address
+                                        </v-col>
+                                        <v-col>
+                                            <eth-address-link class="text-right ml-2" :address="SmartWeddingContract.address"/>
+                                        </v-col>
+                                    </v-row>
+                                </v-container>
                             </v-card-title>
                             <v-card-text>
                                 <v-container>
                                     <v-row justify="space-between">
-                                        <v-col>{{ SmartWeddingContract.address }}</v-col>
-                                        <v-col class="text-right">Balance: {{ contractBalance }} ETH</v-col>
+                                        <v-col>
+                                            {{ SmartWeddingContract.address }}
+                                        </v-col>
+                                        <v-col class="text-right">
+                                            <v-chip color="primary">Balance: {{ contractBalance }} ETH</v-chip>
+                                        </v-col>
                                     </v-row>
                                 </v-container>
                             </v-card-text>

@@ -9,6 +9,7 @@ import GuestBook from "@/contracts/GuestBook.json";
 import config from "@/../config.js";
 import store from "@/store";
 
+const FROM_BLOCK = 0
 
 const drizzleOptions = {
   web3: {
@@ -36,9 +37,19 @@ const drizzleOptions = {
     ], x => {
       return {
         eventName: x,
-        eventOptions: { fromBlock: 0 }
+        eventOptions: { fromBlock: FROM_BLOCK }
       }
-    })
+    }),
+    GuestBook: [
+      {
+        eventName: 'GuestbookSignatureAdded',
+        eventOptions: { fromBlock: FROM_BLOCK }
+      },
+      {
+        eventName: 'GuestInvited',
+        eventOptions: { fromBlock: FROM_BLOCK }
+      },
+    ]
   },
   polls: {
     // check accounts ever 15 seconds

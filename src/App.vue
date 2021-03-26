@@ -210,7 +210,6 @@ export default {
 
 <style lang="less">
 #app {
-    min-width: 432px;
 }
 
 h3 {

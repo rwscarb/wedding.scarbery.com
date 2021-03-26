@@ -132,10 +132,10 @@
                 Get some Ethereum
             </v-stepper-step>
 
-            <v-stepper-content step="5" class="col-sm-4">
+            <v-stepper-content step="5">
                 <v-container>
                     <v-row>
-                        <v-col cols="6">
+                        <v-col cols="8">
                             <p>
                                 To execute actions against the smart contract you will need some test Ethereum.
                             </p>
@@ -144,11 +144,9 @@
                                 Warning; you only get one shot a day.
                             </p>
                         </v-col>
-                        <v-col cols="6">
-                            <div>
-                                <h6 class="text-center">Watch out for De-Fi Karen</h6>
-                                <img src="@/assets/images/help/de-fi-karen.jpg" height="100"/>
-                            </div>
+                        <v-col cols="4" class="text-center">
+                            <div>Watch out for De-Fi Karen</div>
+                            <img src="@/assets/images/help/de-fi-karen.jpg" height="100"/>
                         </v-col>
                     </v-row>
                 </v-container>
