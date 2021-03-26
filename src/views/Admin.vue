@@ -1,5 +1,9 @@
 <template>
     <div class="admin_view">
+        <h1>Admin</h1>
+
+        <v-divider class="mb-2"/>
+
         <router-view></router-view>
     </div>
 </template>
