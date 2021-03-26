@@ -113,6 +113,7 @@ export default {
     }),
     computed: {
         userSigned() {
+            if (!this.isSpouse) return false;
             return this.getContractDataWithDefault({
                 contract: 'SmartWeddingContract',
                 method: 'senderSigned',
@@ -120,6 +121,7 @@ export default {
             });
         },
         userDivorced() {
+            if (!this.isSpouse) return false;
             return this.getContractDataWithDefault({
                 contract: 'SmartWeddingContract',
                 method: 'senderDivorced',

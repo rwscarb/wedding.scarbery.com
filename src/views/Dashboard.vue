@@ -204,18 +204,6 @@ export default {
                 {title: 'Spouse 2 Address', address: this.spouse2Address},
             ];
         },
-        spouse1Address() {
-            return this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "spouse1Address"
-            });
-        },
-        spouse2Address() {
-            return this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "spouse2Address"
-            });
-        },
         inviteTokenAddress() {
             return this.getContractData({
                 contract: "GuestBook",

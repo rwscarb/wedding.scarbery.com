@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 import { mapGetters } from 'vuex';
 
 export const DrizzleViewMixin = {
@@ -13,15 +15,11 @@ export const DrizzleViewMixin = {
     },
     getContractDataWithDefault() {
       return function ({contract, method, return_default}) {
-        try {
-          const data = this.getContractData({
-            contract: contract,
-            method: method
-          });
-          return data === "loading" ? return_default : data;
-        } catch {
-          return return_default;
-        }
+        const data = this.getContractData({
+          contract: contract,
+          method: method
+        });
+        return data === "loading" ? return_default : data;
       }
     },
     contractSigned() {
@@ -38,6 +36,21 @@ export const DrizzleViewMixin = {
         return_default: false
       });
     },
+    spouse1Address() {
+      return this.getContractData({
+        contract: "SmartWeddingContract",
+        method: "spouse1Address"
+      });
+    },
+    spouse2Address() {
+      return this.getContractData({
+        contract: "SmartWeddingContract",
+        method: "spouse2Address"
+      });
+    },
+    isSpouse() {
+      return _.includes([this.spouse1Address, this.spouse2Address], this.activeAccount);
+    },
     hasWeb3Extension() {
       return window.ethereum;
     },
@@ -46,6 +59,9 @@ export const DrizzleViewMixin = {
     ]),
     ...mapGetters('drizzle', [
       'drizzleInstance',
+    ]),
+    ...mapGetters('accounts', [
+      'activeAccount'
     ]),
   },
 }
