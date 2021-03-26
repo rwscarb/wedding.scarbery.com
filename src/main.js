@@ -5,15 +5,15 @@ import store from "./store";
 
 import "@/plugins/vueConfetti.js";
 import "@/plugins/drizzle.js";
+import "@/plugins/sentry.js";
+import "@/plugins/gtag.js";
 import { router } from "@/plugins/router.js"
 import vuetify from "@/plugins/vuetify";
+
 
 Vue.config.productionTip = false;
 
 if (process.env.NODE_ENV === 'production') {
-  require("@/plugins/sentry.js");
-  require("@/plugins/gtag.js");
-
   // todo: fork drizzle as it won't shutup
   console.groupCollapsed = () => {};
   console.log = () => {};

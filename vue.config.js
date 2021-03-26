@@ -1,4 +1,5 @@
 const projectConfig = require("./config.js");
+const { EnvironmentPlugin } = require('webpack');
 const SentryWebpackPlugin = require("@sentry/webpack-plugin");
 
 module.exports = {
@@ -15,6 +16,7 @@ module.exports = {
         include: "./dist",
         ignore: ["node_modules", "webpack.config.js"],
       }),
+      new EnvironmentPlugin(['NODE_ENV', 'DEBUG', 'SENTRY_DSN', 'GTAG_ID']),
     ],
   },
 
