@@ -9352,10 +9352,67 @@
   },
   "networks": {
     "3": {
-      "events": {},
+      "events": {
+        "0xcda5e488ef236fd04b9cdd224afb5f6cfb016639716b0aff73cf01e3902411c4": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "timestamp",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "wallet",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "from",
+              "type": "address"
+            }
+          ],
+          "name": "GuestInvited",
+          "type": "event"
+        },
+        "0x1454b16ac9f7a8edb66fbb64d56a2fc00a3e08f079f3ee97591b601b51c5e117": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "internalType": "uint256",
+              "name": "timestamp",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "internalType": "address",
+              "name": "wallet",
+              "type": "address"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "name",
+              "type": "string"
+            },
+            {
+              "indexed": false,
+              "internalType": "string",
+              "name": "message",
+              "type": "string"
+            }
+          ],
+          "name": "GuestbookSignatureAdded",
+          "type": "event"
+        }
+      },
       "links": {},
-      "address": "0x19421b3434039fE5d9699c26ffd57a78AB0Fcf56",
-      "transactionHash": "0xe9829139f99b9cd4d4e5c276d0f37f38549914ca48be2e761c1a6cf172a3b1c1"
+      "address": "0x5371C53218020528C16AE8246F7c93F8F1D2048d",
+      "transactionHash": "0xc10578c34567a85fb7a8e72f80ab2fe3d6dd25d002fc873fd1e401be5144068c"
     },
     "5777": {
       "events": {
@@ -9422,7 +9479,7 @@
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-03-26T00:52:13.875Z",
+  "updatedAt": "2021-03-26T14:53:26.101Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {
