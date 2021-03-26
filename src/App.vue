@@ -175,14 +175,6 @@ export default {
             methodArgs: []
         }, {
             contractName: "SmartWeddingContract",
-            method: "senderSigned",
-            methodArgs: []
-        }, {
-            contractName: "SmartWeddingContract",
-            method: "senderDivorced",
-            methodArgs: []
-        }, {
-            contractName: "SmartWeddingContract",
             method: "getAssetIds",
             methodArgs: []
         }, {

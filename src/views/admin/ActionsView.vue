@@ -41,8 +41,7 @@
                                             <v-btn
                                                 type="submit"
                                                 :loading="forms.pay.loading"
-                                                >Send<v-icon x-small>mdi-ethereum</v-icon>
-                                            </v-btn>
+                                                >Send<v-icon x-small>mdi-ethereum</v-icon></v-btn>
                                         </v-col>
                                     </v-row>
                                 </v-container>
@@ -51,14 +50,13 @@
                     </v-card>
                 </v-col>
                 <v-col cols="12" xl="6" md="3" class="align-stretch">
-                    <v-badge  v-if="contractSigned"
+                    <v-badge v-if="contractSigned"
                         class="fill-column"
                         icon="mdi-clock-alert"
                         title="Waiting for other spouse to divorce"
                         :value="userDivorced && !contractDivorced"
                         bordered
                         overlap
-
                         >
                         <v-btn
                             class="fill-column"
@@ -161,6 +159,20 @@ export default {
                 this.forms.sign.loading = false;
             }
         },
+    },
+    mounted() {
+        if (this.isSpouse) {
+            this.$store.dispatch('drizzle/REGISTER_CONTRACT', {
+                contractName: 'SmartWeddingContract',
+                method: 'senderSigned',
+                methodArgs: []
+            });
+            this.$store.dispatch('drizzle/REGISTER_CONTRACT', {
+                contractName: 'SmartWeddingContract',
+                method: 'senderDivorced',
+                methodArgs: []
+            });
+        }
     },
 }
 </script>
