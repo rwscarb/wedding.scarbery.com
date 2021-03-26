@@ -18,7 +18,7 @@ export default {
     },
     computed: {
         href() {
-            return `https://${this.network}.etherscan.io/search?q=${this.address}`
+            return `https://${this.network}.etherscan.io/address/${this.address}#code`
         }
     }
 }

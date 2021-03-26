@@ -3,8 +3,9 @@
 
         <div class="dashboard_item">
             <v-container>
-                <v-row justify="center">
-                    <v-col cols="12">
+                <v-row>
+                    <v-col lg="6" sm="12">
+                        <h3>Marriage Status</h3>
                         <v-card class="text-center">
                             <v-card-title class="justify-center">
                                 Status

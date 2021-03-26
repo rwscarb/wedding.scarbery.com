@@ -4,7 +4,7 @@
             <h3>Invite Ethereum Address</h3>
 
             <p>
-                Invited guests will receive an Invitation Token and a Wedding Token at time of contract signature.
+                Invited guests will receive an Invitation Token now and a Wedding Token at time of contract signature.
             </p>
             <p>
                 They will also be able to sign the <router-link to="/guest-book">Guest Book</router-link>.
