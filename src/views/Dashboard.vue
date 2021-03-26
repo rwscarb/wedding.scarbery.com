@@ -7,9 +7,6 @@
                     <v-col lg="6" sm="12">
                         <h3>Marriage Status</h3>
                         <v-card class="text-center">
-                            <v-card-title class="justify-center">
-                                Status
-                            </v-card-title>
                             <v-card-subtitle>
                                 <template v-if="contractDivorced">
                                     Divorced
@@ -48,7 +45,7 @@
                                     style="width: 100%"
                                     width="400"
                                     height="300"
-                                    src="https://www.youtube.com/embed/_bY0fdgpISc?controls=0&rel=0"
+                                    src="https://www.youtube.com/embed/_bY0fdgpISc?controls=0&rel=0&autoplay=1"
                                     title="Marriage"
                                     frameborder="0"
                                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
