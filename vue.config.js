@@ -1,10 +1,11 @@
-const projectConfig = require("./config.js");
 const { EnvironmentPlugin } = require('webpack');
 const SentryWebpackPlugin = require("@sentry/webpack-plugin");
 
+const projectConfig = require("./config.js");
+
 module.exports = {
   configureWebpack: {
-    devtool: 'source-map',
+    devtool: process.env.NODE_ENV === 'production' ? '' : 'source-map',
     plugins: [
       new SentryWebpackPlugin({
         // sentry-cli configuration
