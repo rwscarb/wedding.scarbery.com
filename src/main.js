@@ -10,6 +10,13 @@ import vuetify from "@/plugins/vuetify";
 
 Vue.config.productionTip = false;
 
+if (process.env.NODE_ENV === 'production') {
+  // todo: fork drizzle as it won't shutup
+  console.groupCollapsed = () => {};
+  console.log = () => {};
+  console.groupEnd = () => {};
+}
+
 new Vue({
   store,
   router,
