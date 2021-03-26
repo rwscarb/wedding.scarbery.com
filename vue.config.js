@@ -8,7 +8,7 @@ module.exports = {
         // sentry-cli configuration
         authToken: process.env.SENTRY_AUTH_TOKEN,
         org: "ryan-scarbery",
-        project: "ryan-scarbery",
+        project: "smart-wedding-project",
 
         // webpack specific configuration
         include: "./dist",
