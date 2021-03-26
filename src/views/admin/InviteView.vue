@@ -24,7 +24,9 @@
                     placeholder="0x"
                     required
                 ></v-text-field>
-                <v-btn type="submit" :loading="forms.invitation.loading" :disabled="!forms.invitation.valid" @click="giveMeSourceMapsSentry">Invite</v-btn>
+                <v-btn type="submit"
+                    :loading="forms.invitation.loading"
+                    :disabled="!forms.invitation.valid">Invite</v-btn>
             </v-form>
         </v-container>
     </div>

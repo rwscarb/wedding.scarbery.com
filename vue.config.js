@@ -12,7 +12,6 @@ module.exports = {
         authToken: process.env.SENTRY_AUTH_TOKEN,
         org: projectConfig.sentry.org,
         project: projectConfig.sentry.project,
-        urlPrefix: '~/js',
 
         // webpack specific configuration
         include: "./dist",
