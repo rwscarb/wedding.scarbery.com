@@ -2,22 +2,24 @@ import Vue from 'vue';
 
 import VueRouter from "vue-router";
 
-import About from "@/views/About.vue";
-import Admin from "@/views/Admin.vue";
-import Guestbook from "@/views/Guestbook.vue";
-import Dashboard from "@/views/Dashboard.vue";
-import DefaultAppBar from '@/views/app-bars/DefaultAppBar.vue';
-import AdminAppBar from '@/views/app-bars/AdminAppBar.vue';
-import InviteView from '@/views/admin/InviteView.vue';
-import ProposeContractView from '@/views/admin/ProposeContractView.vue';
-import AssetsView from '@/views/admin/AssetsView.vue';
-import ActionsView from '@/views/admin/ActionsView.vue';
-import SettingsView from '@/views/admin/SettingsView.vue';
-import AboutAppBar from '@/views/app-bars/AboutAppBar.vue';
-import TimelineView from '@/views/about/TimelineView.vue';
-import EventsView from '@/views/about/EventsView.vue';
-import PhotosView from '@/views/admin/PhotosView.vue';
-import Help from '@/views/Help.vue';
+const About = () => import(/* webpackChunkName: "about" */ '@/views/About.vue');
+const AboutAppBar = () => import(/* webpackChunkName: "about" */ '@/views/app-bars/AboutAppBar.vue');
+const TimelineView = () => import(/* webpackChunkName: "about" */ '@/views/about/TimelineView.vue');
+const EventsView = () => import(/* webpackChunkName: "about" */ '@/views/about/EventsView.vue');
+
+const Admin = () => import(/* webpackChunkName: "admin" */ '@/views/Admin.vue');
+const AdminAppBar = () => import(/* webpackChunkName: "admin" */ '@/views/app-bars/AdminAppBar.vue');
+const ActionsView = () => import(/* webpackChunkName: "admin" */ '@/views/admin/ActionsView.vue');
+const AssetsView = () => import(/* webpackChunkName: "admin" */ '@/views/admin/AssetsView.vue');
+const InviteView = () => import(/* webpackChunkName: "admin" */ '@/views/admin/InviteView.vue');
+const PhotosView = () => import(/* webpackChunkName: "admin" */ '@/views/admin/PhotosView.vue');
+const ProposeContractView = () => import(/* webpackChunkName: "admin" */ '@/views/admin/ProposeContractView.vue');
+const SettingsView = () => import(/* webpackChunkName: "admin" */ '@/views/admin/SettingsView.vue');
+
+const Guestbook = () => import('@/views/Guestbook.vue');
+const Dashboard = () => import('@/views/Dashboard.vue');
+const DefaultAppBar = () => import('@/views/app-bars/DefaultAppBar.vue');
+const Help = () => import('@/views/Help.vue');
 
 
 const routes = [

@@ -122,12 +122,12 @@
             </v-container>
         </div>
 
-        <div class="dashboard_item" v-if="hasWeb3Extension">
+        <div class="dashboard_item">
             <v-container>
                 <h3>ERC20 Tokens</h3>
                 <v-row>
                     <v-col cols="12" lg="6">
-                        <v-card>
+                        <v-card :disabled="!hasWeb3Extension">
                             <v-card-title>Add Tokens to MetaMask</v-card-title>
                             <v-card-subtitle>Click to add tokens to MetaMask</v-card-subtitle>
                             <v-card-text>

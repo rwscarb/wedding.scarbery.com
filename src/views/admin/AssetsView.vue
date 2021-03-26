@@ -188,8 +188,13 @@ export default {
                 } catch {
                     x.decrypted = ENCRYPTED_MSG;
                 }
-                x.approvedByUser = await this.SmartWeddingContract.methods.assetIsApproved(x.id).call();
-                x.removedByUser = await this.SmartWeddingContract.methods.assetIsRemoved(x.id).call();
+                if (this.isSpouse) {
+                    x.approvedByUser = await this.SmartWeddingContract.methods.assetIsApproved(x.id).call();
+                    x.removedByUser = await this.SmartWeddingContract.methods.assetIsRemoved(x.id).call();
+                } else {
+                    x.approvedByUser = false;
+                    x.removedByUser = false;
+                }
             }));
             Vue.set(this, 'assets', assets);
         },
