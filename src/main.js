@@ -11,6 +11,9 @@ import vuetify from "@/plugins/vuetify";
 Vue.config.productionTip = false;
 
 if (process.env.NODE_ENV === 'production') {
+  require("@/plugins/sentry.js");
+  require("@/plugins/gtag.js");
+
   // todo: fork drizzle as it won't shutup
   console.groupCollapsed = () => {};
   console.log = () => {};
