@@ -3,7 +3,7 @@
 
         <div class="dashboard_item">
             <v-container>
-                <v-row justify-lg="start">
+                <v-row justify-lg="start" class="flex-lg-column">
                     <v-col lg="6" sm="12">
                         <h3>Marriage Status</h3>
                         <v-card class="text-center">
@@ -38,15 +38,16 @@
                         <v-card class="text-center">
                             <v-card-text class="d-flex justify-center">
                                 <v-img
-                                    width="560"
+                                    max-height="315"
+                                    max-width="500"
                                     v-if="!playVideo"
                                     src="@/assets/images/princess-bride.jpg"
                                     @click="playVideo = true"/>
                                 <iframe
                                     v-if="playVideo"
                                     style="width: 100%"
-                                    width="560"
-                                    height="315"
+                                    width="400"
+                                    height="300"
                                     src="https://www.youtube.com/embed/_bY0fdgpISc?controls=0&rel=0"
                                     title="Marriage"
                                     frameborder="0"
