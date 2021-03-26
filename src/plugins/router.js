@@ -70,7 +70,7 @@ const routes = [
       appBar: DefaultAppBar
     }
   },
-  {path: '*', redirect: '/guest-book'}
+  {path: '*', redirect: '/dashboard'}
 ]
 
 Vue.use(VueRouter);

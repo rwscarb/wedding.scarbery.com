@@ -213,6 +213,6 @@ export default {
 }
 
 h3 {
-    margin-top: 2rem;
+    margin-top: 2em;
 }
 </style>

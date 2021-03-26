@@ -38,10 +38,10 @@
         </div>
 
         <div class="dashboard_item">
-            <h3>Contract Info</h3>
             <v-container>
+                <h3>Contract Info</h3>
                 <v-row>
-                    <v-col cols="12">
+                    <v-col cols="12" lg="6">
                         <v-card>
                             <v-card-title>
                                 <v-container>
@@ -74,8 +74,8 @@
         </div>
 
         <div class="dashboard_item">
-            <h3>Address Book</h3>
             <v-container>
+                <h3>Address Book</h3>
                 <v-row>
                     <v-col cols="12" md="6" v-for="(item, i) in addressBook" :key="i">
                         <v-card>
@@ -99,10 +99,10 @@
         </div>
 
         <div class="dashboard_item">
-            <h3>ERC20 Tokens</h3>
             <v-container>
+                <h3>ERC20 Tokens</h3>
                 <v-row>
-                    <v-col cols="12">
+                    <v-col cols="12" lg="6">
                         <v-card>
                             <v-card-title>Add Tokens to MetaMask</v-card-title>
                             <v-card-subtitle>Click to add tokens to MetaMask</v-card-subtitle>
@@ -139,8 +139,8 @@
         </div>
 
         <div class="dashboard_item" v-if="writtenContractIpfsHash">
-            <h3>Written Contract</h3>
             <v-container>
+                <h3>Written Contract</h3>
                 <v-row>
                     <v-col>
                         <v-card>

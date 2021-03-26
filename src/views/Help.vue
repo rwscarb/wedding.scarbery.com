@@ -1,173 +1,176 @@
 <template>
     <div class="help_view">
-        <h1>Help</h1>
+        <v-container>
+            <h1>Help</h1>
 
-        <v-divider/>
+            <v-divider/>
 
-        <h3>Getting started with Smart Contract</h3>
+            <h3>Getting started with Smart Contract</h3>
 
-        <v-stepper v-model="step" vertical>
-            <v-stepper-step :complete="step > 1" step="1">
-                Install MetaMask
-            </v-stepper-step>
+            <v-stepper v-model="step" vertical>
+                <v-stepper-step :complete="step > 1" step="1">
+                    Install MetaMask
+                </v-stepper-step>
 
-            <v-stepper-content step="1">
-                <div class="col-md-6">
-                    MetaMask is a popular browser-based cryptocurrency wallet.
-                    You can use it to interact with Ethereum
-                    Smart Contracts such as this one.
-                </div>
-                <div class="mb-6">
-                    <v-icon class="mr-1">mdi-hand-pointing-right</v-icon>
-                    <a href="https://metamask.io/download.html" target="_blank">https://metamask.io/download.html</a>
-                </div>
-                <v-btn color="primary" @click="step = 2">Continue</v-btn>
-            </v-stepper-content>
+                <v-stepper-content step="1">
+                    <div class="col-md-8">
+                        MetaMask is a popular browser-based cryptocurrency wallet.
+                        You can use it to interact with Ethereum
+                        Smart Contracts such as this one.
+                    </div>
+                    <div class="mb-6">
+                        <v-icon class="mr-1">mdi-hand-pointing-right</v-icon>
+                        <a href="https://metamask.io/download.html" target="_blank">https://metamask.io/download.html</a>
+                    </div>
+                    <v-btn color="primary" @click="step = 2">Continue</v-btn>
+                </v-stepper-content>
 
-            <v-stepper-step :complete="step > 2" step="2">
-                Set up your Ethereum Wallet
-            </v-stepper-step>
+                <v-stepper-step :complete="step > 2" step="2">
+                    Set up your Ethereum Wallet
+                </v-stepper-step>
 
-            <v-stepper-content step="2">
-                Create a new wallet when prompted.
-                <v-img src="@/assets/images/help/meta-mask-install.jpg" width="500"/>
-                <v-btn color="primary" @click="step = 3">Continue</v-btn>
-                <v-btn text @click="step = 1" class="ml-2">Back</v-btn>
-            </v-stepper-content>
+                <v-stepper-content step="2">
+                    Create a new wallet when prompted.
+                    <v-img src="@/assets/images/help/meta-mask-install.jpg" width="500"/>
+                    <v-btn color="primary" @click="step = 3">Continue</v-btn>
+                    <v-btn text @click="step = 1" class="ml-2">Back</v-btn>
+                </v-stepper-content>
 
-            <v-stepper-step :complete="step > 3" step="3">
-                Select Ropsten Ethereum Network
-            </v-stepper-step>
+                <v-stepper-step :complete="step > 3" step="3">
+                    Select Ropsten Ethereum Network
+                </v-stepper-step>
 
-            <v-stepper-content step="3">
-                <div class="col-md-6">
+                <v-stepper-content step="3">
+                    <div class="col-lg-6">
+                        <p>
+                            As you probably know, Ethereum is a second generation cryptocurrency, building off of the tried and
+                            tested principles of Bitcoin. It provides a Turing Complete language for writing
+                            <a href="https://en.wikipedia.org/wiki/Smart_contract" target="_blank">Smart Contracts</a> and
+                            doubles as a currency. As of this writing, Ethereum is trading at over $1,600 USD per Ether.
+                        </p>
+                        <p>
+                            To get around costs, I have deployed the smart contract to a test network that is free to use.
+                            In the <b>Networks</b> dropdown of MetaMask select the <b>Ropsten Test Network</b>.
+                        </p>
+
+                        <v-container>
+                            <v-row>
+                                <v-col cols="6">
+                                    <v-hover v-slot="{ hover }">
+                                        <v-card :elevation="hover ? 6 : 2">
+                                            <v-card-title>
+                                                <v-img src="@/assets/images/help/meta-mask-network-selection-2.jpg"
+                                                    @click="dialog2 = true"/>
+                                            </v-card-title>
+                                        </v-card>
+                                    </v-hover>
+                                    <v-dialog v-model="dialog2">
+                                        <v-hover v-slot="{ hover }">
+                                            <v-card
+                                                :elevation="hover ? 12 : 2"
+                                                :class="{ 'on-hover': hover }">
+                                                <v-card-title>Select "Ropsten Network" from the dropdown menu.</v-card-title>
+                                                <v-card-text>
+                                                    <v-img src="@/assets/images/help/meta-mask-network-selection-2.jpg"/>
+                                                </v-card-text>
+                                                <v-card-actions class="justify-end">
+                                                    <v-btn class="mb-2" @click="dialog2 = false">Close</v-btn>
+                                                </v-card-actions>
+                                            </v-card>
+                                        </v-hover>
+                                    </v-dialog>
+                                </v-col>
+                            </v-row>
+                        </v-container>
+                    </div>
+                    <v-btn color="primary" @click="step = 4">Continue</v-btn>
+                    <v-btn text @click="step = 2" class="ml-2">Back</v-btn>
+                </v-stepper-content>
+
+                <v-stepper-step :complete="step > 4" step="4">
+                    Send me your wallet address so I can invite you to the wedding
+                </v-stepper-step>
+
+                <v-stepper-content step="4">
                     <p>
-                        As you probably know, Ethereum is a second generation cryptocurrency, building off of the tried and
-                        tested principles of Bitcoin. It provides a Turing Complete language for writing
-                        <a href="https://en.wikipedia.org/wiki/Smart_contract" target="_blank">Smart Contracts</a> and
-                        doubles as a currency. As of this writing, Ethereum is trading at over $1,000 USD per Ether.
+                        You can copy your primary wallet address to the clipboard by clicking here.
                     </p>
-                    <p>
-                        To get around costs, I have deployed the smart contract to a test network that is free to use.
-                        In the <b>Networks</b> dropdown of MetaMask select the <b>Ropsten Test Network</b>.
-                    </p>
-
                     <v-container>
                         <v-row>
                             <v-col cols="6">
                                 <v-hover v-slot="{ hover }">
                                     <v-card :elevation="hover ? 6 : 2">
-                                        <v-card-title>
-                                            <v-img src="@/assets/images/help/meta-mask-network-selection-2.jpg"
-                                                @click="dialog2 = true"/>
-                                        </v-card-title>
+                                        <v-img src="@/assets/images/help/meta-mask-copy-address.jpg"
+                                            @click="dialog4 = true"/>
                                     </v-card>
                                 </v-hover>
-                                <v-dialog v-model="dialog2">
-                                    <v-hover v-slot="{ hover }">
-                                        <v-card
-                                            :elevation="hover ? 12 : 2"
-                                            :class="{ 'on-hover': hover }">
-                                            <v-card-title>Select "Ropsten Network" from the dropdown menu.</v-card-title>
-                                            <v-card-text>
-                                                <v-img src="@/assets/images/help/meta-mask-network-selection-2.jpg"/>
-                                            </v-card-text>
-                                            <v-card-actions class="justify-end">
-                                                <v-btn class="mb-2" @click="dialog2 = false">Close</v-btn>
-                                            </v-card-actions>
-                                        </v-card>
-                                    </v-hover>
-                                </v-dialog>
                             </v-col>
                         </v-row>
                     </v-container>
-                </div>
-                <v-btn color="primary" @click="step = 4">Continue</v-btn>
-                <v-btn text @click="step = 2" class="ml-2">Back</v-btn>
-            </v-stepper-content>
+                    <v-dialog v-model="dialog4">
+                        <v-hover v-slot="{ hover }">
+                            <v-card
+                                :elevation="hover ? 12 : 2"
+                                :class="{ 'on-hover': hover }">
+                                <v-card-title>
+                                    Click the <v-btn class="ma-3" small>Account 1</v-btn> button to copy your Ethereum
+                                    address to your clipboard.
+                                </v-card-title>
+                                <v-card-text>
+                                    <v-img src="@/assets/images/help/meta-mask-copy-address.jpg"/>
+                                </v-card-text>
+                                <v-card-actions class="justify-end">
+                                    <v-btn class="mb-2" @click="dialog4 = false">Close</v-btn>
+                                </v-card-actions>
+                            </v-card>
+                        </v-hover>
+                    </v-dialog>
+                    <v-btn color="primary" @click="step = 5">Continue</v-btn>
+                    <v-btn text @click="step = 3" class="ml-2">Back</v-btn>
+                </v-stepper-content>
 
-            <v-stepper-step :complete="step > 4" step="4">
-                Send me your wallet address
-            </v-stepper-step>
+                <v-stepper-step :complete="step > 5" step="5">
+                    Get some Ethereum
+                </v-stepper-step>
 
-            <v-stepper-content step="4">
-                <p>
-                    You can copy your primary wallet address to the clipboard by clicking here.
-                </p>
-                <v-container>
-                    <v-row>
-                        <v-col cols="6">
-                            <v-hover v-slot="{ hover }">
-                                <v-card :elevation="hover ? 6 : 2">
-                                    <v-img src="@/assets/images/help/meta-mask-copy-address.jpg"
-                                        @click="dialog4 = true"/>
-                                </v-card>
-                            </v-hover>
-                        </v-col>
-                    </v-row>
-                </v-container>
-                <v-dialog v-model="dialog4">
-                    <v-hover v-slot="{ hover }">
-                        <v-card
-                            :elevation="hover ? 12 : 2"
-                            :class="{ 'on-hover': hover }">
-                            <v-card-title>
-                                Click the <v-btn class="ma-3" small>Account 1</v-btn> button to copy your Ethereum
-                                address to your clipboard.
-                            </v-card-title>
-                            <v-card-text>
-                                <v-img src="@/assets/images/help/meta-mask-copy-address.jpg"/>
-                            </v-card-text>
-                            <v-card-actions class="justify-end">
-                                <v-btn class="mb-2" @click="dialog4 = false">Close</v-btn>
-                            </v-card-actions>
-                        </v-card>
-                    </v-hover>
-                </v-dialog>
-                <v-btn color="primary" @click="step = 5">Continue</v-btn>
-                <v-btn text @click="step = 3" class="ml-2">Back</v-btn>
-            </v-stepper-content>
+                <v-stepper-content step="5">
+                    <v-container>
+                        <v-row>
+                            <v-col cols="8">
+                                <p>
+                                    To execute actions against the smart contract you will need some test Ethereum.
+                                </p>
+                                <p>
+                                    Navigate to <a href="https://faucet.ropsten.be/" target="_blank">this site</a> to get some.
+                                    Warning; you only get one shot per day.
+                                </p>
+                            </v-col>
+                            <v-col cols="4" class="text-center">
+                                <div>Watch out for De-Fi Karen</div>
+                                <img src="@/assets/images/help/de-fi-karen.jpg" height="100"/>
+                            </v-col>
+                        </v-row>
+                    </v-container>
+                    <v-btn color="primary" @click="step = 6">Continue</v-btn>
+                    <v-btn text @click="step = 4" class="ml-2">Back</v-btn>
+                </v-stepper-content>
 
-            <v-stepper-step :complete="step > 5" step="5">
-                Get some Ethereum
-            </v-stepper-step>
+                <v-stepper-step :complete="step > 6" step="6">
+                    Profit!
+                </v-stepper-step>
 
-            <v-stepper-content step="5">
-                <v-container>
-                    <v-row>
-                        <v-col cols="8">
-                            <p>
-                                To execute actions against the smart contract you will need some test Ethereum.
-                            </p>
-                            <p>
-                                Navigate to <a href="https://faucet.ropsten.be/" target="_blank">this site</a> to get some.
-                                Warning; you only get one shot a day.
-                            </p>
-                        </v-col>
-                        <v-col cols="4" class="text-center">
-                            <div>Watch out for De-Fi Karen</div>
-                            <img src="@/assets/images/help/de-fi-karen.jpg" height="100"/>
-                        </v-col>
-                    </v-row>
-                </v-container>
-                <v-btn color="primary" @click="step = 6">Continue</v-btn>
-                <v-btn text @click="step = 4" class="ml-2">Back</v-btn>
-            </v-stepper-content>
+                <v-stepper-content step="6" class="col-md-8">
+                    <p>
+                        Once I have received your address and invited you to the wedding, you can sign the
+                        <router-link to="/guest-book">Guest Book</router-link>. You will also receive an ERC20 INVITE
+                        token, and another ERC20 WED token at the time both parties sign.
+                    </p>
+                    <v-btn text @click="step = 1" class="ml-2">Finish</v-btn>
+                </v-stepper-content>
 
-            <v-stepper-step :complete="step > 6" step="6">
-                Profit!
-            </v-stepper-step>
+            </v-stepper>
 
-            <v-stepper-content step="6" class="col-sm-4">
-                <p>
-                    Once I have received your address and invited you to the wedding, you can sign the
-                    <router-link to="/guest-book">Guest Book</router-link>, receive an ERC20 INVITE, and another
-                    ERC20 WED at the time of signing. They are dispersed automatically by the contract.
-                </p>
-                <v-btn text @click="step = 1" class="ml-2">Finish</v-btn>
-            </v-stepper-content>
-
-        </v-stepper>
+        </v-container>
     </div>
 </template>
 

@@ -1,30 +1,32 @@
 <template>
     <div class="invite_view">
-        <h3>Invite Ethereum Address</h3>
+        <v-container>
+            <h3>Invite Ethereum Address</h3>
 
-        <p>
-            Invited guests will receive an Invitation Token and a Wedding Token at time of contract signature.
-        </p>
-        <p>
-            They will also be able to sign the <router-link to="/guest-book">Guest Book</router-link>.
-        </p>
+            <p>
+                Invited guests will receive an Invitation Token and a Wedding Token at time of contract signature.
+            </p>
+            <p>
+                They will also be able to sign the <router-link to="/guest-book">Guest Book</router-link>.
+            </p>
 
-        <v-form
-            v-model="forms.invitation.valid"
-            @submit.prevent="inviteAddress(forms.invitation.address)"
-            ref="invite_form"
+            <v-form
+                v-model="forms.invitation.valid"
+                @submit.prevent="inviteAddress(forms.invitation.address)"
+                ref="invite_form"
             >
-            <v-text-field
-                v-model="forms.invitation.address"
-                :loading="forms.invitation.loading"
-                :rules="[v => utils.isAddress(v) || 'Must be a valid Ethereum address']"
-                label="Invite Address"
-                autocomplete="off"
-                placeholder="0x"
-                required
-            ></v-text-field>
-            <v-btn type="submit" :loading="forms.invitation.loading" :disabled="!forms.invitation.valid">Invite</v-btn>
-        </v-form>
+                <v-text-field
+                    v-model="forms.invitation.address"
+                    :loading="forms.invitation.loading"
+                    :rules="[v => utils.isAddress(v) || 'Must be a valid Ethereum address']"
+                    label="Invite Address"
+                    autocomplete="off"
+                    placeholder="0x"
+                    required
+                ></v-text-field>
+                <v-btn type="submit" :loading="forms.invitation.loading" :disabled="!forms.invitation.valid">Invite</v-btn>
+            </v-form>
+        </v-container>
     </div>
 </template>
 
