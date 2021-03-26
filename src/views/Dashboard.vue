@@ -3,7 +3,7 @@
 
         <div class="dashboard_item">
             <v-container>
-                <v-row>
+                <v-row justify-lg="start">
                     <v-col lg="6" sm="12">
                         <h3>Marriage Status</h3>
                         <v-card class="text-center">
@@ -31,6 +31,28 @@
                                 <template v-else>
                                     <v-icon x-large>mdi-ring</v-icon>
                                 </template>
+                            </v-card-text>
+                        </v-card>
+                    </v-col>
+                    <v-col lg="6">
+                        <v-card class="text-center">
+                            <v-card-text class="d-flex justify-center">
+                                <v-img
+                                    width="560"
+                                    v-if="!playVideo"
+                                    src="@/assets/images/princess-bride.jpg"
+                                    @click="playVideo = true"/>
+                                <iframe
+                                    v-if="playVideo"
+                                    style="width: 100%"
+                                    width="560"
+                                    height="315"
+                                    src="https://www.youtube.com/embed/_bY0fdgpISc?controls=0&rel=0"
+                                    title="Marriage"
+                                    frameborder="0"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowfullscreen
+                                ></iframe>
                             </v-card-text>
                         </v-card>
                     </v-col>
@@ -169,6 +191,11 @@ import EthAddressLink from '@/components/EthAddressLink.vue';
 export default {
     name: 'DashboardView',
     mixins: [DrizzleViewMixin],
+    data: (() => {
+        return {
+            playVideo: false
+        }
+    }),
     computed: {
         addressBook() {
             return [
