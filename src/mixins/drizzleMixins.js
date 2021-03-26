@@ -13,11 +13,15 @@ export const DrizzleViewMixin = {
     },
     getContractDataWithDefault() {
       return function ({contract, method, return_default}) {
-        const data = this.getContractData({
-          contract: contract,
-          method: method
-        });
-        return data === "loading" ? return_default : data;
+        try {
+          const data = this.getContractData({
+            contract: contract,
+            method: method
+          });
+          return data === "loading" ? return_default : data;
+        } catch {
+          return return_default;
+        }
       }
     },
     contractSigned() {
