@@ -27,7 +27,6 @@
                 <v-btn type="submit"
                     :loading="forms.invitation.loading"
                     :disabled="!forms.invitation.valid">Invite</v-btn>
-                <v-btn @click="fail()">Fail</v-btn>
             </v-form>
         </v-container>
     </div>
