@@ -1,7 +1,7 @@
 ## Smart Wedding Contract 🤵👰
 
 ![Language](https://img.shields.io/badge/language-solidity-brightgreen.svg)
-[![Ropsten](https://img.shields.io/badge/contract-ropsten-orange.svg)](https://ropsten.etherscan.io/address/0xCC8d30311E4f13a9EAEA90b7505857FB2089F774#code)
+[![Ropsten](https://img.shields.io/badge/contract-ropsten-orange.svg)](https://ropsten.etherscan.io/address/0xCC1dF672A2FE4F2C468dFa47cD0aE71326E5d62a#code)
 [![Application](https://img.shields.io/badge/application-live-e91e63.svg)](https://wedding.scarbery.com/)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 
@@ -46,11 +46,9 @@ The smart contract is already deployed and can be found at:
 
 ### Ethereum Networks
 
-#### Ropsten (Testnet)
+#### Ropsten (Testnet) 👉 find it on [Etherscan](https://ropsten.etherscan.io/address/0xCC1dF672A2FE4F2C468dFa47cD0aE71326E5d62a#code)
 
-👉 find it on [Etherscan](https://ropsten.etherscan.io/address/0xCC8d30311E4f13a9EAEA90b7505857FB2089F774#code)
-
-Feel free to install MetaMask and interact with the contract
+Feel free to install MetaMask and interact with the contract.
 
 ### Assets
 

@@ -101,5 +101,13 @@ module.exports = {
 
   db: {
     enabled: false
+  },
+
+  plugins: [
+      'truffle-plugin-verify'
+  ],
+
+  api_keys: {
+    etherscan: process.env.ETHERSCAN_API_KEY
   }
 };
