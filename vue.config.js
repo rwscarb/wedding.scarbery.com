@@ -1,4 +1,4 @@
-const config = require("config.js");
+const config = require("./config.js");
 const SentryWebpackPlugin = require("@sentry/webpack-plugin");
 
 module.exports = {
