@@ -122,7 +122,7 @@
             </v-container>
         </div>
 
-        <div class="dashboard_item">
+        <div class="dashboard_item" v-if="hasWeb3Extension">
             <v-container>
                 <h3>ERC20 Tokens</h3>
                 <v-row>

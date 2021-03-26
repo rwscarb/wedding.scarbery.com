@@ -102,9 +102,6 @@ export default {
                 this.setShowNavigationDrawer({show});
             }
         },
-        hasWeb3Extension() {
-            return window.ethereum;
-        },
         ...mapGetters('vuetify', [
             'showSnackbar',
             'snackbarMessage',

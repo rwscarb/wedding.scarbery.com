@@ -34,6 +34,9 @@ export const DrizzleViewMixin = {
         return_default: false
       });
     },
+    hasWeb3Extension() {
+      return window.ethereum;
+    },
     ...mapGetters('contracts', [
       'getContractData',
     ]),
