@@ -1,7 +1,6 @@
 pragma solidity ^0.5.0;
-pragma experimental ABIEncoderV2;
 
-import { WeddingInvitationToken, WeddingWitnessToken } from "./Tokens.sol";
+import { GuestBook } from "./GuestBook.sol";
 
 
 /**
@@ -22,26 +21,17 @@ contract SmartWeddingContract {
   event Divorced(uint timestamp);
   event FundsSent(uint timestamp, address wallet, uint amount);
   event FundsReceived(uint timestamp, address wallet, uint amount);
-  event GuestInvited(uint timestamp, address wallet, address from);
-  event GuestbookSignatureAdded(uint timestamp, address wallet, string name, string message);
-  event GuestAttended(uint timestamp, address wallet);
 
   bool public signed = false;
   bool public divorced = false;
 
-  address[] invitationList;
-
-  WeddingInvitationToken invitationToken = new WeddingInvitationToken();
-  WeddingWitnessToken witnessToken = new WeddingWitnessToken();
-
   mapping (address => bool) private hasSigned;
   mapping (address => bool) private hasDivorced;
-  mapping (address => bool) private isInvited;
-  mapping (address => bool) private hasAttended;
 
   address payable public spouse1Address;
   address payable public spouse2Address;
   string public writtenContractIpfsHash;
+  address public guestBookAddress;
 
   struct Asset {
     string data;
@@ -54,21 +44,6 @@ contract SmartWeddingContract {
   }
 
   Asset[] public assets;
-
-  struct GuestBookEntry {
-    string name;
-    string message;
-  }
-
-  GuestBookEntry[] guestBook;
-
-  /**
-   * @dev Modifier that only allows invited member execution.
-    */
-  modifier invited() {
-    require(isInvited[msg.sender], "Sender is not invited!");
-    _;
-  }
 
   /**
    * @dev Modifier that only allows spouse execution.
@@ -106,18 +81,16 @@ contract SmartWeddingContract {
    * @param _spouse1Address Wallet address of spouse1.
    * @param _spouse2Address Wallet address of spouse2.
    */
-  constructor(address payable _spouse1Address, address payable _spouse2Address) public {
+  constructor(address payable _guestBookAddress, address payable _spouse1Address, address payable _spouse2Address) public {
+    require(_guestBookAddress != address(0), "GuestBook address must not be zero!");
     require(_spouse1Address != address(0), "Spouse1 address must not be zero!");
     require(_spouse2Address != address(0), "Spouse2 address must not be zero!");
     require(_spouse1Address != _spouse2Address, "Spouse1 address must not equal Spouse2 address!");
 
     spouse1Address = _spouse1Address;
     spouse2Address = _spouse2Address;
+    guestBookAddress = _guestBookAddress;
 
-    isInvited[spouse1Address] = true;
-    invitationList.push(spouse1Address);
-    isInvited[spouse2Address] = true;
-    invitationList.push(spouse2Address);
   }
 
   /**
@@ -129,52 +102,6 @@ contract SmartWeddingContract {
 
   function getBalance() external view returns (uint) {
     return address(this).balance;
-  }
-
-  /**
-   * @dev Invite someone to your wedding
-   */
-  function sendInvitation(address payable _to) public onlySpouse {
-    require(!isInvited[_to], "Person has already been invited!");
-    if (invitationToken.balanceOf(address(this)) > 0) {
-      invitationToken.transfer(_to, 1);
-      isInvited[_to] = true;
-      invitationList.push(_to);
-      emit GuestInvited(now, _to, msg.sender);
-    }
-  }
-
-  /**
-   * @dev Get address to InvitationToken
-   */
-  function getInvitationTokenAddress() public view returns (address) {
-    return address(invitationToken);
-  }
-
-  /**
-   * @dev Get address to WitnessToken
-   */
-  function getWitnessTokenAddress() public view returns (address) {
-    return address(witnessToken);
-  }
-
-  /**
-   * @dev Sign the guest book
-   */
-  function signGuestBook(string memory name, string memory message) public invited {
-    GuestBookEntry memory entry = GuestBookEntry({
-      name: name,
-      message: message
-    });
-    guestBook.push(entry);
-    emit GuestbookSignatureAdded(now, msg.sender, name, message);
-  }
-
-  /**
-   * @dev Get guest book entries
-   */
-  function getGuestBookEntries() public view returns (GuestBookEntry[] memory) {
-    return guestBook;
   }
 
   /**
@@ -213,13 +140,23 @@ contract SmartWeddingContract {
     // Check if both spouses have signed
     if (hasSigned[spouse1Address] && hasSigned[spouse2Address]) {
       signed = true;
-      for (uint i = 0; i < invitationList.length; i++) {
-        if (witnessToken.balanceOf(address(this)) > 0) {
-         witnessToken.transfer(invitationList[i], 1);
-        }
-      }
+      GuestBook(guestBookAddress).sendWitnessTokens();
       emit ContractSigned(now);
     }
+  }
+
+  /**
+   * @dev Return whether sending spouse has signed.
+   */
+  function senderSigned() external view onlySpouse returns (bool) {
+    return hasSigned[msg.sender];
+  }
+
+  /**
+   * @dev Return whether sending spouse has approved divorce.
+   */
+  function senderDivorced() external view onlySpouse returns (bool) {
+    return hasDivorced[msg.sender];
   }
 
   /**

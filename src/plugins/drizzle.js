@@ -1,9 +1,16 @@
-import _ from 'lodash';
+import _ from "lodash";
+
+import Vue from "vue";
+
+import drizzleVuePlugin from "@drizzle/vue-plugin";
 
 import SmartWeddingContract from "@/contracts/SmartWeddingContract.json";
-import config from "../config.js";
+import GuestBook from "@/contracts/GuestBook.json";
+import config from "@/../config.js";
+import store from "@/store";
 
-const options = {
+
+const drizzleOptions = {
   web3: {
     block: false,
     fallback: {
@@ -11,7 +18,7 @@ const options = {
       url: `wss://ropsten.infura.io/ws/v3/${config.infuraProjectId}`
     }
   },
-  contracts: [SmartWeddingContract],
+  contracts: [SmartWeddingContract, GuestBook],
   events: {
     SmartWeddingContract: _.map([
       'AssetAddApproved',
@@ -24,15 +31,12 @@ const options = {
       'Divorced',
       'FundsReceived',
       'FundsSent',
-      'GuestAttended',
-      'GuestbookSignatureAdded',
-      'GuestInvited',
       'Signed',
       'WrittenContractProposed'
     ], x => {
       return {
         eventName: x,
-        eventOptions: { fromBlock: 9863506 }
+        eventOptions: { fromBlock: 0 }
       }
     })
   },
@@ -42,4 +46,4 @@ const options = {
   }
 };
 
-export default options;
+Vue.use(drizzleVuePlugin, {store, drizzleOptions});

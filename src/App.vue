@@ -1,249 +1,137 @@
 <template>
-    <b-container v-if="isDrizzleInitialized" fluid="sm">
-        <div v-if="!drizzleInstance.web3.currentProvider.isMetaMask" id="header_danger">
-            <b-link href="https://metamask.io/download" target="_blank">MetaMask</b-link>
-            is required to interact with contract. <div class="d-inline-block">*Ropsten Network Only*</div>
-        </div>
-        <b-jumbotron header="Crypto Wedding">
-        </b-jumbotron>
-        <b-row>
-            <b-col lg="3" class="contract_status">
-                <b-card title="Status" align="stretch">
-                    <b-input-group size="sm">
-                        <b-form-checkbox :checked="contractSigned" disabled>Signed</b-form-checkbox>
-                        <b-form-checkbox :checked="contractDivorced" disabled>Divorced</b-form-checkbox>
-                    </b-input-group>
-                    <div class="status_balance">Balance: {{ contractBalance.toFixed(6) }} ETH</div>
-                </b-card>
-            </b-col>
-            <b-col class="addresses">
-                <b-row>
-                    <b-col>
-                        <b-input-group size="sm" prepend="Contract Address">
-                            <b-form-input :value="contractAddress" class="address text-monospace" readonly></b-form-input>
-                            <b-input-group-append>
-                                <b-button @click="openInEtherScan(contractAddress)"
-                                    class="address_button"
-                                    variant="outline-secondary"
-                                    title="Click to view in Etherscan">
-                                    <img src="@/assets/images/etherscan.png">
-                                </b-button>
-                            </b-input-group-append>
-                        </b-input-group>
-                    </b-col>
-                </b-row>
-                <b-row>
-                    <b-col>
-                        <b-input-group size="sm" prepend="Spouse 1 Address">
-                            <b-form-input :value="spouse1Address" class="address text-monospace" readonly></b-form-input>
-                            <b-input-group-append>
-                                <b-button @click="openInEtherScan(spouse1Address)"
-                                    class="address_button"
-                                    variant="outline-secondary"
-                                    title="Click to view in Etherscan">
-                                    <img src="@/assets/images/etherscan.png">
-                                </b-button>
-                            </b-input-group-append>
-                        </b-input-group>
-                    </b-col>
-                </b-row>
-                <b-row>
-                    <b-col>
-                        <b-input-group size="sm" prepend="Spouse 2 Address">
-                            <b-form-input :value="spouse2Address" class="address text-monospace" readonly></b-form-input>
-                            <b-input-group-append>
-                                <b-button @click="openInEtherScan(spouse2Address)"
-                                    class="address_button"
-                                    variant="outline-secondary"
-                                    title="Click to view in Etherscan">
-                                    <img src="@/assets/images/etherscan.png">
-                                </b-button>
-                            </b-input-group-append>
-                        </b-input-group>
-                    </b-col>
-                </b-row>
-                <b-row>
-                    <b-col>
-                        <b-input-group size="sm" prepend="Invitation Token Address">
-                            <b-form-input :value="invitationTokenAddress" class="address text-monospace" readonly></b-form-input>
-                            <b-input-group-append>
-                                <b-button @click="addERCToken(invitationTokenAddress, 'INVITE')"
-                                    class="address_button"
-                                    variant="outline-secondary"
-                                    title="Click to add token to MetaMask">
-                                    <img src="@/assets/images/meta-mask.png">
-                                </b-button>
-                            </b-input-group-append>
-                        </b-input-group>
-                    </b-col>
-                </b-row>
-                <b-row>
-                    <b-col>
-                        <b-input-group size="sm" prepend="Witness Token Address">
-                            <b-form-input :value="witnessTokenAddress" class="address text-monospace" readonly></b-form-input>
-                            <b-input-group-append>
-                                <b-button @click="addERCToken(witnessTokenAddress, 'WED')"
-                                    class="address_button"
-                                    variant="outline-secondary"
-                                    title="Click to add token to MetaMask">
-                                    <img src="@/assets/images/meta-mask.png">
-                                </b-button>
-                            </b-input-group-append>
-                        </b-input-group>
-                    </b-col>
-                </b-row>
-            </b-col>
-        </b-row>
-        <b-row>
-            <b-col>
-                <h3 class="naked_title">Smart Contract</h3>
-                <b-card no-body style="min-height: 20em">
-                    <b-card-header header-tag="nav">
-                        <b-nav card-header tabs>
-                            <b-nav-item to="/guest-book" exact exact-active-class="active">Guest Book</b-nav-item>
-                            <b-nav-item to="/admin" exact exact-active-class="active">Admin</b-nav-item>
-                            <b-nav-item to="/about" exact exact-active-class="active">About</b-nav-item>
-                        </b-nav>
-                    </b-card-header>
-                    <b-card-body>
-                        <router-view></router-view>
-                    </b-card-body>
-                </b-card>
-            </b-col>
-        </b-row>
-        <b-row>
-            <b-col>
-                <h3 class="naked_title">Events</h3>
-                <b-list-group v-if="displayedEvents.length">
-                    <b-list-group-item v-for="(event, i) in displayedEvents" :key="i">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h5 class="mb-1">{{ event.eventName }}</h5>
-                            <small>{{ new Date(Number(event.data.timestamp) * 1000).toLocaleString() }}</small>
-                        </div>
-                        <pre>{{ event.data }}</pre>
-                    </b-list-group-item>
-                </b-list-group>
-                <i v-else class="naked_title">No events recorded...</i>
-            </b-col>
-        </b-row>
-    </b-container>
+    <v-app>
+        <v-navigation-drawer v-model="navigationDrawerProxy" app>
+            <v-list-item>
+                <v-list-item-content>
+                    <v-list-item-title class="title">
+                        <v-icon>mdi-shield-lock</v-icon> Crypto Wedding
+                    </v-list-item-title>
+                    <v-list-item-subtitle class="mt-1">
+                        Written in the time of COVID19
+                    </v-list-item-subtitle>
+                </v-list-item-content>
+            </v-list-item>
+
+            <v-list nav>
+                <v-list-item v-for="item in items" :key="item.title" link :to="item.route">
+                    <v-list-item-icon>
+                        <v-icon>{{ item.icon }}</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list>
+        </v-navigation-drawer>
+
+        <router-view name="appBar"></router-view>
+
+        <v-main>
+            <v-container fluid v-if="isDrizzleInitialized">
+                <router-view></router-view>
+            </v-container>
+        </v-main>
+
+        <v-snackbar :value="showSnackbar" :timeout="3000">
+            <div class="text-center">{{ snackbarMessage }}</div>
+        </v-snackbar>
+
+        <v-footer padless app>
+            <v-card class="text-center" width="100%">
+                <v-card-text>
+                    <v-btn class="mx-4" icon href="https://twitter.com/ryan_scarbery">
+                        <v-icon size="24px">mdi-twitter</v-icon>
+                    </v-btn>
+                    <v-btn class="mx-4" icon href="https://www.linkedin.com/in/ryan-scarbery/">
+                        <v-icon size="24px">mdi-linkedin</v-icon>
+                    </v-btn>
+                    <v-btn class="mx-4" icon href="https://www.instagram.com/ryanscarbery/">
+                        <v-icon size="24px">mdi-instagram</v-icon>
+                    </v-btn>
+                </v-card-text>
+
+                <v-divider></v-divider>
+
+                <v-card-text>
+                    {{ new Date().getFullYear() }} — Ryan Scarbery
+                </v-card-text>
+            </v-card>
+        </v-footer>
+    </v-app>
 </template>
 
 <script>
-import { mapGetters } from 'vuex';
-import _ from 'lodash';
+import { mapGetters, mapActions } from 'vuex';
+
+import { DrizzleViewMixin } from '@/mixins/drizzleMixins.js';
 
 export default {
-    data: function () {
-        return {
-            events: []
-        }
-    },
+    name: 'App',
+    mixins: [DrizzleViewMixin],
+    data: () => ({
+        events: [],
+        items: [
+            {title: 'Dashboard', icon: 'mdi-view-dashboard', route: '/dashboard'},
+            {title: 'Guest Book', icon: 'mdi-message-text-lock-outline', route: '/guest-book'},
+            {title: 'Photos', icon: 'mdi-image', route: '/photos'},
+            {title: 'Admin', icon: 'mdi-badge-account-horizontal-outline', route: '/admin'},
+            {title: 'About', icon: 'mdi-cupcake', route: '/about'},
+        ]
+    }),
     computed: {
-        invitationTokenAddress() {
-            return this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "getInvitationTokenAddress",
-
-            });
+        navigationDrawerProxy: {
+            get() {
+                return this.showNavigationDrawer;
+            },
+            set(show) {
+                this.setShowNavigationDrawer({show});
+            }
         },
-        witnessTokenAddress() {
-            return this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "getWitnessTokenAddress",
-
-            });
-        },
-        contractAddress() {
-            return this.drizzleInstance.contracts.SmartWeddingContract.address;
-        },
-        spouse1Address() {
-            return this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "spouse1Address"
-            });
-        },
-        spouse2Address() {
-            return this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "spouse2Address"
-            });
-        },
-        writtenContractIpfsHash() {
-            return this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "writtenContractIpfsHash"
-            });
-        },
-        contractSigned() {
-            const data = this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "signed"
-            });
-            return data === "loading" ? false : data;
-        },
-        contractDivorced() {
-            const data = this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "divorced"
-            });
-            return data === "loading" ? false : data;
-        },
-        contractBalance() {
-            const data = this.getContractData({
-                contract: "SmartWeddingContract",
-                method: "getBalance"
-            });
-            return data === "loading" ? 0 : _.toNumber(this.utils.fromWei(data));
-        },
-        displayedEvents() {
-            const sortedEvents = _.sortBy(_.uniqBy(this.events, x => x.data.timestamp), x => -_.toNumber(x.data.timestamp));
-            _.forEach(sortedEvents, x => {
-                x.data = _.pickBy(x.data, (v, k) => _.isNaN(_.toNumber(k))); // remove drizzle numeric props
-            })
-            return sortedEvents;
-        },
-        utils() {
-            return this.drizzleInstance.web3.utils;
-        },
-        ...mapGetters("drizzle", [
-            "drizzleInstance",
-            "isDrizzleInitialized"
+        ...mapGetters('vuetify', [
+            'showSnackbar',
+            'snackbarMessage',
+            'showNavigationDrawer',
         ]),
-        ...mapGetters("contracts", [
-            "getContractData"
+        ...mapGetters("drizzle", [
+            "isDrizzleInitialized"
         ]),
     },
     watch: {
-        contractSigned(newVal) {
-            if (newVal) {
+        contractSigned(newVal, oldVal) {
+            if (newVal && newVal !== oldVal) {
                 this.$confetti.start();
                 setTimeout(() => {
                     this.$confetti.stop();
                 }, 5 * 1000);
             }
-        }
+        },
+        contractDivorced(newVal, oldVal) {
+            if (newVal && newVal !== oldVal) {
+                this.$confetti.stop();
+                this.$confetti.start({
+                    particles: [
+                        {type: 'heart'},
+                        {type: 'circle'},
+                    ],
+                    defaultColors: [
+                        'black',
+                        'grey',
+                        '#ba0000'
+                    ],
+                });
+                setTimeout(() => {
+                    this.$confetti.stop();
+                }, 5 * 1000);
+            }
+        },
     },
     methods: {
-        async addERCToken(address, symbol) {
-            await this.drizzleInstance.web3.currentProvider.sendAsync({
-                method: 'wallet_watchAsset',
-                params: {
-                    type: 'ERC20',
-                    options: {
-                        address,
-                        symbol,
-                        decimals: 0
-                    }
-                }
-            });
-        },
-        openInEtherScan(address) {
-            window.open('https://ropsten.etherscan.io/address/' + address, '_blank');
-        },
-        addEvent(event) {
-            this.events.push(event);
-        },
+        ...mapActions('vuetify', [
+            'setShowNavigationDrawer',
+        ]),
+        ...mapActions('events', [
+            'addEvent',
+        ]),
     },
     created() {
         [{
@@ -267,11 +155,11 @@ export default {
             method: "getBalance",
             methodArgs: []
         }, {
-            contractName: "SmartWeddingContract",
+            contractName: "GuestBook",
             method: "getInvitationTokenAddress",
             methodArgs: []
         }, {
-            contractName: "SmartWeddingContract",
+            contractName: "GuestBook",
             method: "getWitnessTokenAddress",
             methodArgs: []
         }, {
@@ -280,6 +168,14 @@ export default {
             methodArgs: []
         }, {
             contractName: "SmartWeddingContract",
+            method: "senderSigned",
+            methodArgs: []
+        }, {
+            contractName: "SmartWeddingContract",
+            method: "senderDivorced",
+            methodArgs: []
+        }, {
+            contractName: "GuestBook",
             method: "getGuestBookEntries",
             methodArgs: []
         }, {
@@ -295,94 +191,11 @@ export default {
 </script>
 
 <style lang="less">
+#app {
+    min-width: 432px;
+}
+
 h3 {
-    margin-top: 1em;
-}
-
-.row {
-    margin-bottom: .5em;
-}
-
-#header_danger {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    margin: .55em 0 0;
-    padding: .2em;
-    background-color: red;
-    color: white;
-    font-style: italic;
-    text-align: center;
-    z-index: 42;
-    a {
-        color: white;
-        font-weight: bold;
-        text-decoration: underline;
-    }
-}
-
-.address {
-    text-align: right;
-
-    &[readonly] {
-        background-color: white;
-    }
-}
-
-.input-group-text {
-    width: 14em;
-}
-
-#guest_book_form {
-    margin-top: 1em;
-}
-
-.contract_status {
-    margin-bottom: 2em;
-    .custom-checkbox {
-        margin-right: 1em;
-    }
-}
-
-.input-group-sm > .input-group-append > .btn.address_button {
-    width: 2em;
-    padding: 0;
-    background-color: white;
-}
-
-body {
-    background: url(./assets/images/background.jpg) no-repeat center center fixed;
-    background-size: cover;
-}
-
-.naked_title {
-    color: white;
-}
-
-h3.naked_title {
-    margin-top: 1.2em;
-    margin-left: .2em;
-}
-
-.status_balance {
-    margin-top: .25em;
-    font-size: .8em;
-}
-
-@media (max-width: 767.98px) {
-    html, body {
-        overflow-x: hidden;
-    }
-    body {
-        position: relative
-    }
-    .container-sm {
-        padding: 0 !important;
-    }
-}
-
-.addresses {
-    margin: .5em;
+    margin-top: 2rem;
 }
 </style>
