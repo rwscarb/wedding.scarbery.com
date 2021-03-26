@@ -6,5 +6,12 @@ module.exports = {
     ropsten: {
       mnemonic: process.env.PRIVATE_MNEMONIC || ''
     }
+  },
+  site: {
+    title: 'Smart Wedding Contract'
+  },
+  sentry: {
+    org: 'ryan-scarbery',
+    project: 'wedding-smart-contract'
   }
 }

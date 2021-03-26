@@ -1,3 +1,4 @@
+const config = require("config.js");
 const SentryWebpackPlugin = require("@sentry/webpack-plugin");
 
 module.exports = {
@@ -7,8 +8,8 @@ module.exports = {
       new SentryWebpackPlugin({
         // sentry-cli configuration
         authToken: process.env.SENTRY_AUTH_TOKEN,
-        org: "ryan-scarbery",
-        project: "smart-wedding-project",
+        org: config.sentry.org,
+        project: config.sentry.project,
 
         // webpack specific configuration
         include: "./dist",
@@ -19,7 +20,7 @@ module.exports = {
 
   chainWebpack: config => {
     config.plugin('html').tap(args => {
-      args[0].title = 'Smart Wedding Contract';
+      args[0].title = config.site.title;
       return args;
     })
   },
