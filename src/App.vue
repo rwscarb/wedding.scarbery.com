@@ -1,5 +1,13 @@
 <template>
-    <v-app>
+    <v-app v-if="isDrizzleInitialized">
+        <v-system-bar v-if="!hasWeb3Extension" color="red" class="white--text justify-center" app>
+            <v-icon color="white">mdi-exclamation-thick</v-icon>
+            <div>
+                You must install
+                <a href="https://metamask.io/download.html" target="_blank" style="color:white">MetaMask</a>
+                or a compatible extension to interact with this Smart Contract
+            </div>
+        </v-system-bar>
         <v-navigation-drawer v-model="navigationDrawerProxy" app>
             <v-list-item>
                 <v-list-item-content>
@@ -27,7 +35,7 @@
         <router-view name="appBar"></router-view>
 
         <v-main>
-            <v-container fluid v-if="isDrizzleInitialized">
+            <v-container fluid>
                 <router-view></router-view>
             </v-container>
         </v-main>
@@ -39,13 +47,13 @@
         <v-footer padless app>
             <v-card class="text-center" width="100%">
                 <v-card-text>
-                    <v-btn class="mx-4" icon href="https://twitter.com/ryan_scarbery">
+                    <v-btn class="mx-4" icon href="https://twitter.com/ryan_scarbery" target="_blank">
                         <v-icon size="24px">mdi-twitter</v-icon>
                     </v-btn>
-                    <v-btn class="mx-4" icon href="https://www.linkedin.com/in/ryan-scarbery/">
+                    <v-btn class="mx-4" icon href="https://www.linkedin.com/in/ryan-scarbery/" target="_blank">
                         <v-icon size="24px">mdi-linkedin</v-icon>
                     </v-btn>
-                    <v-btn class="mx-4" icon href="https://www.instagram.com/ryanscarbery/">
+                    <v-btn class="mx-4" icon href="https://www.instagram.com/ryanscarbery/" target="_blank">
                         <v-icon size="24px">mdi-instagram</v-icon>
                     </v-btn>
                 </v-card-text>
@@ -86,6 +94,9 @@ export default {
             set(show) {
                 this.setShowNavigationDrawer({show});
             }
+        },
+        hasWeb3Extension() {
+            return window.ethereum;
         },
         ...mapGetters('vuetify', [
             'showSnackbar',

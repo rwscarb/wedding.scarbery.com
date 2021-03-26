@@ -17,6 +17,7 @@ import AboutAppBar from '@/views/app-bars/AboutAppBar.vue';
 import TimelineView from '@/views/about/TimelineView.vue';
 import EventsView from '@/views/about/EventsView.vue';
 import PhotosView from '@/views/admin/PhotosView.vue';
+import Help from '@/views/Help.vue';
 
 
 const routes = [
@@ -60,6 +61,12 @@ const routes = [
   {
     path: '/photos', components: {
       default: PhotosView,
+      appBar: DefaultAppBar
+    }
+  },
+  {
+    path: '/help', components: {
+      default: Help,
       appBar: DefaultAppBar
     }
   },

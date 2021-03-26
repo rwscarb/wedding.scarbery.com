@@ -1,24 +1,19 @@
 <template>
     <v-app-bar app>
-        <v-app-bar-nav-icon @click.stop="toggleShowNavigationDrawer"></v-app-bar-nav-icon>
-        <v-spacer></v-spacer>
-        <v-chip outlined>
-            <div v-if="contractDivorced">
-                Divorced <v-icon color="black" class="ml-1">mdi-heart-broken</v-icon>
-            </div>
-            <div v-else-if="contractSigned">
-                Signed <v-icon color="red" class="ml-1">mdi-heart</v-icon>
-            </div>
-            <div v-else>
-                Not Signed <v-icon color="grey" class="ml-1">mdi-heart</v-icon>
-            </div>
-        </v-chip>
+        <v-app-bar-nav-icon @click.stop="toggleShowNavigationDrawer"/>
+
+        <v-spacer/>
+
+        <contract-status/>
+
+        <router-link class="ml-3" to="/help" href>Help</router-link>
     </v-app-bar>
 </template>
 
 <script>
 import { mapActions } from 'vuex';
 import { DrizzleViewMixin } from '@/mixins/drizzleMixins.js';
+import ContractStatus from '@/components/ContractStatus.vue';
 
 export default {
     name: 'DefaultAppBar',
@@ -28,6 +23,9 @@ export default {
             'sendSnackbarMessage',
             'toggleShowNavigationDrawer'
         ]),
+    },
+    components: {
+        ContractStatus
     },
 }
 </script>

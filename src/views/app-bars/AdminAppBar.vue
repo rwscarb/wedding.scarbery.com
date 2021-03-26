@@ -9,7 +9,13 @@
                 <v-tab to="/admin/actions">Actions</v-tab>
             </v-tabs>
         </template>
-        <v-spacer></v-spacer>
+
+        <v-spacer/>
+
+        <contract-status/>
+
+        <router-link class="ml-3" to="/help" href>Help</router-link>
+
         <v-menu bottom left>
             <template v-slot:activator="{ on, attrs }">
                 <v-btn
@@ -36,6 +42,7 @@ import _ from 'lodash';
 import CryptoJS from 'crypto-js';
 
 import { SnackbarViewMixin } from '@/mixins/vuetifyMixins.js';
+import ContractStatus from '@/components/ContractStatus.vue';
 
 export default {
     mixins: [SnackbarViewMixin],
@@ -91,6 +98,9 @@ export default {
             }
             await this.fetchAssets();
         },
+    },
+    components: {
+        ContractStatus
     },
 }
 </script>

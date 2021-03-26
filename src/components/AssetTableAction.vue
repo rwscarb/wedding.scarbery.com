@@ -12,6 +12,7 @@
                 fab
                 dark
                 x-small
+                :loading="loading"
                 ><v-icon>mdi-skull-crossbones-outline</v-icon></v-btn>
             <v-btn v-else-if="asset.added"
                 @click="!isWaitingOnOtherSpouse && $emit('remove', asset)"
@@ -20,6 +21,7 @@
                 fab
                 dark
                 x-small
+                :loading="loading"
                 ><v-icon>mdi-trash-can-outline</v-icon></v-btn>
             <v-btn v-else
                 @click="!isWaitingOnOtherSpouse && $emit('approve', asset)"
@@ -29,6 +31,7 @@
                 fab
                 dark
                 x-small
+                :loading="loading"
                 ><v-icon>mdi-heart</v-icon></v-btn>
         </v-badge>
     </div>
@@ -37,7 +40,7 @@
 <script>
 export default {
     name: 'AssetTableAction',
-    props: ['asset', 'contract'],
+    props: ['asset', 'contract', 'loading'],
     computed: {
         isWaitingOnOtherSpouse() {
             return (!this.asset.added && this.asset.approvedByUser) || (!this.asset.removed && this.asset.removedByUser);
