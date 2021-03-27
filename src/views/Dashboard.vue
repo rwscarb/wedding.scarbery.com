@@ -3,8 +3,8 @@
 
         <div class="dashboard_item">
             <v-container>
-                <v-row justify-lg="start" class="flex-lg-column">
-                    <v-col lg="6" sm="12">
+                <v-row justify-lg="start" class="flex-lg-row">
+                    <v-col sm="12" lg="6" xl="5">
                         <h3>Marriage Status</h3>
                         <v-card class="text-center">
                             <v-card-subtitle>
@@ -26,144 +26,76 @@
                                     <v-icon x-large>mdi-heart</v-icon>
                                 </template>
                                 <template v-else>
-                                    <v-icon x-large>mdi-ring</v-icon>
+                                    <v-btn icon @click="playVideo = true"><v-icon x-large>mdi-ring</v-icon></v-btn>
                                 </template>
                             </v-card-text>
+                            <v-card-actions class="justify-center">
+                                <you-tube v-if="playVideo" video-id="_bY0fdgpISc" max-width="800"/>
+                            </v-card-actions>
                         </v-card>
                     </v-col>
-                    <v-col lg="6">
-                        <v-card class="text-center">
-                            <v-card-text class="d-flex justify-center">
-                                <v-img
-                                    max-height="315"
-                                    max-width="500"
-                                    v-if="!playVideo"
-                                    src="@/assets/images/princess-bride.jpg"
-                                    @click="playVideo = true"/>
-                                <iframe
-                                    v-if="playVideo"
-                                    style="width: 100%"
-                                    width="400"
-                                    height="300"
-                                    src="https://www.youtube.com/embed/_bY0fdgpISc?controls=0&rel=0&autoplay=1"
-                                    title="Marriage"
-                                    frameborder="0"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowfullscreen
-                                ></iframe>
-                            </v-card-text>
-                        </v-card>
-                    </v-col>
-                </v-row>
-            </v-container>
-        </div>
-
-        <div class="dashboard_item">
-            <v-container>
-                <h3>Contract Info</h3>
-                <v-row>
-                    <v-col cols="12" lg="6">
+                    <v-col cols="12" lg="6" xl="5">
+                        <h3>Contract Info</h3>
                         <v-card>
-                            <v-card-title>
-                                <v-container>
-                                    <v-row>
-                                        <v-col>
-                                            Contract Address
-                                        </v-col>
-                                        <v-col>
-                                            <eth-address-link class="text-right ml-2" :address="SmartWeddingContract.address"/>
-                                        </v-col>
-                                    </v-row>
-                                </v-container>
+                            <v-card-title class="justify-space-between">
+                                <div>Contract Address</div>
+                                <eth-address-link
+                                    class="text-right ml-2"
+                                    :address="SmartWeddingContract.address"/>
                             </v-card-title>
                             <v-card-text>
-                                <v-container>
-                                    <v-row justify="space-between">
-                                        <v-col>
-                                            {{ SmartWeddingContract.address }}
-                                        </v-col>
-                                        <v-col class="text-right">
-                                            <v-chip color="primary">Balance: {{ contractBalance }} ETH</v-chip>
-                                        </v-col>
-                                    </v-row>
-                                </v-container>
+                                {{ SmartWeddingContract.address }}
                             </v-card-text>
+                            <v-card-actions class="justify-end">
+                                <v-chip color="primary">
+                                    Balance: {{ contractBalance }} ETH
+                                </v-chip>
+                            </v-card-actions>
                         </v-card>
                     </v-col>
-                </v-row>
-            </v-container>
-        </div>
-
-        <div class="dashboard_item">
-            <v-container>
-                <h3>Address Book</h3>
-                <v-row>
-                    <v-col cols="12" md="6" v-for="(item, i) in addressBook" :key="i">
+                    <v-col cols="12" md="6" lg="4" v-for="(item, i) in addressBook" :key="i">
+                        <h3>Address Book</h3>
                         <v-card>
-                            <v-card-title>
-                                <v-row>
-                                    <v-col>
-                                        {{ item.title }}
-                                    </v-col>
-                                    <v-col>
-                                        <eth-address-link class="text-right ml-2" :address="item.address"/>
-                                    </v-col>
-                                </v-row>
+                            <v-card-title class="justify-space-between">
+                                <div>{{ item.title }}</div>
+                                <eth-address-link :address="item.address"/>
                             </v-card-title>
                             <v-card-text>
                                 {{ item.address }}
                             </v-card-text>
                         </v-card>
                     </v-col>
-                </v-row>
-            </v-container>
-        </div>
-
-        <div class="dashboard_item">
-            <v-container>
-                <h3>ERC20 Tokens</h3>
-                <v-row>
-                    <v-col cols="12" lg="6">
+                    <v-col cols="12" lg="4">
+                        <h3>ERC20 Tokens</h3>
                         <v-card :disabled="!hasWeb3Extension">
                             <v-card-title>Add Tokens to MetaMask</v-card-title>
                             <v-card-subtitle>Click to add tokens to MetaMask</v-card-subtitle>
-                            <v-card-text>
-                                <v-container>
-                                    <v-row>
-                                        <v-col cols="6" class="text-center">
-                                            <v-btn
-                                                fab
-                                                x-large
-                                                color="indigo"
-                                                class="lighten-3"
-                                                @click="addERCToken(inviteTokenAddress, 'INVITE')"
-                                            ><v-icon>mdi-ethereum</v-icon></v-btn>
-                                            <div>Invite</div>
-                                        </v-col>
-                                        <v-col cols="6" class="text-center">
-                                            <v-btn
-                                                fab
-                                                x-large
-                                                color="light-blue"
-                                                class="lighten-4"
-                                                @click="addERCToken(witnessTokenAddress, 'WED')"
-                                            ><v-icon>mdi-ethereum</v-icon></v-btn>
-                                            <div>Witness</div>
-                                        </v-col>
-                                    </v-row>
-                                </v-container>
+                            <v-card-text class="d-flex justify-space-between">
+                                <div>
+                                    <v-btn
+                                        fab
+                                        x-large
+                                        color="indigo"
+                                        class="lighten-3"
+                                        @click="addERCToken(inviteTokenAddress, 'INVITE')"
+                                        ><v-icon>mdi-ethereum</v-icon></v-btn>
+                                    <div class="text-center">Invite</div>
+                                </div>
+                                <div>
+                                    <v-btn
+                                        fab
+                                        x-large
+                                        color="light-blue"
+                                        class="lighten-4"
+                                        @click="addERCToken(witnessTokenAddress, 'WED')"
+                                        ><v-icon>mdi-ethereum</v-icon></v-btn>
+                                    <div class="text-center">Witness</div>
+                                </div>
                             </v-card-text>
                         </v-card>
                     </v-col>
-                </v-row>
-            </v-container>
-        </div>
-
-        <div class="dashboard_item" v-if="writtenContractIpfsHash">
-            <v-container>
-                <h3>Written Contract</h3>
-                <v-row>
-                    <v-col>
+                    <v-col v-if="writtenContractIpfsHash">
+                        <h3>Written Contract</h3>
                         <v-card>
                             <v-card-text class="text-center">
                                 <a :href="`https://ipfs.io/ipfs/${writtenContractIpfsHash}`" target="_blank">
@@ -184,7 +116,9 @@ import _ from 'lodash';
 import { mapGetters } from 'vuex';
 
 import { DrizzleViewMixin } from '@/mixins/drizzleMixins.js';
+
 import EthAddressLink from '@/components/EthAddressLink.vue';
+import YouTube from '@/components/YouTube.vue';
 
 export default {
     name: 'DashboardView',
@@ -246,7 +180,14 @@ export default {
         },
     },
     components: {
-        EthAddressLink
+        EthAddressLink,
+        YouTube
     }
 }
 </script>
+
+<style lang="less" scoped>
+.v-card__title {
+    white-space: nowrap;
+}
+</style>
