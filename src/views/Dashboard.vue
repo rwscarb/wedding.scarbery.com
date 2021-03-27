@@ -7,7 +7,7 @@
                     <v-col sm="12" lg="6" xl="5">
                         <h3>Marriage Status</h3>
                         <v-card class="text-center">
-                            <v-card-subtitle>
+                            <v-card-title class="justify-center">
                                 <template v-if="contractDivorced">
                                     Divorced
                                 </template>
@@ -17,7 +17,7 @@
                                 <template v-else>
                                     Engaged
                                 </template>
-                            </v-card-subtitle>
+                            </v-card-title>
                             <v-card-text>
                                 <template v-if="contractDivorced">
                                     <v-icon x-large>mdi-heart-broken</v-icon>
@@ -29,7 +29,7 @@
                                     <v-btn icon @click="playVideo = true"><v-icon x-large>mdi-ring</v-icon></v-btn>
                                 </template>
                             </v-card-text>
-                            <v-card-actions class="justify-center">
+                            <v-card-actions class="justify-center pb-6">
                                 <you-tube v-if="playVideo" video-id="_bY0fdgpISc" max-width="800"/>
                             </v-card-actions>
                         </v-card>
@@ -47,7 +47,7 @@
                                 {{ SmartWeddingContract.address }}
                             </v-card-text>
                             <v-card-actions class="justify-end">
-                                <v-chip color="primary">
+                                <v-chip color="primary" class="mb-2">
                                     Balance: {{ contractBalance }} ETH
                                 </v-chip>
                             </v-card-actions>
@@ -70,7 +70,7 @@
                         <v-card :disabled="!hasWeb3Extension">
                             <v-card-title>Add Tokens to MetaMask</v-card-title>
                             <v-card-subtitle>Click to add tokens to MetaMask</v-card-subtitle>
-                            <v-card-text class="d-flex justify-space-between">
+                            <v-card-text class="d-flex justify-space-around">
                                 <div>
                                     <v-btn
                                         fab
@@ -187,7 +187,10 @@ export default {
 </script>
 
 <style lang="less" scoped>
-.v-card__title {
-    white-space: nowrap;
+.v-card {
+    min-height: 10em;
+    .v-card__title {
+        white-space: nowrap;
+    }
 }
 </style>
