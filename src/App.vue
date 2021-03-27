@@ -198,10 +198,11 @@ export default {
 </script>
 
 <style lang="less">
-#app {
-}
-
 h3 {
     margin-top: 2em;
+}
+.v-card__title {
+    white-space: normal;
+    word-break: break-word;
 }
 </style>
