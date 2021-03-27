@@ -53,35 +53,33 @@
                             In the <b>Networks</b> dropdown of MetaMask select the <b>Ropsten Test Network</b>.
                         </p>
 
-                        <v-container>
-                            <v-row>
-                                <v-col cols="6">
-                                    <v-hover v-slot="{ hover }">
-                                        <v-card :elevation="hover ? 6 : 2">
-                                            <v-card-title>
-                                                <v-img src="@/assets/images/help/meta-mask-network-selection-2.jpg"
-                                                    @click="dialog2 = true"/>
-                                            </v-card-title>
-                                        </v-card>
-                                    </v-hover>
-                                    <v-dialog v-model="dialog2">
-                                        <v-hover v-slot="{ hover }">
-                                            <v-card
-                                                :elevation="hover ? 12 : 2"
-                                                :class="{ 'on-hover': hover }">
-                                                <v-card-title>Select "Ropsten Network" from the dropdown menu.</v-card-title>
-                                                <v-card-text>
-                                                    <v-img src="@/assets/images/help/meta-mask-network-selection-2.jpg"/>
-                                                </v-card-text>
-                                                <v-card-actions class="justify-end">
-                                                    <v-btn class="mb-2" @click="dialog2 = false">Close</v-btn>
-                                                </v-card-actions>
-                                            </v-card>
-                                        </v-hover>
-                                    </v-dialog>
-                                </v-col>
-                            </v-row>
-                        </v-container>
+                        <v-hover v-slot="{ hover }">
+                            <v-card :elevation="hover ? 6 : 2">
+                                <v-card-title>
+                                    <v-img src="@/assets/images/help/meta-mask-network-selection-2.jpg"
+                                        min-width="200"
+                                        @click="dialog2 = true"/>
+                                </v-card-title>
+                            </v-card>
+                        </v-hover>
+                        <v-dialog v-model="dialog2">
+                            <v-hover v-slot="{ hover }">
+                                <v-card
+                                    :elevation="hover ? 12 : 2"
+                                    :class="{ 'on-hover': hover }"
+                                    >
+                                    <v-card-title class="image_modal_title justify-center">
+                                        <div>Select "Ropsten Network" from the dropdown menu.</div>
+                                    </v-card-title>
+                                    <v-card-text>
+                                        <v-img src="@/assets/images/help/meta-mask-network-selection-2.jpg"/>
+                                    </v-card-text>
+                                    <v-card-actions class="justify-end">
+                                        <v-btn class="mb-2" @click="dialog2 = false">Close</v-btn>
+                                    </v-card-actions>
+                                </v-card>
+                            </v-hover>
+                        </v-dialog>
                     </div>
                     <v-btn color="primary" @click="step = 4">Continue</v-btn>
                     <v-btn text @click="step = 2" class="ml-2">Back</v-btn>
@@ -95,18 +93,13 @@
                     <p>
                         You can copy your primary wallet address to the clipboard by clicking here.
                     </p>
-                    <v-container>
-                        <v-row>
-                            <v-col cols="6">
-                                <v-hover v-slot="{ hover }">
-                                    <v-card :elevation="hover ? 6 : 2">
-                                        <v-img src="@/assets/images/help/meta-mask-copy-address.jpg"
-                                            @click="dialog4 = true"/>
-                                    </v-card>
-                                </v-hover>
-                            </v-col>
-                        </v-row>
-                    </v-container>
+                    <v-hover v-slot="{ hover }">
+                        <v-card :elevation="hover ? 6 : 2">
+                            <v-img src="@/assets/images/help/meta-mask-copy-address.jpg"
+                                min-width="200"
+                                @click="dialog4 = true"/>
+                        </v-card>
+                    </v-hover>
                     <v-dialog v-model="dialog4">
                         <v-hover v-slot="{ hover }">
                             <v-card
@@ -117,7 +110,7 @@
                                     address to your clipboard.
                                 </v-card-title>
                                 <v-card-text>
-                                    <v-img src="@/assets/images/help/meta-mask-copy-address.jpg"/>
+                                    <v-img src="@/assets/images/help/meta-mask-copy-address.jpg" min-width="200"/>
                                 </v-card-text>
                                 <v-card-actions class="justify-end">
                                     <v-btn class="mb-2" @click="dialog4 = false">Close</v-btn>
@@ -125,8 +118,10 @@
                             </v-card>
                         </v-hover>
                     </v-dialog>
-                    <v-btn color="primary" @click="step = 5">Continue</v-btn>
-                    <v-btn text @click="step = 3" class="ml-2">Back</v-btn>
+                    <div class="mt-3">
+                        <v-btn color="primary" @click="step = 5">Continue</v-btn>
+                        <v-btn text @click="step = 3" class="ml-2">Back</v-btn>
+                    </div>
                 </v-stepper-content>
 
                 <v-stepper-step :complete="step > 5" step="5">
@@ -136,7 +131,7 @@
                 <v-stepper-content step="5">
                     <v-container>
                         <v-row>
-                            <v-col cols="8">
+                            <v-col cols="12" md="8">
                                 <p>
                                     To execute actions against the smart contract you will need some test Ethereum.
                                 </p>
@@ -145,7 +140,7 @@
                                     Warning; you only get one shot per day.
                                 </p>
                             </v-col>
-                            <v-col cols="4" class="text-center">
+                            <v-col md="2">
                                 <div>Watch out for De-Fi Karen</div>
                                 <img src="@/assets/images/help/de-fi-karen.jpg" height="100"/>
                             </v-col>
@@ -165,7 +160,6 @@
                         <router-link to="/guest-book">Guest Book</router-link>. You will also receive an ERC20 INVITE
                         token, and another ERC20 WED token at the time both parties sign.
                     </p>
-                    <v-btn text @click="step = 1" class="ml-2">Finish</v-btn>
                 </v-stepper-content>
 
             </v-stepper>
@@ -195,5 +189,10 @@ export default {
 <style lang="less" scoped>
 .v-dialog {
     width: unset;
+}
+.image_modal_title {
+    margin-top: 2em;
+    white-space: nowrap;
+    font-size: 1em;
 }
 </style>
