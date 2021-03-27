@@ -51,7 +51,7 @@
             <div class="text-center">{{ snackbarMessage }}</div>
         </v-snackbar>
 
-        <v-footer padless app class="d-md-none">
+        <v-footer padless app class="d-none d-md-flex">
             <v-card class="text-center" width="100%">
                 <v-card-text>
                     <v-btn class="mx-4" icon href="https://twitter.com/ryan_scarbery" target="_blank">
