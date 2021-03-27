@@ -2,7 +2,7 @@
     <div class="guestbook_view">
         <h1>Guest Book</h1>
 
-        <v-divider></v-divider>
+        <v-divider/>
 
         <h3>Sign the Guest Book</h3>
 
@@ -29,14 +29,11 @@
                 :loading="forms.guest_book.loading"
                 solo
                 />
-            <v-row>
-                <v-col align="end">
-                    <v-btn ref="guest_book_form_submit" class="mx-2 align-right" fab dark large type="submit"
-                        :disabled="!forms.guest_book.valid" :loading="forms.guest_book.loading">
-                        <v-icon dense>mdi-email-edit-outline</v-icon>
-                    </v-btn>
-                </v-col>
-            </v-row>
+            <v-btn type="submit" v-if="forms.guest_book.valid"
+                :loading="forms.guest_book.loading"
+                fab dark large icon>
+                <v-icon dense>mdi-email-edit-outline</v-icon>
+            </v-btn>
         </v-form>
 
         <h3>Entries</h3>
