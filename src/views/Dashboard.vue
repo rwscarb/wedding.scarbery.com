@@ -4,7 +4,7 @@
         <div class="dashboard_item">
             <v-container>
                 <v-row justify-lg="start" class="flex-lg-row">
-                    <v-col sm="12" lg="6" xl="5">
+                    <v-col sm="12" lg="4" xl="4">
                         <h3>Marriage Status</h3>
                         <v-card class="text-center">
                             <v-card-title class="justify-center">
@@ -34,7 +34,7 @@
                             </v-card-actions>
                         </v-card>
                     </v-col>
-                    <v-col cols="12" lg="6" xl="5">
+                    <v-col cols="12" lg="5" xl="4">
                         <h3>Contract Info</h3>
                         <v-card>
                             <v-card-title class="justify-space-between">

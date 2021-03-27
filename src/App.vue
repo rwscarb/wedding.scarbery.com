@@ -5,7 +5,7 @@
             class="white--text justify-center"
             color="red"
             height="50"
-             app
+            app
             >
             <v-icon color="white">mdi-exclamation-thick</v-icon>
             <div class="text-center">
@@ -15,7 +15,7 @@
             </div>
         </v-system-bar>
 
-        <v-navigation-drawer v-model="navigationDrawerProxy" app>
+        <v-navigation-drawer v-model="navigationDrawerProxy" bottom app>
             <v-list-item>
                 <v-list-item-content>
                     <v-list-item-title class="title">
