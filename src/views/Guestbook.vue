@@ -11,6 +11,7 @@
         <v-form ref="guest_book_form"
             class="col-lg-6"
             v-model="forms.guest_book.valid"
+            :disabled="!hasWeb3Extension"
             @submit.prevent="signGuestBook(forms.guest_book.name, forms.guest_book.message)">
             <v-text-field
                 v-model="forms.guest_book.name"

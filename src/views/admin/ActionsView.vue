@@ -15,6 +15,7 @@
                             <v-form
                                 ref="pay_form"
                                 @submit.prevent="pay(forms.pay.address, forms.pay.amount)"
+                                :disabled="!hasWeb3Extension"
                                 v-model="forms.pay.valid"
                                 >
                                 <v-container>
@@ -41,6 +42,7 @@
                                             <v-btn
                                                 type="submit"
                                                 :loading="forms.pay.loading"
+                                                :disabled="!hasWeb3Extension"
                                                 >Send<v-icon x-small>mdi-ethereum</v-icon></v-btn>
                                         </v-col>
                                     </v-row>
@@ -50,37 +52,37 @@
                     </v-card>
                 </v-col>
                 <v-col cols="12" xl="6" md="3" class="align-stretch">
-                    <v-badge v-if="contractSigned"
-                        class="fill-column"
-                        icon="mdi-clock-alert"
-                        title="Waiting for other spouse to divorce"
-                        :value="userDivorced && !contractDivorced"
-                        bordered
-                        overlap
-                        >
-                        <v-btn
+                    <v-form :disabled="!hasWeb3Extension">
+                        <v-badge v-if="contractSigned"
                             class="fill-column"
-                            @click="divorce"
-                            :disabled="userDivorced"
-                            :loading="forms.sign.loading"
-                            >Divorce</v-btn>
-                    </v-badge>
+                            icon="mdi-clock-alert"
+                            title="Waiting for other spouse to divorce"
+                            :value="userDivorced && !contractDivorced"
+                            bordered
+                            overlap>
+                            <v-btn
+                                class="fill-column"
+                                @click="divorce"
+                                :disabled="!hasWeb3Extension || userDivorced"
+                                :loading="forms.sign.loading">Divorce</v-btn>
+                        </v-badge>
 
-                    <v-badge v-else
-                        class="fill-column"
-                        icon="mdi-clock-alert"
-                        title="Waiting for other spouse to sign"
-                        :value="userSigned"
-                        bordered
-                        overlap
-                        >
-                        <v-btn
+                        <v-badge v-else
                             class="fill-column"
-                            @click="signContract"
-                            :disabled="userSigned"
-                            :loading="forms.sign.loading"
-                            >Sign Contract</v-btn>
-                    </v-badge>
+                            icon="mdi-clock-alert"
+                            title="Waiting for other spouse to sign"
+                            :value="userSigned"
+                            bordered
+                            overlap
+                            >
+                            <v-btn
+                                class="fill-column"
+                                @click="signContract"
+                                :disabled="!hasWeb3Extension || userSigned"
+                                :loading="forms.sign.loading"
+                                >Sign Contract</v-btn>
+                        </v-badge>
+                    </v-form>
                 </v-col>
             </v-row>
         </v-container>

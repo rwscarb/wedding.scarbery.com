@@ -13,8 +13,8 @@
             <v-form
                 v-model="forms.invitation.valid"
                 @submit.prevent="inviteAddress(forms.invitation.address)"
-                ref="invite_form"
-            >
+                :disabled="!hasWeb3Extension"
+                ref="invite_form">
                 <v-text-field
                     v-model="forms.invitation.address"
                     :loading="forms.invitation.loading"
