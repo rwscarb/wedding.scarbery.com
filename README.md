@@ -9,7 +9,7 @@ A smart marriage contract on Ethereum using `Truffle`, `Drizzle` and `Vuetify`.
 
 ## Install
 
-Make sure `npm`, `Truffle` and `Ganache` is installed on your machine. `Truffle` is required with version `v5.2.3` used.
+Make sure `npm`, `Truffle` and `Ganache` is installed on your machine. `Truffle` is required with version `v5.2.3` used in development.
 Use `npm` to download all project dependencies:
 
 ```
