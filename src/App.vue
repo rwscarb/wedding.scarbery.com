@@ -68,7 +68,7 @@
                 <v-divider></v-divider>
 
                 <v-card-text>
-                    {{ new Date().getFullYear() }} — Ryan Scarbery
+                    &copy; {{ new Date().getFullYear() }} — Ryan Scarbery
                 </v-card-text>
             </v-card>
         </v-footer>
