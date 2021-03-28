@@ -6,6 +6,7 @@ const About = () => import(/* webpackChunkName: "about" */ '@/views/About.vue');
 const AboutAppBar = () => import(/* webpackChunkName: "about" */ '@/views/app-bars/AboutAppBar.vue');
 const TimelineView = () => import(/* webpackChunkName: "about" */ '@/views/about/TimelineView.vue');
 const EventsView = () => import(/* webpackChunkName: "about" */ '@/views/about/EventsView.vue');
+const InfoView = () => import(/* webpackChunkName: "about" */ '@/views/about/InfoView.vue');
 
 const Admin = () => import(/* webpackChunkName: "admin" */ '@/views/Admin.vue');
 const AdminAppBar = () => import(/* webpackChunkName: "admin" */ '@/views/app-bars/AdminAppBar.vue');
@@ -29,9 +30,9 @@ const routes = [
       appBar: AboutAppBar,
     },
       children: [
+        {path: '', component: InfoView},
         {path: 'timeline', component: TimelineView},
         {path: 'events', component: EventsView},
-        {path: '', redirect: 'timeline'}
       ]
   },
   {
