@@ -96,7 +96,7 @@
                     </v-col>
                     <v-col v-if="writtenContractIpfsHash">
                         <h3>Written Contract</h3>
-                        <v-card>
+                        <v-card class="d-flex justify-center align-center">
                             <v-card-text class="text-center">
                                 <a :href="`https://ipfs.io/ipfs/${writtenContractIpfsHash}`" target="_blank">
                                     View Contract

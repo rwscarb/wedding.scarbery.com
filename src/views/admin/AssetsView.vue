@@ -207,13 +207,13 @@ export default {
                     spouse1Allocation,
                     spouse2Allocation
                 ).send();
+                await this.$refs.propose_asset_form.reset();
+                this.spouse1Allocation = 50;
+                this.spouse2Allocation = 50;
             } catch (e) {
                 await this.sendSnackbarMessage({message: e});
             } finally {
                 this.forms.asset.loading = false;
-                await this.$refs.propose_asset_form.reset();
-                this.spouse1Allocation = 50;
-                this.spouse2Allocation = 50;
             }
         },
         async approveAsset(asset) {

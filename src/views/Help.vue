@@ -19,6 +19,7 @@
                         Smart Contracts such as this one.
                     </div>
                     <div class="mb-6">
+                        <div class="mb-2">Click here to download:</div>
                         <v-icon class="mr-1">mdi-hand-pointing-right</v-icon>
                         <a href="https://metamask.io/download.html" target="_blank">https://metamask.io/download.html</a>
                     </div>
@@ -49,7 +50,7 @@
                             doubles as a currency. As of this writing, Ethereum is trading at over $1,600 USD per Ether.
                         </p>
                         <p>
-                            To get around costs, I have deployed the smart contract to a test network that is free to use.
+                            To get around the costs, I have deployed the smart contract to a test network that is free to use.
                             In the <b>Networks</b> dropdown of MetaMask select the <b>Ropsten Test Network</b>.
                         </p>
 

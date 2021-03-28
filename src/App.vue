@@ -193,6 +193,7 @@ export default {
     },
     mounted() {
         this.$drizzleEvents.$on('drizzle/contractEvent', this.addEvent);
+        this.navigationDrawerProxy = this.$vuetify.breakpoint.lgAndUp;
     }
 }
 </script>
