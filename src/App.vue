@@ -202,8 +202,14 @@ export default {
 h3 {
     margin-top: 2em;
 }
+input[type=number] {
+    text-align: center;
+}
 .v-card__title {
     white-space: normal;
     word-break: break-word;
+}
+.v-subheader {
+    padding-left: 8px;
 }
 </style>

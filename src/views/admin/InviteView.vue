@@ -14,6 +14,7 @@
                 v-model="forms.invitation.valid"
                 @submit.prevent="inviteAddress(forms.invitation.address)"
                 :disabled="!hasWeb3Extension"
+                class="col-xl-6"
                 ref="invite_form">
                 <v-text-field
                     v-model="forms.invitation.address"

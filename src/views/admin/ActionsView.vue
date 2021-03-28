@@ -7,8 +7,8 @@
         </p>
 
         <v-container>
-            <v-row justify-lg="center">
-                <v-col xl="12">
+            <v-row>
+                <v-col xl="8">
                     <v-card>
                         <v-card-title>Send Ethereum from Contract</v-card-title>
                         <v-card-text>
@@ -29,7 +29,7 @@
                                                 placeholder="0x"
                                             ></v-text-field>
                                         </v-col>
-                                        <v-col style="min-width: 2rem">
+                                        <v-col xl="2">
                                             <v-text-field
                                                 v-model="forms.pay.amount"
                                                 :loading="forms.pay.loading"
@@ -51,8 +51,8 @@
                         </v-card-text>
                     </v-card>
                 </v-col>
-                <v-col cols="12" xl="6" md="3" class="align-stretch">
-                    <v-form :disabled="!hasWeb3Extension">
+                <v-col cols="12" md="3" class="d-flex align-stretch">
+                    <v-form :disabled="!hasWeb3Extension" class="fill-column">
                         <v-badge v-if="contractSigned"
                             class="fill-column"
                             icon="mdi-clock-alert"

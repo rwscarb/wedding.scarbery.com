@@ -13,6 +13,7 @@
 
         <v-form
             ref="propose_asset_form"
+            class="col-xl-6"
             v-model="forms.asset.valid"
             @submit.prevent="proposeAsset(forms.asset.data, spouse1Allocation, spouse2Allocation)"
             :disabled="!canProposeAsset"
@@ -32,12 +33,12 @@
                 label="Spouse 1 allocation"
                 >
                 <template v-slot:append>
-                    <v-text-field type="number" class="mt-0 pt-0" style="width: 60px"
+                    <v-text-field type="number" class="mt-0 pt-0" style="width: 3em"
                         v-model="spouse1Allocation"
                         :loading="forms.asset.loading"
                         hide-details
                         single-line
-                    ></v-text-field>%
+                    ></v-text-field><span class="d-inline-flex align-center">%</span>
                 </template>
             </v-slider>
             <v-slider
@@ -48,12 +49,12 @@
                 label="Spouse 2 allocation"
                 >
                 <template v-slot:append>
-                    <v-text-field type="number" class="mt-0 pt-0" style="width: 60px"
+                    <v-text-field type="number" class="mt-0 pt-0" style="width: 3em"
                         v-model="spouse2Allocation"
                         :loading="forms.asset.loading"
                         hide-details
                         single-line
-                    ></v-text-field>%
+                    ></v-text-field><span class="d-inline-flex align-center">%</span>
                 </template>
             </v-slider>
             <v-container>
@@ -248,6 +249,5 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style lang="less" scoped>
 </style>

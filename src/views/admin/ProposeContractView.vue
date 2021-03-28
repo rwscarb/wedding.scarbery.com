@@ -12,6 +12,7 @@
                 @submit.prevent="proposeContract(forms.ipfs_contract_link.hash)"
                 :disabled="!hasWeb3Extension"
                 ref="ipfs_contract_link_form"
+                class="col-xl-6"
                 >
                 <v-text-field
                     v-model="forms.ipfs_contract_link.hash"
