@@ -25,7 +25,7 @@ if (process.env.NODE_ENV === 'production') {
 
 // note: this isn't done in router.js due to sitemap.xml compatibility
 Vue.use(VueRouter);
-const router = new VueRouter({routes, mode: 'history'});
+const router = new VueRouter({routes});
 
 new Vue({
   store,
