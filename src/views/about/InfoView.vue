@@ -5,9 +5,7 @@
             <a href="https://en.wikipedia.org/wiki/Ethereum" target="_blank">Ethereum</a>
             &nbsp;<a href="https://en.wikipedia.org/wiki/Smart_contract" target="_blank">Smart Contract</a>
             that represents a marriage. Features includes an invite-only
-            <router-link to="/guest-book">Guest Book</router-link>,
-            <router-link to="/admin/assets">asset management</router-link>, and a
-            <router-link to="/admin/actions">joint spending account</router-link>.
+            <router-link to="/guest-book">Guest Book</router-link>, asset management, and a joint spending account.
             Most actions will require both spouses to approve, such as signing, divorcing and managing assets.
         </p>
         <p>

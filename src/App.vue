@@ -28,6 +28,14 @@
             </v-list-item>
 
             <v-list nav>
+                <v-list-item link to="/admin" v-if="isSpouse">
+                    <v-list-item-icon>
+                        <v-icon>mdi-badge-account-horizontal-outline</v-icon>
+                    </v-list-item-icon>
+                    <v-list-item-content>
+                        <v-list-item-title>Admin</v-list-item-title>
+                    </v-list-item-content>
+                </v-list-item>
                 <v-list-item v-for="item in items" :key="item.title" link :to="item.route">
                     <v-list-item-icon>
                         <v-icon>{{ item.icon }}</v-icon>
@@ -89,7 +97,6 @@ export default {
             {title: 'Dashboard', icon: 'mdi-view-dashboard', route: '/dashboard'},
             {title: 'Guest Book', icon: 'mdi-message-text-lock-outline', route: '/guest-book'},
             {title: 'Photos', icon: 'mdi-image', route: '/photos'},
-            {title: 'Admin', icon: 'mdi-badge-account-horizontal-outline', route: '/admin'},
             {title: 'About', icon: 'mdi-help-circle-outline', route: '/about'},
         ]
     }),
