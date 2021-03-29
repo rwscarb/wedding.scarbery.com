@@ -5,7 +5,7 @@
 
             <v-divider/>
 
-            <h3>Getting started with Smart Contract</h3>
+            <h3>Getting started with Smart Contracts</h3>
 
             <v-stepper v-model="step" vertical>
                 <v-stepper-step :complete="step > 1" step="1">
@@ -13,16 +13,16 @@
                 </v-stepper-step>
 
                 <v-stepper-content step="1">
-                    <div class="col-md-8">
+                    <p>
                         MetaMask is a popular browser-based cryptocurrency wallet.
                         You can use it to interact with Ethereum
                         Smart Contracts such as this one.
-                    </div>
-                    <div class="mb-6">
-                        <div class="mb-2">Click here to download:</div>
-                        <v-icon class="mr-1">mdi-hand-pointing-right</v-icon>
+                    </p>
+                    <p>
+                        Click <v-icon class="mr-1">mdi-hand-pointing-right</v-icon>
                         <a href="https://metamask.io/download.html" target="_blank">https://metamask.io/download.html</a>
-                    </div>
+                        to download.
+                    </p>
                     <v-btn color="primary" @click="step = 2">Continue</v-btn>
                 </v-stepper-content>
 
@@ -41,11 +41,13 @@
                     Select Ropsten Ethereum Network
                 </v-stepper-step>
 
-                <v-stepper-content step="3">
+                <v-stepper-content step="3" class="d-flex">
                     <div class="col-lg-6">
                         <p>
-                            As you probably know, Ethereum is a second generation cryptocurrency, building off of the tried and
-                            tested principles of Bitcoin. It provides a Turing Complete language for writing
+                            As you may know, Ethereum is a second generation cryptocurrency, building off of the tried and
+                            tested principles of Bitcoin. It provides a
+                            <a href="https://en.wikipedia.org/wiki/Turing_completeness" target="_blank">Turing Complete</a>
+                            language for writing
                             <a href="https://en.wikipedia.org/wiki/Smart_contract" target="_blank">Smart Contracts</a> and
                             doubles as a currency. As of this writing, Ethereum is trading at over $1,600 USD per Ether.
                         </p>
@@ -54,6 +56,8 @@
                             In the <b>Networks</b> dropdown of MetaMask select the <b>Ropsten Test Network</b>.
                         </p>
 
+                    </div>
+                    <div class="col-lg-6">
                         <v-hover v-slot="{ hover }">
                             <v-card :elevation="hover ? 6 : 2">
                                 <v-card-title>
@@ -95,9 +99,10 @@
                         You can copy your primary wallet address to the clipboard by clicking here.
                     </p>
                     <v-hover v-slot="{ hover }">
-                        <v-card :elevation="hover ? 6 : 2">
+                        <v-card :elevation="hover ? 6 : 2" class="col-lg-6">
                             <v-img src="@/assets/images/help/meta-mask-copy-address.jpg"
                                 min-width="200"
+                                max-width="500"
                                 @click="dialog4 = true"/>
                         </v-card>
                     </v-hover>
