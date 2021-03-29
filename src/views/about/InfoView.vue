@@ -26,6 +26,9 @@
             need to refresh. It should be noted that form submissions can take up to 15 seconds to finish as the next
             Ethereum block must be mined for changes to be recorded.
         </p>
+        <p>
+            Source code can be found <a href="https://github.com/rwscarb/wedding.scarbery.com" target="_blank">here</a>.
+        </p>
     </div>
 </template>
 
