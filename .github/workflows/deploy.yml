@@ -18,6 +18,7 @@ jobs:
         run: |
           npm install
           npm run build
+          mkdir dist/robots
           npm run sitemap
           rm -rf dist/**/*.js.map
 

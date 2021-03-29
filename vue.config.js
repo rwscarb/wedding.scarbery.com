@@ -33,7 +33,7 @@ module.exports = {
   pluginOptions: {
     sitemap: {
       baseURL: projectConfig.site.baseURL,
-      outputDir: './dist',
+      outputDir: './dist/robots',
       routes
     }
   },
