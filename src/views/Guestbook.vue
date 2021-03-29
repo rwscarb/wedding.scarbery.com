@@ -1,52 +1,54 @@
 <template>
     <div class="guestbook_view">
-        <h1>Guest Book</h1>
+        <v-container>
+            <h1>Guest Book</h1>
 
-        <v-divider/>
+            <v-divider/>
 
-        <h3>Sign the Guest Book</h3>
+            <h3>Sign the Guest Book</h3>
 
-        <v-subheader>Submission can take up to 15 seconds as miners confirm the next block.</v-subheader>
+            <v-subheader>Submission can take up to 15 seconds as miners confirm the next block.</v-subheader>
 
-        <v-form ref="guest_book_form"
-            class="col-lg-6"
-            v-model="forms.guest_book.valid"
-            :disabled="!hasWeb3Extension"
-            @submit.prevent="signGuestBook(forms.guest_book.name, forms.guest_book.message)">
-            <v-text-field
-                v-model="forms.guest_book.name"
-                label="Name"
-                autocomplete="off"
-                :rules="[v => !!v || 'You forgot your name']"
-                :loading="forms.guest_book.loading"
-                required
+            <v-form ref="guest_book_form"
+                class="col-lg-6"
+                v-model="forms.guest_book.valid"
+                :disabled="!hasWeb3Extension"
+                @submit.prevent="signGuestBook(forms.guest_book.name, forms.guest_book.message)">
+                <v-text-field
+                    v-model="forms.guest_book.name"
+                    label="Name"
+                    autocomplete="off"
+                    :rules="[v => !!v || 'You forgot your name']"
+                    :loading="forms.guest_book.loading"
+                    required
                 />
-            <v-textarea
-                @keyup.ctrl.enter="signGuestBook(forms.guest_book.name, forms.guest_book.message)"
-                v-model="forms.guest_book.message"
-                label="Message"
-                name="guest_book_message"
-                :rules="[v => !!v || 'You forgot the message']"
-                :loading="forms.guest_book.loading"
-                solo
+                <v-textarea
+                    @keyup.ctrl.enter="signGuestBook(forms.guest_book.name, forms.guest_book.message)"
+                    v-model="forms.guest_book.message"
+                    label="Message"
+                    name="guest_book_message"
+                    :rules="[v => !!v || 'You forgot the message']"
+                    :loading="forms.guest_book.loading"
+                    solo
                 />
-            <v-btn type="submit" v-if="forms.guest_book.valid"
-                :loading="forms.guest_book.loading"
-                fab dark large icon>
-                <v-icon dense>mdi-email-edit-outline</v-icon>
-            </v-btn>
-        </v-form>
+                <v-btn type="submit" v-if="forms.guest_book.valid"
+                    :loading="forms.guest_book.loading"
+                    fab dark large icon>
+                    <v-icon dense>mdi-email-edit-outline</v-icon>
+                </v-btn>
+            </v-form>
 
-        <h3>Entries</h3>
-        <v-list three-line>
-            <v-list-item v-for="({name, address, message}, i) in guestBookEntries" :key="i">
-                <v-list-item-avatar><blocky :seed="address" :size="10"></blocky></v-list-item-avatar>
-                <v-list-item-content>
-                    <v-list-item-title v-if="name">{{ name }}</v-list-item-title>
-                    <v-list-item-subtitle>{{ message }}</v-list-item-subtitle>
-                </v-list-item-content>
-            </v-list-item>
-        </v-list>
+            <h3>Entries</h3>
+            <v-list three-line>
+                <v-list-item v-for="({name, address, message}, i) in guestBookEntries" :key="i">
+                    <v-list-item-avatar><blocky :seed="address" :size="10"></blocky></v-list-item-avatar>
+                    <v-list-item-content>
+                        <v-list-item-title v-if="name">{{ name }}</v-list-item-title>
+                        <v-list-item-subtitle>{{ message }}</v-list-item-subtitle>
+                    </v-list-item-content>
+                </v-list-item>
+            </v-list>
+        </v-container>
     </div>
 </template>
 

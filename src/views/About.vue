@@ -1,8 +1,10 @@
 <template>
     <div class="about_view">
-        <h1>About</h1>
-        <v-divider class="mb-2"></v-divider>
-        <router-view></router-view>
+        <v-container>
+            <h1>About</h1>
+            <v-divider class="mb-2"></v-divider>
+            <router-view></router-view>
+        </v-container>
     </div>
 </template>
 
