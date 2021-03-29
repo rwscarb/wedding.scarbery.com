@@ -1,10 +1,12 @@
 <template>
     <div class="admin_view">
-        <h1>Admin</h1>
+        <v-container>
+            <h1>Admin</h1>
 
-        <v-divider class="mb-2"/>
+            <v-divider class="mb-2"/>
 
-        <router-view></router-view>
+            <router-view></router-view>
+        </v-container>
     </div>
 </template>
 

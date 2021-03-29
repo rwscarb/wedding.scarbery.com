@@ -78,4 +78,4 @@ const routes = [
 
 Vue.use(VueRouter);
 
-export const router = new VueRouter({routes});
+export const router = new VueRouter({routes, mode: 'history'});
