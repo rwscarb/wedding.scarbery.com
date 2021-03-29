@@ -1,7 +1,3 @@
-import Vue from 'vue';
-
-import VueRouter from "vue-router";
-
 const About = () => import(/* webpackChunkName: "about" */ '@/views/About.vue');
 const AboutAppBar = () => import(/* webpackChunkName: "about" */ '@/views/app-bars/AboutAppBar.vue');
 const TimelineView = () => import(/* webpackChunkName: "about" */ '@/views/about/TimelineView.vue');
@@ -23,7 +19,7 @@ const DefaultAppBar = () => import('@/views/app-bars/DefaultAppBar.vue');
 const Help = () => import('@/views/Help.vue');
 
 
-const routes = [
+module.exports.routes = [
   {
     path: '/about', components: {
       default: About,
@@ -74,8 +70,4 @@ const routes = [
     }
   },
   {path: '*', redirect: '/dashboard'}
-]
-
-Vue.use(VueRouter);
-
-export const router = new VueRouter({routes, mode: 'history'});
+];

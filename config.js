@@ -8,7 +8,8 @@ module.exports = {
     }
   },
   site: {
-    title: 'Smart Wedding Contract'
+    title: 'Smart Wedding Contract',
+    baseURL: 'https://wedding.scarbery.com'
   },
   sentry: {
     org: 'ryan-scarbery',

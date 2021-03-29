@@ -1,5 +1,7 @@
 import Vue from "vue";
 
+import VueRouter from 'vue-router';
+
 import App from "./App.vue";
 import store from "./store";
 
@@ -7,7 +9,7 @@ import "@/plugins/vueConfetti.js";
 import "@/plugins/drizzle.js";
 import "@/plugins/sentry.js";
 import "@/plugins/gtag.js";
-import { router } from "@/plugins/router.js"
+import { routes } from "@/plugins/router.js"
 import vuetify from "@/plugins/vuetify";
 
 
@@ -19,6 +21,10 @@ if (process.env.NODE_ENV === 'production') {
   console.log = () => {};
   console.groupEnd = () => {};
 }
+
+// note: this isn't done in router.js due to sitemap.xml compatibility
+Vue.use(VueRouter);
+const router = new VueRouter({routes, mode: 'history'});
 
 new Vue({
   store,

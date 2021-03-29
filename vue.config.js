@@ -2,6 +2,7 @@ const { EnvironmentPlugin } = require('webpack');
 const SentryWebpackPlugin = require("@sentry/webpack-plugin");
 
 const projectConfig = require("./config.js");
+const { routes } = require("./src/plugins/router.js");
 
 module.exports = {
   configureWebpack: {
@@ -18,7 +19,7 @@ module.exports = {
         include: "./dist",
         ignore: ["node_modules", "webpack.config.js"],
       }),
-      new EnvironmentPlugin(['NODE_ENV', 'DEBUG', 'SENTRY_DSN', 'GTAG_ID']),
+      new EnvironmentPlugin(['NODE_ENV', 'SENTRY_DSN', 'GTAG_ID']),
     ],
   },
 
@@ -27,6 +28,14 @@ module.exports = {
       args[0].title = projectConfig.site.title;
       return args;
     })
+  },
+
+  pluginOptions: {
+    sitemap: {
+      baseURL: projectConfig.site.baseURL,
+      outputDir: './dist',
+      routes
+    }
   },
 
   transpileDependencies: [
