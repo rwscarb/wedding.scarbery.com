@@ -7,6 +7,8 @@
             :items="displayedEvents"
             :items-per-page="10"
             class="elevation-1"
+            show-expand
+            single-expand
             >
             <template v-slot:item.wallet="{ value }">
                 <a :href="`https://ropsten.etherscan.io/tx/${value}`" target="_blank">
@@ -17,6 +19,11 @@
             </template>
             <template v-slot:item.timestamp="{ value }">
                 {{ value | timestamp }}
+            </template>
+            <template v-slot:expanded-item="{ headers, item }">
+                <td :colspan="headers.length">
+                    <vue-json-pretty :data="item" class="ml-2"/>
+                </td>
             </template>
         </v-data-table>
     </div>
@@ -43,10 +50,11 @@ export default {
     computed: {
         displayedEvents() {
             const sortedEvents = _.sortBy(_.uniqBy(this.events, x => x.data.timestamp), x => -_.toNumber(x.data.timestamp));
-            return _.map(sortedEvents, x => {
+            return _.map(sortedEvents, (x, i) => {
                 return {
+                    id: i,
                     eventName: x.eventName,
-                    ...x.data
+                    ..._.pickBy(x.data, (v, k) => !/[0-9]+/.test(k))
                 };
             })
         },

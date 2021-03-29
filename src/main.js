@@ -9,6 +9,7 @@ import "@/plugins/vueConfetti.js";
 import "@/plugins/drizzle.js";
 import "@/plugins/sentry.js";
 import "@/plugins/gtag.js";
+import "@/plugins/jsonPretty.js";
 import { routes } from "@/plugins/router.js"
 import vuetify from "@/plugins/vuetify";
 
