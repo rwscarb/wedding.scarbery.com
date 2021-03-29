@@ -25,7 +25,7 @@
         </p>
         <p>
             All pages on this site are reactive to the blockchain and will update as new blocks are mined without the
-            need to refresh. It should be noted that form submissions can take up to 2 minutes to finish as the next
+            need to refresh. It should be noted that form submissions can take up to 15 seconds to finish as the next
             Ethereum block must be mined for changes to be recorded.
         </p>
     </div>
