@@ -27374,8 +27374,8 @@
     "3": {
       "events": {},
       "links": {},
-      "address": "0xcfbd892Aec8B3718E92CAdA6F3527f78C365891A",
-      "transactionHash": "0x221bf35daf8306c5c84d57a73425c853bd23061915e679f1518287b9903f127b"
+      "address": "0x4b6A14ef2e2F4470Fd9Ff8686d2c056c36087187",
+      "transactionHash": "0xdc9a7fff59e22d769c795467e73e5619468d8269d6fdffb184459c8e8e651d6e"
     },
     "5777": {
       "events": {},
@@ -27385,7 +27385,7 @@
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-03-30T18:19:59.143Z",
+  "updatedAt": "2021-03-30T18:32:50.665Z",
   "networkType": "ethereum",
   "devdoc": {
     "details": "The contract has both addresses of spouse1 and spouse2. It is capable of handling assets, funds and divorce. A multisig variant is used to consider the decision of both parties.",
