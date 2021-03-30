@@ -8,7 +8,9 @@
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e",
     "lint": "vue-cli-service lint",
-    "sitemap": "vue-cli-service sitemap"
+    "sitemap": "vue-cli-service sitemap",
+    "deploy": "aws s3 sync --acl public-read --profile personal --delete dist/ s3://wedding-scarbery-com && npm run invalidate",
+    "invalidate": "aws cloudfront --profile personal create-invalidation --distribution-id E3BWT02JLOE2SC --paths '/*'"
   },
   "dependencies": {
     "@drizzle/vue-plugin": "^0.1.3",
