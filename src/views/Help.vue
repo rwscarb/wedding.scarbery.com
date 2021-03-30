@@ -163,8 +163,11 @@
                 <v-stepper-content step="6" class="col-md-8">
                     <p>
                         Once I have received your address and invited you to the wedding, you can sign the
-                        <router-link to="/guest-book">Guest Book</router-link>. You will also receive an ERC20 INVITE
-                        token, and another ERC20 WED token at the time both parties sign.
+                        <router-link to="/guest-book">Guest Book</router-link>. You will also receive an ERC20
+                        <a :href="`https://ropsten.etherscan.io/token/${inviteTokenAddress}`"
+                            target="_blank">INVITE</a> token at the time of invitation, and another ERC20
+                        <a :href="`https://ropsten.etherscan.io/token/${witnessTokenAddress}`"
+                            target="_blank">WED</a> token at the time both spouses sign.
                     </p>
                 </v-stepper-content>
 
@@ -189,6 +192,20 @@ export default {
             dialog4: false,
         }
     }),
+    computed: {
+        inviteTokenAddress() {
+            return this.getContractData({
+                contract: "GuestBook",
+                method: "getInvitationTokenAddress"
+            });
+        },
+        witnessTokenAddress() {
+            return this.getContractData({
+                contract: "GuestBook",
+                method: "getWitnessTokenAddress"
+            });
+        },
+    },
 }
 </script>
 
