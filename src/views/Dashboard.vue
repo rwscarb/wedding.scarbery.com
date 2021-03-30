@@ -4,7 +4,7 @@
         <div class="dashboard_item">
             <v-container>
                 <v-row justify-lg="start" class="flex-lg-row">
-                    <v-col sm="12" lg="4" xl="4">
+                    <v-col sm="12" lg="4">
                         <h3>Marriage Status</h3>
                         <v-card class="text-center">
                             <v-card-title class="justify-center">
@@ -28,13 +28,14 @@
                                 <template v-else>
                                     <v-btn icon @click="playVideo = true"><v-icon x-large>mdi-ring</v-icon></v-btn>
                                 </template>
+                                <v-img src="@/assets/images/spouses.jpg" class="ma-2"/>
                             </v-card-text>
                             <v-card-actions class="justify-center pb-6">
                                 <you-tube v-if="playVideo" video-id="_bY0fdgpISc" max-width="800"/>
                             </v-card-actions>
                         </v-card>
                     </v-col>
-                    <v-col cols="12" lg="5" xl="4" order-lg="2">
+                    <v-col cols="12" lg="5" xl="4" class="align-content-space-between d-flex flex-column">
                         <h3>Contract Info</h3>
                         <v-card>
                             <v-card-title class="justify-space-between">
@@ -52,20 +53,20 @@
                                 </v-chip>
                             </v-card-actions>
                         </v-card>
+                        <div v-for="(item, i) in addressBook" :key="i">
+                            <h3>Address Book</h3>
+                            <v-card>
+                                <v-card-title class="justify-space-between">
+                                    <div>{{ item.title }}</div>
+                                    <eth-address-link :address="item.address"/>
+                                </v-card-title>
+                                <v-card-text>
+                                    {{ item.address }}
+                                </v-card-text>
+                            </v-card>
+                        </div>
                     </v-col>
-                    <v-col cols="12" md="6" lg="4" v-for="(item, i) in addressBook" :key="i" order-lg="1">
-                        <h3>Address Book</h3>
-                        <v-card>
-                            <v-card-title class="justify-space-between">
-                                <div>{{ item.title }}</div>
-                                <eth-address-link :address="item.address"/>
-                            </v-card-title>
-                            <v-card-text>
-                                {{ item.address }}
-                            </v-card-text>
-                        </v-card>
-                    </v-col>
-                    <v-col cols="12" lg="4" order-lg="3">
+                    <v-col cols="12" lg="3" class="align-lg-end">
                         <h3>ERC20 Tokens</h3>
                         <v-card :disabled="!hasWeb3Extension">
                             <v-card-title>Add Tokens to MetaMask</v-card-title>
@@ -94,7 +95,7 @@
                             </v-card-text>
                         </v-card>
                     </v-col>
-                    <v-col v-if="writtenContractIpfsHash" order-lg="4">
+                    <v-col v-if="writtenContractIpfsHash">
                         <h3>Written Contract</h3>
                         <v-card class="d-flex justify-center align-center">
                             <v-card-text class="text-center">
