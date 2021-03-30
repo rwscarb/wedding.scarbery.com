@@ -3,7 +3,7 @@
         <v-app-bar-nav-icon @click.stop="toggleShowNavigationDrawer"/>
         <template v-slot:extension>
             <v-tabs align-with-title>
-                <v-tab to="/about">Info</v-tab>
+                <v-tab to="/about" exact>Info</v-tab>
                 <v-tab to="/about/timeline">Timeline</v-tab>
                 <v-tab to="/about/events">Events</v-tab>
             </v-tabs>
