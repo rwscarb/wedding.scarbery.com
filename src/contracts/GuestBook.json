@@ -284,7 +284,7 @@
         "id": 5,
         "nodeType": "ImportDirective",
         "scope": 335,
-        "sourceUnit": 1339,
+        "sourceUnit": 1372,
         "src": "59:75:0",
         "symbolAliases": [
           {
@@ -301,8 +301,8 @@
       {
         "baseContracts": [],
         "contractDependencies": [
-          1318,
-          1338
+          1351,
+          1371
         ],
         "contractKind": "contract",
         "documentation": null,
@@ -709,7 +709,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_WeddingInvitationToken_$1318",
+              "typeIdentifier": "t_contract$_WeddingInvitationToken_$1351",
               "typeString": "contract WeddingInvitationToken"
             },
             "typeName": {
@@ -717,10 +717,10 @@
               "id": 37,
               "name": "WeddingInvitationToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1318,
+              "referencedDeclaration": 1351,
               "src": "522:22:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_WeddingInvitationToken_$1318",
+                "typeIdentifier": "t_contract$_WeddingInvitationToken_$1351",
                 "typeString": "contract WeddingInvitationToken"
               }
             },
@@ -737,7 +737,7 @@
                 "nodeType": "NewExpression",
                 "src": "563:26:0",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_WeddingInvitationToken_$1318_$",
+                  "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_WeddingInvitationToken_$1351_$",
                   "typeString": "function () returns (contract WeddingInvitationToken)"
                 },
                 "typeName": {
@@ -745,10 +745,10 @@
                   "id": 38,
                   "name": "WeddingInvitationToken",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 1318,
+                  "referencedDeclaration": 1351,
                   "src": "567:22:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_WeddingInvitationToken_$1318",
+                    "typeIdentifier": "t_contract$_WeddingInvitationToken_$1351",
                     "typeString": "contract WeddingInvitationToken"
                   }
                 }
@@ -763,7 +763,7 @@
               "nodeType": "FunctionCall",
               "src": "563:28:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_WeddingInvitationToken_$1318",
+                "typeIdentifier": "t_contract$_WeddingInvitationToken_$1351",
                 "typeString": "contract WeddingInvitationToken"
               }
             },
@@ -779,7 +779,7 @@
             "stateVariable": true,
             "storageLocation": "default",
             "typeDescriptions": {
-              "typeIdentifier": "t_contract$_WeddingWitnessToken_$1338",
+              "typeIdentifier": "t_contract$_WeddingWitnessToken_$1371",
               "typeString": "contract WeddingWitnessToken"
             },
             "typeName": {
@@ -787,10 +787,10 @@
               "id": 42,
               "name": "WeddingWitnessToken",
               "nodeType": "UserDefinedTypeName",
-              "referencedDeclaration": 1338,
+              "referencedDeclaration": 1371,
               "src": "597:19:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_WeddingWitnessToken_$1338",
+                "typeIdentifier": "t_contract$_WeddingWitnessToken_$1371",
                 "typeString": "contract WeddingWitnessToken"
               }
             },
@@ -807,7 +807,7 @@
                 "nodeType": "NewExpression",
                 "src": "632:23:0",
                 "typeDescriptions": {
-                  "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_WeddingWitnessToken_$1338_$",
+                  "typeIdentifier": "t_function_creation_nonpayable$__$returns$_t_contract$_WeddingWitnessToken_$1371_$",
                   "typeString": "function () returns (contract WeddingWitnessToken)"
                 },
                 "typeName": {
@@ -815,10 +815,10 @@
                   "id": 43,
                   "name": "WeddingWitnessToken",
                   "nodeType": "UserDefinedTypeName",
-                  "referencedDeclaration": 1338,
+                  "referencedDeclaration": 1371,
                   "src": "636:19:0",
                   "typeDescriptions": {
-                    "typeIdentifier": "t_contract$_WeddingWitnessToken_$1338",
+                    "typeIdentifier": "t_contract$_WeddingWitnessToken_$1371",
                     "typeString": "contract WeddingWitnessToken"
                   }
                 }
@@ -833,7 +833,7 @@
               "nodeType": "FunctionCall",
               "src": "632:25:0",
               "typeDescriptions": {
-                "typeIdentifier": "t_contract$_WeddingWitnessToken_$1338",
+                "typeIdentifier": "t_contract$_WeddingWitnessToken_$1371",
                 "typeString": "contract WeddingWitnessToken"
               }
             },
@@ -1099,10 +1099,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2102,
-                        2103
+                        2135,
+                        2136
                       ],
-                      "referencedDeclaration": 2103,
+                      "referencedDeclaration": 2136,
                       "src": "1092:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -1253,10 +1253,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2102,
-                        2103
+                        2135,
+                        2136
                       ],
-                      "referencedDeclaration": 2103,
+                      "referencedDeclaration": 2136,
                       "src": "1177:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -1364,10 +1364,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2102,
-                        2103
+                        2135,
+                        2136
                       ],
-                      "referencedDeclaration": 2103,
+                      "referencedDeclaration": 2136,
                       "src": "1262:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -1891,7 +1891,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2099,
+                            "referencedDeclaration": 2132,
                             "src": "1749:3:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -1967,10 +1967,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2102,
-                        2103
+                        2135,
+                        2136
                       ],
-                      "referencedDeclaration": 2103,
+                      "referencedDeclaration": 2136,
                       "src": "1741:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -2055,7 +2055,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2099,
+                              "referencedDeclaration": 2132,
                               "src": "1939:3:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -2118,7 +2118,7 @@
                               "name": "msg",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2099,
+                              "referencedDeclaration": 2132,
                               "src": "1971:3:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_magic_message",
@@ -2200,10 +2200,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2102,
-                        2103
+                        2135,
+                        2136
                       ],
-                      "referencedDeclaration": 2103,
+                      "referencedDeclaration": 2136,
                       "src": "1931:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -2282,7 +2282,7 @@
                             "name": "msg",
                             "nodeType": "Identifier",
                             "overloadedDeclarations": [],
-                            "referencedDeclaration": 2099,
+                            "referencedDeclaration": 2132,
                             "src": "2183:3:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_magic_message",
@@ -2348,10 +2348,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2102,
-                        2103
+                        2135,
+                        2136
                       ],
-                      "referencedDeclaration": 2103,
+                      "referencedDeclaration": 2136,
                       "src": "2165:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -2528,10 +2528,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2102,
-                        2103
+                        2135,
+                        2136
                       ],
-                      "referencedDeclaration": 2103,
+                      "referencedDeclaration": 2136,
                       "src": "2351:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -2757,10 +2757,10 @@
                       "name": "require",
                       "nodeType": "Identifier",
                       "overloadedDeclarations": [
-                        2102,
-                        2103
+                        2135,
+                        2136
                       ],
-                      "referencedDeclaration": 2103,
+                      "referencedDeclaration": 2136,
                       "src": "2569:7:0",
                       "typeDescriptions": {
                         "typeIdentifier": "t_function_require_pure$_t_bool_$_t_string_memory_ptr_$returns$__$",
@@ -2809,7 +2809,7 @@
                               "name": "this",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2127,
+                              "referencedDeclaration": 2160,
                               "src": "2677:4:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_contract$_GuestBook_$334",
@@ -2868,7 +2868,7 @@
                           "referencedDeclaration": 41,
                           "src": "2643:15:0",
                           "typeDescriptions": {
-                            "typeIdentifier": "t_contract$_WeddingInvitationToken_$1318",
+                            "typeIdentifier": "t_contract$_WeddingInvitationToken_$1351",
                             "typeString": "contract WeddingInvitationToken"
                           }
                         },
@@ -2879,7 +2879,7 @@
                         "lValueRequested": false,
                         "memberName": "balanceOf",
                         "nodeType": "MemberAccess",
-                        "referencedDeclaration": 1596,
+                        "referencedDeclaration": 1629,
                         "src": "2643:25:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
@@ -2991,7 +2991,7 @@
                               "referencedDeclaration": 41,
                               "src": "2703:15:0",
                               "typeDescriptions": {
-                                "typeIdentifier": "t_contract$_WeddingInvitationToken_$1318",
+                                "typeIdentifier": "t_contract$_WeddingInvitationToken_$1351",
                                 "typeString": "contract WeddingInvitationToken"
                               }
                             },
@@ -3002,7 +3002,7 @@
                             "lValueRequested": false,
                             "memberName": "transfer",
                             "nodeType": "MemberAccess",
-                            "referencedDeclaration": 1615,
+                            "referencedDeclaration": 1648,
                             "src": "2703:24:0",
                             "typeDescriptions": {
                               "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -3185,7 +3185,7 @@
                               "name": "now",
                               "nodeType": "Identifier",
                               "overloadedDeclarations": [],
-                              "referencedDeclaration": 2101,
+                              "referencedDeclaration": 2134,
                               "src": "2840:3:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_uint256",
@@ -3213,7 +3213,7 @@
                                 "name": "msg",
                                 "nodeType": "Identifier",
                                 "overloadedDeclarations": [],
-                                "referencedDeclaration": 2099,
+                                "referencedDeclaration": 2132,
                                 "src": "2850:3:0",
                                 "typeDescriptions": {
                                   "typeIdentifier": "t_magic_message",
@@ -3409,7 +3409,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2099,
+                          "referencedDeclaration": 2132,
                           "src": "3094:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -3584,7 +3584,7 @@
                         "name": "now",
                         "nodeType": "Identifier",
                         "overloadedDeclarations": [],
-                        "referencedDeclaration": 2101,
+                        "referencedDeclaration": 2134,
                         "src": "3239:3:0",
                         "typeDescriptions": {
                           "typeIdentifier": "t_uint256",
@@ -3599,7 +3599,7 @@
                           "name": "msg",
                           "nodeType": "Identifier",
                           "overloadedDeclarations": [],
-                          "referencedDeclaration": 2099,
+                          "referencedDeclaration": 2132,
                           "src": "3244:3:0",
                           "typeDescriptions": {
                             "typeIdentifier": "t_magic_message",
@@ -3922,7 +3922,7 @@
                                     "name": "this",
                                     "nodeType": "Identifier",
                                     "overloadedDeclarations": [],
-                                    "referencedDeclaration": 2127,
+                                    "referencedDeclaration": 2160,
                                     "src": "3652:4:0",
                                     "typeDescriptions": {
                                       "typeIdentifier": "t_contract$_GuestBook_$334",
@@ -3981,7 +3981,7 @@
                                 "referencedDeclaration": 46,
                                 "src": "3621:12:0",
                                 "typeDescriptions": {
-                                  "typeIdentifier": "t_contract$_WeddingWitnessToken_$1338",
+                                  "typeIdentifier": "t_contract$_WeddingWitnessToken_$1371",
                                   "typeString": "contract WeddingWitnessToken"
                                 }
                               },
@@ -3992,7 +3992,7 @@
                               "lValueRequested": false,
                               "memberName": "balanceOf",
                               "nodeType": "MemberAccess",
-                              "referencedDeclaration": 1596,
+                              "referencedDeclaration": 1629,
                               "src": "3621:22:0",
                               "typeDescriptions": {
                                 "typeIdentifier": "t_function_external_view$_t_address_$returns$_t_uint256_$",
@@ -4131,7 +4131,7 @@
                                     "referencedDeclaration": 46,
                                     "src": "3682:12:0",
                                     "typeDescriptions": {
-                                      "typeIdentifier": "t_contract$_WeddingWitnessToken_$1338",
+                                      "typeIdentifier": "t_contract$_WeddingWitnessToken_$1371",
                                       "typeString": "contract WeddingWitnessToken"
                                     }
                                   },
@@ -4142,7 +4142,7 @@
                                   "lValueRequested": false,
                                   "memberName": "transfer",
                                   "nodeType": "MemberAccess",
-                                  "referencedDeclaration": 1615,
+                                  "referencedDeclaration": 1648,
                                   "src": "3682:21:0",
                                   "typeDescriptions": {
                                     "typeIdentifier": "t_function_external_nonpayable$_t_address_$_t_uint256_$returns$_t_bool_$",
@@ -4391,7 +4391,7 @@
                         "referencedDeclaration": 46,
                         "src": "3907:12:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_WeddingWitnessToken_$1338",
+                          "typeIdentifier": "t_contract$_WeddingWitnessToken_$1371",
                           "typeString": "contract WeddingWitnessToken"
                         }
                       }
@@ -4399,7 +4399,7 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_contract$_WeddingWitnessToken_$1338",
+                          "typeIdentifier": "t_contract$_WeddingWitnessToken_$1371",
                           "typeString": "contract WeddingWitnessToken"
                         }
                       ],
@@ -4509,7 +4509,7 @@
                         "referencedDeclaration": 41,
                         "src": "4084:15:0",
                         "typeDescriptions": {
-                          "typeIdentifier": "t_contract$_WeddingInvitationToken_$1318",
+                          "typeIdentifier": "t_contract$_WeddingInvitationToken_$1351",
                           "typeString": "contract WeddingInvitationToken"
                         }
                       }
@@ -4517,7 +4517,7 @@
                     "expression": {
                       "argumentTypes": [
                         {
-                          "typeIdentifier": "t_contract$_WeddingInvitationToken_$1318",
+                          "typeIdentifier": "t_contract$_WeddingInvitationToken_$1351",
                           "typeString": "contract WeddingInvitationToken"
                         }
                       ],
@@ -4651,7 +4651,7 @@
       },
       {
         "attributes": {
-          "SourceUnit": 1339,
+          "SourceUnit": 1372,
           "absolutePath": "/home/ford/dev/rwscarb/wedding/contracts/Tokens.sol",
           "file": "./Tokens.sol",
           "scope": 335,
@@ -4677,8 +4677,8 @@
             null
           ],
           "contractDependencies": [
-            1318,
-            1338
+            1351,
+            1371
           ],
           "contractKind": "contract",
           "documentation": null,
@@ -5099,7 +5099,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "WeddingInvitationToken",
-                  "referencedDeclaration": 1318,
+                  "referencedDeclaration": 1351,
                   "type": "contract WeddingInvitationToken"
                 },
                 "id": 37,
@@ -5140,7 +5140,7 @@
                         "attributes": {
                           "contractScope": null,
                           "name": "WeddingInvitationToken",
-                          "referencedDeclaration": 1318,
+                          "referencedDeclaration": 1351,
                           "type": "contract WeddingInvitationToken"
                         },
                         "id": 38,
@@ -5177,7 +5177,7 @@
                 "attributes": {
                   "contractScope": null,
                   "name": "WeddingWitnessToken",
-                  "referencedDeclaration": 1338,
+                  "referencedDeclaration": 1371,
                   "type": "contract WeddingWitnessToken"
                 },
                 "id": 42,
@@ -5218,7 +5218,7 @@
                         "attributes": {
                           "contractScope": null,
                           "name": "WeddingWitnessToken",
-                          "referencedDeclaration": 1338,
+                          "referencedDeclaration": 1371,
                           "type": "contract WeddingWitnessToken"
                         },
                         "id": 43,
@@ -5491,10 +5491,10 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                2102,
-                                2103
+                                2135,
+                                2136
                               ],
-                              "referencedDeclaration": 2103,
+                              "referencedDeclaration": 2136,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
                             },
@@ -5649,10 +5649,10 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                2102,
-                                2103
+                                2135,
+                                2136
                               ],
-                              "referencedDeclaration": 2103,
+                              "referencedDeclaration": 2136,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
                             },
@@ -5807,10 +5807,10 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                2102,
-                                2103
+                                2135,
+                                2136
                               ],
-                              "referencedDeclaration": 2103,
+                              "referencedDeclaration": 2136,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
                             },
@@ -6375,10 +6375,10 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                2102,
-                                2103
+                                2135,
+                                2136
                               ],
-                              "referencedDeclaration": 2103,
+                              "referencedDeclaration": 2136,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
                             },
@@ -6419,7 +6419,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 2099,
+                                      "referencedDeclaration": 2132,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -6543,10 +6543,10 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                2102,
-                                2103
+                                2135,
+                                2136
                               ],
-                              "referencedDeclaration": 2103,
+                              "referencedDeclaration": 2136,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
                             },
@@ -6602,7 +6602,7 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 2099,
+                                          "referencedDeclaration": 2132,
                                           "type": "msg",
                                           "value": "msg"
                                         },
@@ -6667,7 +6667,7 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 2099,
+                                          "referencedDeclaration": 2132,
                                           "type": "msg",
                                           "value": "msg"
                                         },
@@ -6796,10 +6796,10 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                2102,
-                                2103
+                                2135,
+                                2136
                               ],
-                              "referencedDeclaration": 2103,
+                              "referencedDeclaration": 2136,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
                             },
@@ -6849,7 +6849,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 2099,
+                                      "referencedDeclaration": 2132,
                                       "type": "msg",
                                       "value": "msg"
                                     },
@@ -7002,10 +7002,10 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                2102,
-                                2103
+                                2135,
+                                2136
                               ],
-                              "referencedDeclaration": 2103,
+                              "referencedDeclaration": 2136,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
                             },
@@ -7305,10 +7305,10 @@
                                 }
                               ],
                               "overloadedDeclarations": [
-                                2102,
-                                2103
+                                2135,
+                                2136
                               ],
-                              "referencedDeclaration": 2103,
+                              "referencedDeclaration": 2136,
                               "type": "function (bool,string memory) pure",
                               "value": "require"
                             },
@@ -7451,7 +7451,7 @@
                                   "isPure": false,
                                   "lValueRequested": false,
                                   "member_name": "balanceOf",
-                                  "referencedDeclaration": 1596,
+                                  "referencedDeclaration": 1629,
                                   "type": "function (address) view external returns (uint256)"
                                 },
                                 "children": [
@@ -7514,7 +7514,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 2127,
+                                      "referencedDeclaration": 2160,
                                       "type": "contract GuestBook",
                                       "value": "this"
                                     },
@@ -7590,7 +7590,7 @@
                                       "isPure": false,
                                       "lValueRequested": false,
                                       "member_name": "transfer",
-                                      "referencedDeclaration": 1615,
+                                      "referencedDeclaration": 1648,
                                       "type": "function (address,uint256) external returns (bool)"
                                     },
                                     "children": [
@@ -7864,7 +7864,7 @@
                                       "overloadedDeclarations": [
                                         null
                                       ],
-                                      "referencedDeclaration": 2101,
+                                      "referencedDeclaration": 2134,
                                       "type": "uint256",
                                       "value": "now"
                                     },
@@ -7904,7 +7904,7 @@
                                           "overloadedDeclarations": [
                                             null
                                           ],
-                                          "referencedDeclaration": 2099,
+                                          "referencedDeclaration": 2132,
                                           "type": "msg",
                                           "value": "msg"
                                         },
@@ -8153,7 +8153,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 2099,
+                                  "referencedDeclaration": 2132,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -8335,7 +8335,7 @@
                               "overloadedDeclarations": [
                                 null
                               ],
-                              "referencedDeclaration": 2101,
+                              "referencedDeclaration": 2134,
                               "type": "uint256",
                               "value": "now"
                             },
@@ -8361,7 +8361,7 @@
                                   "overloadedDeclarations": [
                                     null
                                   ],
-                                  "referencedDeclaration": 2099,
+                                  "referencedDeclaration": 2132,
                                   "type": "msg",
                                   "value": "msg"
                                 },
@@ -8802,7 +8802,7 @@
                                           "isPure": false,
                                           "lValueRequested": false,
                                           "member_name": "balanceOf",
-                                          "referencedDeclaration": 1596,
+                                          "referencedDeclaration": 1629,
                                           "type": "function (address) view external returns (uint256)"
                                         },
                                         "children": [
@@ -8865,7 +8865,7 @@
                                               "overloadedDeclarations": [
                                                 null
                                               ],
-                                              "referencedDeclaration": 2127,
+                                              "referencedDeclaration": 2160,
                                               "type": "contract GuestBook",
                                               "value": "this"
                                             },
@@ -8941,7 +8941,7 @@
                                               "isPure": false,
                                               "lValueRequested": false,
                                               "member_name": "transfer",
-                                              "referencedDeclaration": 1615,
+                                              "referencedDeclaration": 1648,
                                               "type": "function (address,uint256) external returns (bool)"
                                             },
                                             "children": [
@@ -9151,7 +9151,7 @@
                             "attributes": {
                               "argumentTypes": [
                                 {
-                                  "typeIdentifier": "t_contract$_WeddingWitnessToken_$1338",
+                                  "typeIdentifier": "t_contract$_WeddingWitnessToken_$1371",
                                   "typeString": "contract WeddingWitnessToken"
                                 }
                               ],
@@ -9287,7 +9287,7 @@
                             "attributes": {
                               "argumentTypes": [
                                 {
-                                  "typeIdentifier": "t_contract$_WeddingInvitationToken_$1318",
+                                  "typeIdentifier": "t_contract$_WeddingInvitationToken_$1351",
                                   "typeString": "contract WeddingInvitationToken"
                                 }
                               ],
@@ -9411,8 +9411,8 @@
         }
       },
       "links": {},
-      "address": "0x5371C53218020528C16AE8246F7c93F8F1D2048d",
-      "transactionHash": "0xc10578c34567a85fb7a8e72f80ab2fe3d6dd25d002fc873fd1e401be5144068c"
+      "address": "0x95aE3e45e2378Bfa1e009F418D88D3C4743b05c3",
+      "transactionHash": "0x06aa259c2c7c3ac5d6fa311a3ca44d1f0932ea7ce26bbd4b8f21dc23ab193278"
     },
     "5777": {
       "events": {
@@ -9479,7 +9479,7 @@
     }
   },
   "schemaVersion": "3.3.4",
-  "updatedAt": "2021-03-26T14:53:26.101Z",
+  "updatedAt": "2021-03-30T18:19:59.132Z",
   "networkType": "ethereum",
   "devdoc": {
     "methods": {
