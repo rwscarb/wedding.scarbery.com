@@ -29,13 +29,13 @@
                     name="guest_book_message"
                     :rules="[v => !!v || 'You forgot the message']"
                     :loading="forms.guest_book.loading"
+                    rows="10"
                     solo
                 />
                 <v-btn type="submit" v-if="forms.guest_book.valid"
                     :loading="forms.guest_book.loading"
-                    color="black"
                     class="float-right"
-                    fab dark large icon>
+                    fab large icon>
                     <v-icon dense>mdi-email-send</v-icon>
                 </v-btn>
             </v-form>
