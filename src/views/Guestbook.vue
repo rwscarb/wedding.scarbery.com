@@ -45,8 +45,8 @@
                 <v-list-item v-for="({name, address, message}, i) in guestBookEntries" :key="i">
                     <v-list-item-avatar><blocky :seed="address" :size="10"></blocky></v-list-item-avatar>
                     <v-list-item-content>
-                        <v-list-item-title v-if="name">{{ name }}</v-list-item-title>
-                        <v-list-item-subtitle>{{ message }}</v-list-item-subtitle>
+                        <v-list-item-title v-if="name" class="guest_book_name">{{ name }},</v-list-item-title>
+                        <v-list-item-subtitle class="guest_book_entry">{{ message }}</v-list-item-subtitle>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
@@ -121,4 +121,14 @@ export default {
 </script>
 
 <style lang="less" scoped>
+.guest_book_name {
+    font-family: 'Parisienne', cursive;
+    line-height: 1.5em;
+    font-size: 1.5em;
+    padding-left: .1em;
+}
+.guest_book_entry {
+    font-family: 'Homemade Apple', cursive;
+    line-height: 2em;
+}
 </style>

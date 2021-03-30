@@ -41,7 +41,7 @@
                         <v-icon>{{ item.icon }}</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
-                        <v-list-item-title>{{ item.title }}</v-list-item-title>
+                        <v-list-item-title class="nav_item_title">{{ item.title }}</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
             </v-list>
@@ -218,5 +218,10 @@ input[type=number] {
 }
 .v-subheader {
     padding-left: 8px;
+}
+.v-list-item__title.nav_item_title {
+    font-family: 'Parisienne', cursive;
+    font-size: 1.2em;
+    padding-left: .1em;
 }
 </style>
