@@ -7,6 +7,7 @@
             :items="displayedEvents"
             :items-per-page="10"
             class="elevation-1"
+            @click:row="(item, slot) => slot.expand(!slot.isExpanded)"
             show-expand
             single-expand
             >
