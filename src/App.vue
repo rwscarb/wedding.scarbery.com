@@ -218,6 +218,9 @@ h1 {
 h3 {
     margin-top: 2em;
 }
+form.v-form {
+    padding-left: 0;
+}
 input[type=number] {
     text-align: center;
 }
