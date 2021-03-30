@@ -34,7 +34,7 @@
                             </v-card-actions>
                         </v-card>
                     </v-col>
-                    <v-col cols="12" lg="5" xl="4">
+                    <v-col cols="12" lg="5" xl="4" order-lg="2">
                         <h3>Contract Info</h3>
                         <v-card>
                             <v-card-title class="justify-space-between">
@@ -53,7 +53,7 @@
                             </v-card-actions>
                         </v-card>
                     </v-col>
-                    <v-col cols="12" md="6" lg="4" v-for="(item, i) in addressBook" :key="i">
+                    <v-col cols="12" md="6" lg="4" v-for="(item, i) in addressBook" :key="i" order-lg="1">
                         <h3>Address Book</h3>
                         <v-card>
                             <v-card-title class="justify-space-between">
@@ -65,7 +65,7 @@
                             </v-card-text>
                         </v-card>
                     </v-col>
-                    <v-col cols="12" lg="4">
+                    <v-col cols="12" lg="4" order-lg="3">
                         <h3>ERC20 Tokens</h3>
                         <v-card :disabled="!hasWeb3Extension">
                             <v-card-title>Add Tokens to MetaMask</v-card-title>
@@ -94,7 +94,7 @@
                             </v-card-text>
                         </v-card>
                     </v-col>
-                    <v-col v-if="writtenContractIpfsHash">
+                    <v-col v-if="writtenContractIpfsHash" order-lg="4">
                         <h3>Written Contract</h3>
                         <v-card class="d-flex justify-center align-center">
                             <v-card-text class="text-center">
@@ -131,8 +131,8 @@ export default {
     computed: {
         addressBook() {
             return [
-                {title: 'Spouse 1 Address', address: this.spouse1Address},
-                {title: 'Spouse 2 Address', address: this.spouse2Address},
+                {title: `${this.config.spouse1.firstName}'s Address`, address: this.spouse1Address},
+                {title: `${this.config.spouse2.firstName}'s Address`, address: this.spouse2Address},
             ];
         },
         inviteTokenAddress() {
@@ -160,8 +160,11 @@ export default {
             });
             return data === "loading" ? 0 : _.toNumber(this.utils.fromWei(data));
         },
-        ...mapGetters("contracts", [
-            "getContractData"
+        ...mapGetters('contracts', [
+            'getContractData'
+        ]),
+        ...mapGetters('settings', [
+            'config'
         ]),
     },
     methods: {

@@ -18,8 +18,9 @@
         <v-navigation-drawer v-model="navigationDrawerProxy" bottom app>
             <v-list-item>
                 <v-list-item-content>
-                    <v-list-item-title class="title">
-                        <v-icon>mdi-shield-lock</v-icon> Crypto Wedding
+                    <v-list-item-title class="nav_drawer_title">
+                        <v-icon>mdi-shield-lock</v-icon>
+                        {{ config.spouse1.firstName }} & {{ config.spouse2.firstName }}
                     </v-list-item-title>
                     <v-list-item-subtitle class="mt-1">
                         Written in the time of COVID19
@@ -116,6 +117,9 @@ export default {
         ]),
         ...mapGetters("drizzle", [
             "isDrizzleInitialized"
+        ]),
+        ...mapGetters('settings', [
+            'config'
         ]),
     },
     watch: {
@@ -223,5 +227,10 @@ input[type=number] {
     font-family: 'Parisienne', cursive;
     font-size: 1.2em;
     padding-left: .1em;
+}
+.v-list-item__title.nav_drawer_title {
+    font-family: 'Parisienne', cursive;
+    font-size: 1.6em;
+    overflow: visible;
 }
 </style>
