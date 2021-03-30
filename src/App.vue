@@ -34,7 +34,7 @@
                         <v-icon>mdi-badge-account-horizontal-outline</v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
-                        <v-list-item-title>Admin</v-list-item-title>
+                        <v-list-item-title class="nav_item_title">Admin</v-list-item-title>
                     </v-list-item-content>
                 </v-list-item>
                 <v-list-item v-for="item in items" :key="item.title" link :to="item.route">
@@ -210,6 +210,11 @@ export default {
 </script>
 
 <style lang="less">
+h1 {
+    font-family: 'Parisienne', cursive;
+    font-size: 2.5em;
+    font-weight: normal;
+}
 h3 {
     margin-top: 2em;
 }
@@ -219,9 +224,6 @@ input[type=number] {
 .v-card__title {
     white-space: normal;
     word-break: break-word;
-}
-.v-subheader {
-    padding-left: 8px;
 }
 .v-list-item__title.nav_item_title {
     font-family: 'Parisienne', cursive;

@@ -7,7 +7,9 @@
 
             <h3>Sign the Guest Book</h3>
 
-            <v-subheader>Submission can take up to 15 seconds as miners confirm the next block.</v-subheader>
+            <v-subheader class="pl-0">
+                Submission can take up to 15 seconds as miners confirm the next block.
+            </v-subheader>
 
             <v-form ref="guest_book_form"
                 class="col-lg-6"
