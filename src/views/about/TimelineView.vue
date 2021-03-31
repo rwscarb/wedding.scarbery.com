@@ -76,3 +76,9 @@ export default {
     }),
 }
 </script>
+
+<style lang="less" scoped>
+.v-timeline-item:not(:last-child) {
+    margin-bottom: 900px;
+}
+</style>
