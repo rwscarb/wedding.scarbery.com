@@ -19,7 +19,7 @@ module.exports = {
         include: "./dist",
         ignore: ["node_modules", "webpack.config.js"],
       }),
-      new EnvironmentPlugin(['NODE_ENV', 'SENTRY_DSN', 'GTAG_ID']),
+      new EnvironmentPlugin(['NODE_ENV', 'SENTRY_DSN', 'GTAG_ID', {FROM_BLOCK: 0}]),
     ],
   },
 

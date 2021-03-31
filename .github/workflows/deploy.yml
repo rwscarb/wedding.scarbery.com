@@ -12,8 +12,8 @@ jobs:
 
       - name: Install and Build 🔧
         env:
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           GTAG_ID: ${{ secrets.GTAG_ID }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
           npm install

@@ -12,6 +12,7 @@
 
 <script>
 import { mapActions } from 'vuex';
+
 import { DrizzleViewMixin } from '@/mixins/drizzleMixins.js';
 import ContractStatus from '@/components/ContractStatus.vue';
 
