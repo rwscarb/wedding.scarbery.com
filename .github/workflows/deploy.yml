@@ -12,8 +12,8 @@ jobs:
 
       - name: Install and Build 🔧
         env:
-          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           GTAG_ID: ${{ secrets.GTAG_ID }}
+          SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
           SENTRY_DSN: ${{ secrets.SENTRY_DSN }}
         run: |
           npm install
@@ -24,6 +24,7 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          FROM_BLOCK: ${{ secrets.FROM_BLOCK }}
         uses: reggionick/s3-deploy@v3
         with:
           folder: dist

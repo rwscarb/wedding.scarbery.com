@@ -34,12 +34,15 @@
                     rows="10"
                     solo
                 />
-                <v-btn type="submit" v-if="forms.guest_book.valid"
-                    :loading="forms.guest_book.loading"
-                    class="float-right"
-                    fab large icon>
-                    <v-icon dense>mdi-email-send</v-icon>
-                </v-btn>
+                <v-slide-x-transition>
+                    <v-btn type="submit" v-if="forms.guest_book.valid"
+                        :loading="forms.guest_book.loading"
+                        class="float-right"
+                        style="margin-top: -1.5em; margin-right: -1em"
+                        fab large icon>
+                        <v-icon dense>mdi-email-send</v-icon>
+                    </v-btn>
+                </v-slide-x-transition>
             </v-form>
 
             <h3>Entries</h3>

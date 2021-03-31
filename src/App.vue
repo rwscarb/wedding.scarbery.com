@@ -20,7 +20,7 @@
                 <v-list-item-content>
                     <v-list-item-title class="nav_drawer_title">
                         <v-icon>mdi-shield-lock</v-icon>
-                        {{ config.spouse1.firstName }} & {{ config.spouse2.firstName }}
+                        {{ spouseDisplayNames }}
                     </v-list-item-title>
                     <v-list-item-subtitle class="mt-1">
                         Written in the time of COVID19
@@ -52,7 +52,9 @@
 
         <v-main>
             <v-container fluid>
-                <router-view></router-view>
+                <v-fade-transition hide-on-leave>
+                    <router-view></router-view>
+                </v-fade-transition>
             </v-container>
         </v-main>
 
@@ -85,6 +87,8 @@
 </template>
 
 <script>
+import _ from 'lodash';
+
 import { mapGetters, mapActions } from 'vuex';
 
 import { DrizzleViewMixin } from '@/mixins/drizzleMixins.js';
@@ -109,6 +113,9 @@ export default {
             set(show) {
                 this.setShowNavigationDrawer({show});
             }
+        },
+        spouseDisplayNames() {
+            return _.join(_.shuffle([this.config.spouse1.firstName, this.config.spouse2.firstName]), ' & ');
         },
         ...mapGetters('vuetify', [
             'showSnackbar',

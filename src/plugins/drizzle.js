@@ -9,7 +9,7 @@ import GuestBook from "@/contracts/GuestBook.json";
 import config from "@/../config.js";
 import store from "@/store";
 
-const FROM_BLOCK = 0
+const FROM_BLOCK = process.env.FROM_BLOCK;
 
 const drizzleOptions = {
   web3: {
