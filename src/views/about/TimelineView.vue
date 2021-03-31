@@ -47,12 +47,6 @@ export default {
                     text: 'First in-person meet on the 5th of November, Portland protestors storm the police station with flares.',
                 },
                 {
-                    color: 'indigo',
-                    icon: 'mdi-airport',
-                    title: 'Midlife Crisis (2019)',
-                    text: 'Took a mistake around the world.',
-                },
-                {
                     color: 'red lighten-1',
                     icon: 'mdi-heart',
                     title: 'Engaged! (2021)',
